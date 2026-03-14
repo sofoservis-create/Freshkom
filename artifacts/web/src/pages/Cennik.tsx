@@ -1,61 +1,63 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { Check, ArrowRight, Phone } from "lucide-react";
+import { ArrowRight, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Check } from "lucide-react";
 
 const PHONE_NUMBER = "+421 917 240 819";
 
-const pricingCategories = [
+interface PricingItem {
+  name: string;
+  price: string;
+  img: string;
+}
+
+interface PricingSection {
+  title: string;
+  items: PricingItem[];
+}
+
+const pricingSections: PricingSection[] = [
   {
     title: "Sedačky a nábytok",
-    img: "service-sofa.png",
-    color: "bg-primary",
     items: [
-      { name: "Kreslo", price: "20 €" },
-      { name: "2-miestna sedačka", price: "30 €" },
-      { name: "3-miestna sedačka", price: "40 €" },
-      { name: "L-ková sedačka", price: "50 €" },
-      { name: "U-čková sedačka", price: "60 €" },
-      { name: "Stolička", price: "5 €" },
+      { name: "Kreslo", price: "20 €", img: "item-kreslo.png" },
+      { name: "Sedačka 2-miestna", price: "30 €", img: "item-sedacka-2m.png" },
+      { name: "Sedačka 3-miestna", price: "40 €", img: "item-sedacka-3m.png" },
+      { name: "Sedačka L-ková", price: "50 €", img: "item-sedacka-l.png" },
+      { name: "Sedačka U-čková", price: "60 €", img: "item-sedacka-u.png" },
+      { name: "Stolička", price: "5 €", img: "item-stolicka.png" },
     ],
   },
   {
     title: "Koberce",
-    img: "service-carpet.png",
-    color: "bg-blue-500",
     items: [
-      { name: "Krátkovlasý koberec", price: "3 € / m²" },
-      { name: "Dlhovlasý koberec", price: "4,50 € / m²" },
+      { name: "Krátkovlasý koberec", price: "3 € / m²", img: "item-koberec-kratky.png" },
+      { name: "Dlhovlasý koberec", price: "4,50 € / m²", img: "item-koberec-dlhy.png" },
     ],
   },
   {
     title: "Matrace",
-    img: "service-mattress.png",
-    color: "bg-emerald-500",
     items: [
-      { name: "Jednolôžkový matrac (1 strana)", price: "11 €" },
-      { name: "Dvojlôžkový matrac (1 strana)", price: "22 €" },
+      { name: "Jednolôžkový matrac (1 strana)", price: "11 €", img: "item-matrac-1.png" },
+      { name: "Dvojlôžkový matrac (1 strana)", price: "22 €", img: "item-matrac-2.png" },
     ],
   },
   {
     title: "Tepovanie áut",
-    img: "service-car.png",
-    color: "bg-violet-500",
     items: [
-      { name: "Sedačky", price: "50 €" },
-      { name: "Celý interiér", price: "80 €" },
+      { name: "Sedačky", price: "50 €", img: "item-auto-sedacky.png" },
+      { name: "Celý interiér", price: "80 €", img: "item-auto-interier.png" },
     ],
   },
   {
     title: "Umývanie okien",
-    img: "service-windows.png",
-    color: "bg-sky-500",
     items: [
-      { name: "Jednokrídlové okno", price: "10 €" },
-      { name: "Dvojkrídlové okno", price: "12,50 €" },
-      { name: "Trojkrídlové okno", price: "15 €" },
-      { name: "Výklad", price: "Dohodou" },
+      { name: "Jednokrídlové okno", price: "10 €", img: "item-okno-1.png" },
+      { name: "Dvojkrídlové okno", price: "12,50 €", img: "item-okno-2.png" },
+      { name: "Trojkrídlové okno", price: "15 €", img: "item-okno-3.png" },
+      { name: "Výklad", price: "Dohodou", img: "item-vyklad.png" },
     ],
   },
 ];
@@ -87,49 +89,59 @@ export default function Cennik() {
         </div>
       </section>
 
-      <section className="py-20 bg-white">
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {pricingCategories.map((cat, i) => (
-              <motion.div
-                key={i}
+          {pricingSections.map((section, sIdx) => (
+            <div key={sIdx} className={sIdx > 0 ? "mt-16" : ""}>
+              <motion.h2
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-30px" }}
-                variants={{
-                  hidden: { opacity: 0, y: 30 },
-                  visible: { opacity: 1, y: 0, transition: { delay: i * 0.08, duration: 0.5 } },
-                }}
+                variants={fadeInUp}
+                className="text-2xl md:text-3xl font-bold text-center mb-10 text-foreground"
               >
-                <Card className="h-full border-0 shadow-lg rounded-3xl overflow-hidden hover:shadow-xl transition-shadow duration-300 group">
-                  <div className="h-44 overflow-hidden relative">
-                    <img
-                      src={`${import.meta.env.BASE_URL}images/${cat.img}`}
-                      alt={cat.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className={`absolute inset-0 ${cat.color} opacity-40 mix-blend-multiply`} />
-                    <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60">
-                      <h3 className="text-xl font-bold text-white">{cat.title}</h3>
+                {section.title}
+              </motion.h2>
+
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+                {section.items.map((item, iIdx) => (
+                  <motion.div
+                    key={iIdx}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-20px" }}
+                    variants={{
+                      hidden: { opacity: 0, y: 20 },
+                      visible: {
+                        opacity: 1,
+                        y: 0,
+                        transition: { delay: iIdx * 0.06, duration: 0.4 },
+                      },
+                    }}
+                    className="group"
+                  >
+                    <div className="bg-gray-50 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                      <div className="aspect-square overflow-hidden bg-white p-3">
+                        <img
+                          src={`${import.meta.env.BASE_URL}images/${item.img}`}
+                          alt={item.name}
+                          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                        />
+                      </div>
+                      <div className="p-4 text-center border-t border-gray-100">
+                        <p className="text-sm md:text-base font-medium text-gray-800 mb-1 leading-tight">
+                          {item.name}
+                        </p>
+                        <p className="text-lg md:text-xl font-bold text-primary">
+                          {item.price}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  <CardContent className="p-6">
-                    <ul className="divide-y divide-gray-100">
-                      {cat.items.map((item, j) => (
-                        <li key={j} className="flex items-center justify-between py-3">
-                          <div className="flex items-center gap-2">
-                            <Check className="h-4 w-4 text-primary flex-shrink-0" />
-                            <span className="text-gray-700">{item.name}</span>
-                          </div>
-                          <span className="font-bold text-foreground whitespace-nowrap ml-3">{item.price}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
