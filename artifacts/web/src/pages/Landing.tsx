@@ -126,7 +126,7 @@ export default function Landing() {
           <img
             src={`${import.meta.env.BASE_URL}images/hero-real.jpeg`}
             alt="Freshkom technik pri tepovaní sedačky"
-            className="w-full h-full object-cover object-top"
+            className="w-full h-full object-cover object-top scale-x-[-1]"
           />
         </div>
 
