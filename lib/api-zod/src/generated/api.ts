@@ -14,3 +14,25 @@ import * as zod from "zod";
 export const HealthCheckResponse = zod.object({
   status: zod.string(),
 });
+
+/**
+ * Captures a customer inquiry for a quote
+ * @summary Submit a lead inquiry
+ */
+export const SubmitLeadBody = zod.object({
+  name: zod.string().describe("Full name of the customer"),
+  phone: zod.string().describe("Phone number"),
+  email: zod.string().optional().describe("Email address"),
+  service: zod
+    .enum([
+      "tepovanie-gaucov",
+      "tepovanie-kobercov",
+      "tepovanie-matracov",
+      "cistenie-caluneneho-nabytku",
+      "umyvanie-okien",
+      "hlbkove-cistenie",
+      "ine",
+    ])
+    .describe("Type of service requested"),
+  message: zod.string().optional().describe("Additional message or details"),
+});

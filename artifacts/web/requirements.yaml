@@ -1,0 +1,17 @@
+packages:
+  "framer-motion": "Scroll animations and page transitions for a premium feel"
+  "react-hook-form": "Form state management"
+  "@hookform/resolvers": "Zod validation resolver for the lead form"
+  "zod": "Schema validation for the lead form"
+
+images:
+  - path: "artifacts/web/public/images/hero-bg.png"
+    description: "Bright, airy, clean modern living room with a pristine beige sofa and large windows, natural sunlight, professional photography, highly detailed, clean aesthetic"
+    aspect_ratio: "16:9"
+  - path: "artifacts/web/public/images/cleaning-process.png"
+    description: "Close up of a professional upholstery cleaning wand spraying fresh water onto a clean fabric surface, macro, refreshing water droplets, bright and professional"
+    aspect_ratio: "16:9"
+
+notes:
+  - The API hook `useSubmitLead` from `@workspace/api-client-react` is used directly.
+  - The form uses react-hook-form with zod validation matching the OpenAPI schema exactly.

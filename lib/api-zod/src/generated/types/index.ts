@@ -6,4 +6,8 @@
  * OpenAPI spec version: 0.1.0
  */
 
+export * from "./errorResponse";
 export * from "./healthStatus";
+export * from "./leadSubmission";
+export * from "./leadSubmissionResponse";
+export * from "./leadSubmissionService";

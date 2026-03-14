@@ -1,6 +1,5 @@
 openapi: 3.1.0
 info:
-  # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
   description: API specification
@@ -10,6 +9,8 @@ servers:
 tags:
   - name: health
     description: Health operations
+  - name: leads
+    description: Lead capture operations
 paths:
   /healthz:
     get:
@@ -24,6 +25,31 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /leads:
+    post:
+      operationId: submitLead
+      tags: [leads]
+      summary: Submit a lead inquiry
+      description: Captures a customer inquiry for a quote
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LeadSubmission"
+      responses:
+        "201":
+          description: Lead submitted successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LeadSubmissionResponse"
+        "400":
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
 components:
   schemas:
     HealthStatus:
@@ -33,4 +59,53 @@ components:
           type: string
       required:
         - status
-
+    LeadSubmission:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Full name of the customer
+        phone:
+          type: string
+          description: Phone number
+        email:
+          type: string
+          description: Email address
+        service:
+          type: string
+          description: Type of service requested
+          enum:
+            - tepovanie-gaucov
+            - tepovanie-kobercov
+            - tepovanie-matracov
+            - cistenie-caluneneho-nabytku
+            - umyvanie-okien
+            - hlbkove-cistenie
+            - ine
+        message:
+          type: string
+          description: Additional message or details
+      required:
+        - name
+        - phone
+        - service
+    LeadSubmissionResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        id:
+          type: integer
+      required:
+        - success
+        - message
+        - id
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+        - error

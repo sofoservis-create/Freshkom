@@ -5,9 +5,6 @@
  * API specification
  * OpenAPI spec version: 0.1.0
  */
-export interface HealthStatus {
-  status: string;
-}
 
 /**
  * Type of service requested
@@ -24,26 +21,3 @@ export const LeadSubmissionService = {
   "hlbkove-cistenie": "hlbkove-cistenie",
   ine: "ine",
 } as const;
-
-export interface LeadSubmission {
-  /** Full name of the customer */
-  name: string;
-  /** Phone number */
-  phone: string;
-  /** Email address */
-  email?: string;
-  /** Type of service requested */
-  service: LeadSubmissionService;
-  /** Additional message or details */
-  message?: string;
-}
-
-export interface LeadSubmissionResponse {
-  success: boolean;
-  message: string;
-  id: number;
-}
-
-export interface ErrorResponse {
-  error: string;
-}
