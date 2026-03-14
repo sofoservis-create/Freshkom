@@ -152,7 +152,7 @@ export default function Landing() {
             </motion.h1>
             <motion.p
               variants={fadeInUp}
-              className="text-xl text-muted-foreground mb-10 leading-relaxed max-w-xl"
+              className="text-xl md:text-2xl text-gray-800 font-medium mb-10 leading-relaxed max-w-xl"
             >
               Profesionálne tepovanie a čistenie v Komárne a okolí. Rýchlo, dôkladne a s
               garanciou najvyššej kvality.
