@@ -28,6 +28,7 @@ export const SubmitLeadBody = zod.object({
       "tepovanie-gaucov",
       "tepovanie-kobercov",
       "tepovanie-matracov",
+      "tepovanie-aut",
       "cistenie-caluneneho-nabytku",
       "umyvanie-okien",
       "hlbkove-cistenie",

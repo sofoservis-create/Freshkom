@@ -91,6 +91,17 @@ Generated Zod schemas from the OpenAPI spec (e.g. `HealthCheckResponse`). Used b
 
 Generated React Query hooks and fetch client from the OpenAPI spec (e.g. `useHealthCheck`, `healthCheck`).
 
+### `artifacts/web` (`@workspace/web`)
+
+React + Vite frontend for Freshkom — professional cleaning company in Komárno, Slovakia. Multi-page Slovak-language website with lead capture.
+
+- Pages: Landing (`/`), Cenník (`/cennik`), Kontakt (`/kontakt`)
+- Components: `Layout.tsx` (shared header/footer with top bar, navigation, social links), `LeadForm.tsx` (reusable lead capture form)
+- Real brand assets in `public/images/`: `logo-mascot.png`, `hero-real.jpeg`, AI-generated service images (`service-sofa.png`, `service-carpet.png`, etc.)
+- Contact: +421 917 240 819, freshkomsluzby@gmail.com
+- Uses `@workspace/api-client-react` for form submission via `useLeadSubmission` hook
+- Routing: wouter with base path from `import.meta.env.BASE_URL`
+
 ### `scripts` (`@workspace/scripts`)
 
 Utility scripts package. Each script is a `.ts` file in `src/` with a corresponding npm script in `package.json`. Run scripts via `pnpm --filter @workspace/scripts run <script>`. Scripts can import any workspace package (e.g., `@workspace/db`) by adding it as a dependency in `scripts/package.json`.

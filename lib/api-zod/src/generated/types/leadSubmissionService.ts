@@ -16,6 +16,7 @@ export const LeadSubmissionService = {
   "tepovanie-gaucov": "tepovanie-gaucov",
   "tepovanie-kobercov": "tepovanie-kobercov",
   "tepovanie-matracov": "tepovanie-matracov",
+  "tepovanie-aut": "tepovanie-aut",
   "cistenie-caluneneho-nabytku": "cistenie-caluneneho-nabytku",
   "umyvanie-okien": "umyvanie-okien",
   "hlbkove-cistenie": "hlbkove-cistenie",
