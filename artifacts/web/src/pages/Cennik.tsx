@@ -8,34 +8,34 @@ const PHONE_NUMBER = "+421 917 240 819";
 
 const pricingCategories = [
   {
-    title: "Tepovanie sedačiek a gaučov",
+    title: "Sedačky a nábytok",
     img: "service-sofa.png",
     color: "bg-primary",
     items: [
       { name: "Kreslo", price: "20 €" },
       { name: "2-miestna sedačka", price: "30 €" },
       { name: "3-miestna sedačka", price: "40 €" },
-      { name: "L-ková sedačka (rohová)", price: "50 €" },
+      { name: "L-ková sedačka", price: "50 €" },
       { name: "U-čková sedačka", price: "60 €" },
-      { name: "Stolička (čalúnená)", price: "5 €" },
+      { name: "Stolička", price: "5 €" },
     ],
   },
   {
-    title: "Tepovanie kobercov",
+    title: "Koberce",
     img: "service-carpet.png",
     color: "bg-blue-500",
     items: [
-      { name: "Koberec — krátky vlas", price: "3 € / m²" },
-      { name: "Koberec — dlhý vlas", price: "4,50 € / m²" },
+      { name: "Krátkovlasý koberec", price: "3 € / m²" },
+      { name: "Dlhovlasý koberec", price: "4,50 € / m²" },
     ],
   },
   {
-    title: "Tepovanie matracov",
+    title: "Matrace",
     img: "service-mattress.png",
     color: "bg-emerald-500",
     items: [
-      { name: "Jednoposteľový matrac (1 strana)", price: "11 €" },
-      { name: "Dvojposteľový matrac (1 strana)", price: "22 €" },
+      { name: "Jednolôžkový matrac (1 strana)", price: "11 €" },
+      { name: "Dvojlôžkový matrac (1 strana)", price: "22 €" },
     ],
   },
   {
@@ -43,8 +43,8 @@ const pricingCategories = [
     img: "service-car.png",
     color: "bg-violet-500",
     items: [
-      { name: "Sedačky v aute", price: "50 €" },
-      { name: "Celý interiér vozidla", price: "80 €" },
+      { name: "Sedačky", price: "50 €" },
+      { name: "Celý interiér", price: "80 €" },
     ],
   },
   {
@@ -52,20 +52,10 @@ const pricingCategories = [
     img: "service-windows.png",
     color: "bg-sky-500",
     items: [
-      { name: "Štandardné okno (1-krídlové)", price: "10 €" },
+      { name: "Jednokrídlové okno", price: "10 €" },
       { name: "Dvojkrídlové okno", price: "12,50 €" },
-      { name: "Balkónové dvere s oknom", price: "15 €" },
-      { name: "Výklady / veľké plochy", price: "Dohodou" },
-    ],
-  },
-  {
-    title: "Čalúnený nábytok",
-    img: "service-furniture.png",
-    color: "bg-amber-500",
-    items: [
-      { name: "Jedálenská stolička (čalúnená)", price: "5 €" },
-      { name: "Kreslo", price: "20 €" },
-      { name: "Kancelárska stolička", price: "10 €" },
+      { name: "Trojkrídlové okno", price: "15 €" },
+      { name: "Výklad", price: "Dohodou" },
     ],
   },
 ];

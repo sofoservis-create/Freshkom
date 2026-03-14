@@ -125,18 +125,14 @@ export default function Kontakt() {
                 </p>
               </div>
 
-              <div className="rounded-3xl overflow-hidden shadow-xl h-[400px]">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d42872.44!2d18.1217!3d47.7631!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476bb0b0b16f6d97%3A0x400f7d1c69752e0!2sKom%C3%A1rno!5e0!3m2!1ssk!2ssk!4v1700000000000"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Mapa Komárna"
-                />
-              </div>
+              <Card className="border-0 shadow-lg rounded-3xl bg-primary/5 overflow-hidden">
+                <CardContent className="p-8 text-center">
+                  <MapPin className="h-12 w-12 text-primary mx-auto mb-4" />
+                  <h3 className="text-xl font-bold mb-2">Komárno a okolie</h3>
+                  <p className="text-muted-foreground mb-2">Pôsobíme v celom meste Komárno a v okruhu do 30 km.</p>
+                  <p className="text-muted-foreground">Nové Zámky, Hurbanovo, Kolárovo, Štúrovo a ďalšie.</p>
+                </CardContent>
+              </Card>
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <a

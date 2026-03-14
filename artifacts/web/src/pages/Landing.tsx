@@ -80,22 +80,22 @@ const steps = [
 const testimonials = [
   {
     name: "Svitlana Muraško",
-    text: "Tím bol veľmi profesionálny, pracoval rýchlo a dôsledne. Sedačka vyzerá ako nová! Rozhodne odporúčam.",
+    text: "Všetko bolo super, sú snažliví a precízni",
     rating: 5,
   },
   {
     name: "Michal Šimko",
-    text: "Rýchly, pracovitý a precízny. Veľmi pekne ďakujem za vyčistenie sedačky.",
+    text: "Prišli aj cez víkend, dobrá práca za super cenu",
     rating: 5,
   },
   {
     name: "Péter Hegedűs",
-    text: "Nagyon köszönöm a kanapé tisztítását! Gyorsan, pontosan és profi módon dolgoztak. Nagyon szép lett!",
+    text: "Nagyon köszönöm a szuper munkát, sokkal szebb lett a kanapé, mint vártam!",
     rating: 5,
   },
   {
     name: "Jana Aradská",
-    text: "Tepovanie matracov a sedačiek prebehlo výborne. Pán bol veľmi príjemný, práca bola na úrovni. Odporúčam každému!",
+    text: "Dobrá práca za fajn cenu, slušný mladý muž, práca mu išla od ruky",
     rating: 5,
   },
 ];
