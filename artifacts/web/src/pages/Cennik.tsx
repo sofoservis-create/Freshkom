@@ -279,10 +279,10 @@ export default function Cennik() {
               {t("pricing.ctaSubtitle")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/kontakt">
+              <Link href="/kontakt" className="w-full sm:w-auto">
                 <Button
                   size="xl"
-                  className="text-lg px-10 py-7 rounded-full shadow-xl shadow-primary/30 hover:scale-105 transition-transform"
+                  className="w-full text-lg px-10 py-7 rounded-full shadow-xl shadow-primary/30 hover:scale-105 transition-transform"
                 >
                   {t("pricing.ctaButton")}
                   <ArrowRight className="ml-2 h-5 w-5" />
@@ -291,7 +291,7 @@ export default function Cennik() {
               <Button
                 size="xl"
                 variant="outline"
-                className="text-lg px-10 py-7 rounded-full bg-transparent border-white/30 hover:bg-white/10 text-white group"
+                className="w-full sm:w-auto text-lg px-10 py-7 rounded-full bg-transparent border-white/30 hover:bg-white/10 text-white group"
                 asChild
               >
                 <a href={`tel:${PHONE_NUMBER.replace(/\s/g, "")}`}>
