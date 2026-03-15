@@ -1,0 +1,171 @@
+Fix email overflow in footer and top info bar
+The email address freshkomsluzby@gmail.com in the footer (Layout.tsx line 142) does not wrap at medium viewport widths (~768–900px). At these widths the footer is a 3-column grid, leaving each column only ~200px wide, but the email string is wider than that with no CSS word-break set. This causes the email to overflow its column container and go outside the frame.
+The same risk applies to the top info bar where the email is shown at sm+ breakpoints.
+Done looks like
+Email in footer has break-all or truncate (with title attribute) so it never overflows its column
+Top bar email is hidden at intermediate widths where it causes crowding (show only at lg+)
+No horizontal scrollbar appears at any viewport width 320px–1440px
+Relevant files
+artifacts/web/src/components/Layout.tsx — footer line 142, top bar line 37
+here is email orverfloww as well
+Fix email overflow in Kontakt contact card
+The email address freshkomsluzby@gmail.com in the Email contact card on the Kontakt page (Kontakt.tsx line 90) overflows its card at medium viewport widths (~768-900px). At these widths the cards are in a 4-column grid, making each card ~170px wide, and the email link has no word-break so it spills out.
+Done looks like
+Add break-all to the email [ tag on line 90 of Kontakt.tsx]
+[
+Email wraps inside the card at all viewport widths
+No other layout elements affected
+]
+[
+Relevant files
+artifacts/web/src/pages/Kontakt.tsx — line 90
+]
+Sofian started: Replace hero image with new Freshkom photo
+mak it more visually and ui appealing
+Completed: Replace hero image with new Freshkom photo
+Updated environment
+now make a hungarian tranlation of the whole web and include it there
+Sofian started: Add Hungarian (HU) translation to the full website
+I WOULD ADD A CALL ICON ON MOBILE
+Add call icon to mobile navbar
+On mobile the navbar only shows the logo and hamburger menu. A tappable phone icon next to the hamburger lets users call instantly without opening the menu — a key conversion touchpoint on mobile.
+Done looks like
+A Phone icon (lucide-react) appears to the LEFT of the hamburger button, only on mobile (md:hidden), linking to tel:+421917240819
+Styled to match the brand: primary teal color, tappable target ≥ 44px
+Does not appear on desktop (hamburger already hidden on md+)
+Relevant files
+artifacts/web/src/components/Layout.tsx — lines 75-82 (hamburger area)
+howwould you maximlly SEO optimze the web fot htis services in komarno ?
+Let me look at the current SEO state of the site first:
+Here's a full picture of where things stand and what would move the needle most for Freshkom in Komárno:
+
+What's already there:
+
+Good keyword-rich page title
+An opengraph.jpg image (but no OG meta tags wiring it up)
+Slovak text content throughout
+What's missing (and hurts ranking right now):
+
+Priority	Fix	Why it matters
+🔴 Critical	lang="en" in <html>	Google indexes this as an English page — hurts Slovak/Hungarian local results
+🔴 Critical	No <meta description>	Google writes its own — usually bad. You lose the click
+🔴 Critical	No LocalBusiness JSON-LD schema	Google can't show your business in map results or rich snippets without it
+🔴 Critical	No robots.txt / sitemap.xml	Crawlers can miss pages entirely
+🟠 High	Open Graph tags not wired up	Facebook/WhatsApp shares show nothing (your opengraph.jpg exists but isn't referenced)
+🟠 High	No per-page <title> and description	All 3 pages share the same title — Google ranks each URL separately
+🟡 Medium	No AggregateRating schema	You have 4.9★ / 47 reviews — this can show gold stars in Google search results
+🟡 Medium	Missing alt on hero and product images	Image SEO + accessibility
+What I'd build:
+
+Fix lang="sk" and add a full meta description with local keywords in index.html
+Add per-page dynamic <title> + description via useEffect on each page
+Inject a LocalBusiness JSON-LD block (name, address, phone, hours, geo coords for Komárno, services) — this is the single biggest local SEO win
+Add AggregateRating schema (4.9 / 47 reviews)
+Wire up all Open Graph + Twitter Card meta tags using the existing opengraph.jpg
+Generate robots.txt and sitemap.xml in the public folder
+Add missing alt text to images
+All of this is pure code — no paid tools needed. Shall I create this as a task and build it?
+i am doing a hungrain tranlation of web shall we do it after the thtranltion is done ?
+Sofian completed: Add Hungarian (HU) translation to the full website
+Updated environment
+Add Hungarian (HU) translation to the full Freshkom website.
+2:17 am, Mar 15, 2026
+move the hero image more to the left so the face is visable
+move the hero image more to the left so the face is visable on mobile
+Let me quickly check the current mobile hero appearance:
+I can see the face is partially cut off on the right in the mirrored image. The fix is a one-line CSS change — swapping object-top to object-right-top so the right side (where the face is) stays anchored and visible on mobile. Let me create and propose that:
+Fix hero image position so face is visible on mobile
+The hero image uses scale-x-[-1] (mirrored) and object-top (centered horizontally). On mobile viewports the person's face is partially off-screen to the right. Changing the object-position to anchor right ensures the face stays in view.
+Done looks like
+Change object-top to object-right-top on the hero
+Unsupported image
+ in Landing.tsx line ~111
+Face is clearly visible on mobile (402px wide viewport)
+Desktop layout unaffected
+Relevant files
+artifacts/web/src/pages/Landing.tsx — line ~111, the hero
+Unsupported image
+ className
+how would you maximlly SEO optimze the web fot this services in komarno ?
+as the best seo specialist focusing on local service based companies analize and make as many as possiboe seo optimalizations for this web
+Full local SEO optimization (schema, meta, sitemap, robots, hreflang, FAQ)
+As a local service business in Komárno, Freshkom's revenue comes entirely from people searching Google for "tepovanie Komárno", "čistenie sedačiek Komárno", "kárpittisztítás Komárom" etc. This task implements every technical and on-page SEO optimization available in a React SPA to maximize local visibility.
+1 — Install react-helmet-async
+Install the package and wrap App.tsx in so all pages can set their own , meta description, canonical, hreflang, and OG tags that update dynamically with the language toggle.
+2 — index.html: fix lang, preload hero, DNS prefetch
+Fix lang="en" → lang="sk" (default; Helmet overrides per page)
+Add (fixes LCP — the hero image is the largest contentful paint element)
+Add
+3 — Per-page Helmet (title + meta description + canonical + hreflang + OG)
+Create a SeoHead component used in each page that renders: — keyword-first, city-last, language-aware: SK landing: "Tepovanie a Čistenie Komárno | Freshkom" HU landing: "Kárpittisztítás és Ablaktisztítás Komárom | Freshkom" SK cenník: "Cenník Tepovacích Služieb Komárno | Freshkom" HU cenník: "Takarítási Árlista Komárom | Freshkom" SK kontakt: "Kontakt — Tepovanie Komárno | Freshkom" HU kontakt: "Kapcsolat — Kárpittisztítás Komárom | Freshkom" — 150-155 chars, local keyword + CTA + city: SK landing: "Profesionálne tepovanie sedačiek, kobercov a áut v Komárne. Rýchle schnutie, ekologické prostriedky, 4.9★ na Google. Zavolajte: +421 917 240 819." HU landing: "Professzionális kárpittisztítás Komáromban. Kanapé, szőnyeg, matrac, autó tisztítás. 4.9★ Google értékelés. Hívjon minket: +421 917 240 819." SK cenník: "Transparentný cenník tepovacích a čistiacich služieb Freshkom Komárno. Tepovanie sedačky od 30 €, koberec od 3 €/m². Ceny vrátane dopravy." HU cenník: "Freshkom Komárom takarítási árlista. Kanapétisztítás 30 €-tól, szőnyegtisztítás 3 €/m²-től. Átlátható árak, szállítás beleértve." SK kontakt: "Kontaktujte Freshkom Komárno — tepovanie a čistenie. Tel: +421 917 240 819, email: freshkomsluzby@gmail.com. Pracujeme PO–SOB 7:00–21:00." HU kontakt: "Lépjen kapcsolatba a Freshkom Komárom kárpittisztítóval. Tel: +421 917 240 819. Hétfőtől szombatig 7:00–21:00." and hreflang="hu"> (same URL, lang param) Full Open Graph block using the existing /images/opengraph.jpg (1200×630) Twitter Card meta tags
+4 — LocalBusiness JSON-LD schema (in SeoHead or index.html)
+Inject a
+5 — FAQ JSON-LD schema on Landing page
+FAQ schema produces expandable Q&A directly in Google search results, dramatically increasing SERP real estate. Add 5 questions in both SK and HU: Q: Koľko stojí tepovanie sedačky v Komárne? A: Dvojmiestna sedačka od 30 €, trojmiestna od 40 €. Cena zahŕňa dopravu. Q: Ako dlho trvá tepovanie? A: Bežné tepovanie trvá 1–2 hodiny. Sedačka vyschne do 2–4 hodín. Q: Dochádzate aj mimo Komárno? A: Áno, pôsobíme v okruhu 30 km. Príplatok za dopravu je individuálny. Q: Sú vaše prostriedky bezpečné pre deti a zvieratá? A: Áno, používame výlučne ekologické, hypoalergénne čistiace prostriedky. Q: Ako si môžem objednať? A: Zavolajte na +421 917 240 819, napíšte email alebo vyplňte formulár.
+6 — BreadcrumbList schema on Cenník and Kontakt
+Adds breadcrumb navigation data that Google shows in search results: Cenník: Home > Cenník Kontakt: Home > Kontakt
+7 — robots.txt
+artifacts/web/public/robots.txt: User-agent: * Allow: / Sitemap: https://[CANONICAL_DOMAIN]/sitemap.xml (Use VITE_APP_URL env var or default to relative /sitemap.xml)
+8 — sitemap.xml
+artifacts/web/public/sitemap.xml with all 3 URLs, lastmod, changefreq, priority, and xhtml:link hreflang alternate entries for sk, hu, x-default.
+9 — Keyword enhancement in i18n strings
+Improve sk.ts and hu.ts with higher-value local keyword density where possible without being spammy: - footer description: add "Komárno, Nové Zámky, Hurbanovo, Kolárovo" - hero subtitle: include "tepovanie sedačiek" and "kobercov" - Kontakt page title tag includes service keyword
+10 — Image SEO
+Add loading="lazy" to all below-fold images (service cards, how-it-works, product images) to improve LCP score. Hero already preloaded in step 2. Add explicit width/height on key images to prevent layout shift (CLS).
+Implementation notes
+The domain for canonical/OG/sitemap should use import.meta.env.VITE_APP_URL with a fallback to window.location.origin to work in both dev and production.
+Use react-helmet-async (not react-helmet — it has React 18 issues).
+JSON-LD schemas inject into via Helmet's
+All schema strings should use the Slovak version as primary (for sk indexing).
+Files affected
+artifacts/web/package.json (add react-helmet-async)
+artifacts/web/index.html (lang, preload, dns-prefetch)
+artifacts/web/src/main.tsx or App.tsx (HelmetProvider)
+artifacts/web/src/components/SeoHead.tsx (new — per-page SEO component)
+artifacts/web/src/pages/Landing.tsx (SeoHead + FAQ schema)
+artifacts/web/src/pages/Cennik.tsx (SeoHead + BreadcrumbList)
+artifacts/web/src/pages/Kontakt.tsx (SeoHead + BreadcrumbList)
+artifacts/web/src/i18n/sk.ts (meta description + keyword improvements)
+artifacts/web/src/i18n/hu.ts (meta description + keyword improvements)
+artifacts/web/public/robots.txt (new)
+artifacts/web/public/sitemap.xml (new)
+Done looks like
+Google Rich Results Test passes for LocalBusiness, AggregateRating, FAQ schemas
+Each page shows a unique and meta description in the browser tab
+Language toggle switches titles and meta instantly
+robots.txt and sitemap.xml are reachable at /robots.txt and /sitemap.xml
+og:image preview shows the opengraph.jpg when URL is shared on social media
+Lighthouse SEO score: 100
+did you do all this ?:
+
+Priority Fix Why it matters
+🔴 Critical lang="en" in <html> Google indexes this as an English page — hurts Slovak/Hungarian local results
+🔴 Critical No <meta description> Google writes its own — usually bad. You lose the click
+🔴 Critical No LocalBusiness JSON-LD schema Google can't show your business in map results or rich snippets without it
+🔴 Critical No robots.txt / sitemap.xml Crawlers can miss pages entirely
+🟠 High Open Graph tags not wired up Facebook/WhatsApp shares show nothing (your opengraph.jpg exists but isn't referenced)
+🟠 High No per-page <title> and description All 3 pages share the same title — Google ranks each URL separately
+🟡 Medium No AggregateRating schema You have 4.9★ / 47 reviews — this can show gold stars in Google search results
+🟡 Medium Missing alt on hero and product images Image SEO + accessibility
+What I'd build:
+
+Fix lang="sk" and add a full meta description with local keywords in index.html
+Add per-page dynamic <title> + description via useEffect on each page
+Inject a LocalBusiness JSON-LD block (name, address, phone, hours, geo coords for Komárno, services) — this is the single biggest local SEO win
+Add AggregateRating schema (4.9 / 47 reviews)
+Wire up all Open Graph + Twitter Card meta tags using the existing opengraph.jpg
+Generate robots.txt and sitemap.xml in the public folder
+Add missing alt text to images
+move hero image 5 percent left
+where does this land on what email ?
+The form does not send an email — submissions are saved to a PostgreSQL database on the server. No email notification is sent anywhere.
+
+Here's the full flow:
+
+User fills out the form and clicks "Odoslať dopyt zadarmo"
+It POSTs to your API server
+The data is stored in a leads database table
+That's it — nothing else happens
+So right now, to see leads you'd have to manually query the database. There's no email delivery to freshkomsluzby@gmail.com or anywhere else.
+
+Would you like me to set up email notifications so every new form submission automatically sends an email to freshkomsluzby@gmail.com?

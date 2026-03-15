@@ -1,5 +1,6 @@
 import { Router, type IRouter } from "express";
 import { db, leadsTable, insertLeadSchema } from "@workspace/db";
+import { sendLeadNotification } from "../email.js";
 
 const router: IRouter = Router();
 
@@ -11,6 +12,10 @@ router.post("/leads", async (req, res) => {
   }
 
   const [lead] = await db.insert(leadsTable).values(parsed.data).returning({ id: leadsTable.id });
+
+  sendLeadNotification(parsed.data).catch((err) => {
+    console.error("[email] Failed to send lead notification:", err.message);
+  });
 
   res.status(201).json({
     success: true,
