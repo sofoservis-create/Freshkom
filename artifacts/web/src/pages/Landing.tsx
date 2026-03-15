@@ -46,7 +46,7 @@ export default function Landing() {
       title: t("services.couchTitle"),
       icon: Sofa,
       desc: t("services.couchDesc"),
-      img: "item-sedacka-3m.png",
+      img: "item-sedacka-3m.webp",
     },
     {
       id: "tepovanie-kobercov",
@@ -54,7 +54,7 @@ export default function Landing() {
       title: t("services.carpetTitle"),
       icon: Sparkles,
       desc: t("services.carpetDesc"),
-      img: "item-koberec-kratky.png",
+      img: "item-koberec-kratky.webp",
     },
     {
       id: "tepovanie-matracov",
@@ -62,7 +62,7 @@ export default function Landing() {
       title: t("services.mattressTitle"),
       icon: ShieldCheck,
       desc: t("services.mattressDesc"),
-      img: "item-matrac-1.png",
+      img: "item-matrac-1.webp",
     },
     {
       id: "tepovanie-aut",
@@ -70,7 +70,7 @@ export default function Landing() {
       title: t("services.carTitle"),
       icon: Car,
       desc: t("services.carDesc"),
-      img: "item-auto-interier.png",
+      img: "item-auto-interier.webp",
     },
     {
       id: "umyvanie-okien",
@@ -78,7 +78,7 @@ export default function Landing() {
       title: t("services.windowTitle"),
       icon: Droplets,
       desc: t("services.windowDesc"),
-      img: "item-okno-2.png",
+      img: "item-okno-2.webp",
     },
     {
       id: "hlbkove-cistenie",
@@ -86,7 +86,7 @@ export default function Landing() {
       title: t("services.deepCleanTitle"),
       icon: Sparkles,
       desc: t("services.deepCleanDesc"),
-      img: "item-sedacka-l.png",
+      img: "item-sedacka-l.webp",
     },
   ];
 
@@ -114,7 +114,7 @@ export default function Landing() {
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-transparent z-10" />
           <img
-            src={`${import.meta.env.BASE_URL}images/hero-real.jpeg`}
+            src={`${import.meta.env.BASE_URL}images/hero-real.webp`}
             alt={t("hero.heroAlt")}
             width={1200}
             height={800}
@@ -283,7 +283,7 @@ export default function Landing() {
             >
               <div className="relative rounded-3xl overflow-hidden shadow-2xl">
                 <img
-                  src={`${import.meta.env.BASE_URL}images/hero-real-2.jpg`}
+                  src={`${import.meta.env.BASE_URL}images/hero-real-2.webp`}
                   alt={t("howItWorks.workAlt")}
                   loading="lazy"
                   width={600}
@@ -334,7 +334,7 @@ export default function Landing() {
           >
             <div className="flex-shrink-0">
               <img
-                src={`${import.meta.env.BASE_URL}images/attila.jpg`}
+                src={`${import.meta.env.BASE_URL}images/attila.webp`}
                 alt="Attila Sébestyen – zakladateľ Freshkom, tepovanie a umývanie okien Komárno"
                 className="w-44 h-44 md:w-56 md:h-56 rounded-full object-cover object-top shadow-xl ring-4 ring-primary/20"
               />

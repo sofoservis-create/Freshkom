@@ -58,12 +58,12 @@ export default function Cennik() {
       title: t("pricing.sectionCouches"),
       titleKey: "sectionCouches",
       items: [
-        { name: t("pricing.armchair"), price: "20 €", img: "item-kreslo.png" },
-        { name: t("pricing.couch2"), price: "30 €", img: "item-sedacka-2m.png" },
-        { name: t("pricing.couch3"), price: "40 €", img: "item-sedacka-3m.png", badge: t("pricing.badgeMostPopular") },
-        { name: t("pricing.couchL"), price: "50 €", img: "item-sedacka-l.png" },
-        { name: t("pricing.couchU"), price: "60 €", img: "item-sedacka-u.png" },
-        { name: t("pricing.chair"), price: "5 €", img: "item-stolicka.png" },
+        { name: t("pricing.armchair"), price: "20 €", img: "item-kreslo.webp" },
+        { name: t("pricing.couch2"), price: "30 €", img: "item-sedacka-2m.webp" },
+        { name: t("pricing.couch3"), price: "40 €", img: "item-sedacka-3m.webp", badge: t("pricing.badgeMostPopular") },
+        { name: t("pricing.couchL"), price: "50 €", img: "item-sedacka-l.webp" },
+        { name: t("pricing.couchU"), price: "60 €", img: "item-sedacka-u.webp" },
+        { name: t("pricing.chair"), price: "5 €", img: "item-stolicka.webp" },
       ],
     },
     {
@@ -71,8 +71,8 @@ export default function Cennik() {
       title: t("pricing.sectionCarpets"),
       titleKey: "sectionCarpets",
       items: [
-        { name: t("pricing.carpetShort"), price: "3 € / m²", img: "item-koberec-kratky.png" },
-        { name: t("pricing.carpetLong"), price: "4,50 € / m²", img: "item-koberec-dlhy.png" },
+        { name: t("pricing.carpetShort"), price: "3 € / m²", img: "item-koberec-kratky.webp" },
+        { name: t("pricing.carpetLong"), price: "4,50 € / m²", img: "item-koberec-dlhy.webp" },
       ],
     },
     {
@@ -80,8 +80,8 @@ export default function Cennik() {
       title: t("pricing.sectionMattresses"),
       titleKey: "sectionMattresses",
       items: [
-        { name: t("pricing.mattressSingle"), price: "11 €", img: "item-matrac-1.png" },
-        { name: t("pricing.mattressDouble"), price: "22 €", img: "item-matrac-2.png" },
+        { name: t("pricing.mattressSingle"), price: "11 €", img: "item-matrac-1.webp" },
+        { name: t("pricing.mattressDouble"), price: "22 €", img: "item-matrac-2.webp" },
       ],
     },
     {
@@ -89,8 +89,8 @@ export default function Cennik() {
       title: t("pricing.sectionCars"),
       titleKey: "sectionCars",
       items: [
-        { name: t("pricing.carSeats"), price: "50 €", img: "item-auto-sedacky.png" },
-        { name: t("pricing.carInterior"), price: "80 €", img: "item-auto-interier.png" },
+        { name: t("pricing.carSeats"), price: "50 €", img: "item-auto-sedacky.webp" },
+        { name: t("pricing.carInterior"), price: "80 €", img: "item-auto-interier.webp" },
       ],
     },
     {
@@ -98,10 +98,10 @@ export default function Cennik() {
       title: t("pricing.sectionWindows"),
       titleKey: "sectionWindows",
       items: [
-        { name: t("pricing.window1"), price: "10 €", img: "item-okno-1.png" },
-        { name: t("pricing.window2"), price: "12,50 €", img: "item-okno-2.png" },
-        { name: t("pricing.window3"), price: "15 €", img: "item-okno-3.png" },
-        { name: t("pricing.shopWindow"), price: t("pricing.byAgreement"), img: "item-vyklad.png" },
+        { name: t("pricing.window1"), price: "10 €", img: "item-okno-1.webp" },
+        { name: t("pricing.window2"), price: "12,50 €", img: "item-okno-2.webp" },
+        { name: t("pricing.window3"), price: "15 €", img: "item-okno-3.webp" },
+        { name: t("pricing.shopWindow"), price: t("pricing.byAgreement"), img: "item-vyklad.webp" },
       ],
     },
   ];

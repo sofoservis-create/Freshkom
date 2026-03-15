@@ -66,8 +66,8 @@ function buildLocalBusinessSchema(base: string) {
   description: "Profesionálna firma na tepovanie sedačiek, kobercov, matracov a umývanie okien v Komárne a okolí do 30 km.",
   telephone: `+421917240819`,
   email: EMAIL,
-  image: `${base}/images/hero-real.jpeg`,
-  logo: `${base}/images/logo-mascot.png`,
+  image: `${base}/images/hero-real.webp`,
+  logo: `${base}/images/logo-mascot.webp`,
   address: {
     "@type": "PostalAddress",
     addressLocality: "Komárno",
@@ -129,7 +129,7 @@ const personSchema = {
     "@type": "LocalBusiness",
     name: "Freshkom",
   },
-  image: "https://freshkom.sk/images/attila.jpg",
+  image: "https://freshkom.sk/images/attila.webp",
   sameAs: [
     "https://www.instagram.com/sebestyen.atti/",
     "https://www.facebook.com/profile.php?id=61573024706738",
@@ -209,7 +209,7 @@ export default function SeoHead({ page }: SeoHeadProps) {
   const canonicalUrl = `${base}${path}${lang !== "sk" ? `?lang=${lang}` : ""}`;
   const skUrl = `${base}${path}?lang=sk`;
   const huUrl = `${base}${path}?lang=hu`;
-  const ogImage = `${base}/opengraph.jpg`;
+  const ogImage = `${base}/opengraph.webp`;
   const localBusinessSchema = buildLocalBusinessSchema(base);
 
   const breadcrumbNames: Record<string, Record<string, string>> = {

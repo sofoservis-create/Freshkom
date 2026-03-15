@@ -87,8 +87,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <nav ref={navRef} className="sticky top-0 z-50 glass-effect">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2" onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}>
-            <img src={`${import.meta.env.BASE_URL}images/logo-mascot.png`} alt="Freshkom" className="h-16 w-16 object-contain" />
-            <img src={`${import.meta.env.BASE_URL}images/logo-text.png`} alt="Freshkom" className="h-7 sm:h-9 w-auto object-contain" />
+            <img src={`${import.meta.env.BASE_URL}images/logo-mascot.webp`} alt="Freshkom" className="h-16 w-16 object-contain" />
+            <img src={`${import.meta.env.BASE_URL}images/logo-text.webp`} alt="Freshkom" className="h-7 sm:h-9 w-auto object-contain" />
           </Link>
 
           <div className="hidden md:flex items-center gap-6">
@@ -165,8 +165,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
             <div>
               <Link href="/" className="flex items-center gap-3 mb-6">
-                <img src={`${import.meta.env.BASE_URL}images/logo-mascot.png`} alt="Freshkom" className="h-12 w-12 object-contain" />
-                <img src={`${import.meta.env.BASE_URL}images/logo-text.png`} alt="Freshkom" className="h-10 w-auto max-w-[160px] object-contain brightness-0 invert" />
+                <img src={`${import.meta.env.BASE_URL}images/logo-mascot.webp`} alt="Freshkom" className="h-12 w-12 object-contain" />
+                <img src={`${import.meta.env.BASE_URL}images/logo-text.webp`} alt="Freshkom" className="h-10 w-auto max-w-[160px] object-contain brightness-0 invert" />
               </Link>
               <p className="text-gray-400 mb-6 max-w-sm">
                 {t("footer.description")}
