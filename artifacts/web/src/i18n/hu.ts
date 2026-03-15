@@ -142,6 +142,9 @@ export const hu: TranslationKeys = {
     mapTitle: "Komárom és környéke",
     mapDesc1: "Egész Komárom városában és 30 km-es körzetben működünk.",
     mapDesc2: "Érsekújvár, Ógyalla, Gúta, Párkány és további települések.",
+    trustResponse: "24 órán belül válaszolunk",
+    trustFreeQuote: "Ingyenes árajánlat",
+    trustNoObligation: "Kötelezettségmentesen",
   },
   leadForm: {
     name: "Név",

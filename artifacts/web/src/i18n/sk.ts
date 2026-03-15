@@ -140,6 +140,9 @@ export const sk = {
     mapTitle: "Komárno a okolie",
     mapDesc1: "Pôsobíme v celom meste Komárno a v okruhu do 30 km.",
     mapDesc2: "Nové Zámky, Hurbanovo, Kolárovo, Štúrovo a ďalšie.",
+    trustResponse: "Odpoveď do 24 hodín",
+    trustFreeQuote: "Bezplatná cenová ponuka",
+    trustNoObligation: "Bez záväzkov",
   },
   leadForm: {
     name: "Meno a priezvisko",

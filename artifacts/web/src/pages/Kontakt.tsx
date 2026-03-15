@@ -62,9 +62,9 @@ export default function Kontakt() {
   ];
 
   const trustPoints = [
-    "Odpoveď do 24 hodín",
-    "Bezplatná cenová ponuka",
-    "Bez záväzkov",
+    t("kontakt.trustResponse"),
+    t("kontakt.trustFreeQuote"),
+    t("kontakt.trustNoObligation"),
   ];
 
   return (
