@@ -36,7 +36,7 @@ const seoData = {
     },
     kontakt: {
       title: "Kapcsolat — Kárpittisztítás Komárom | Freshkom",
-      description: "Lépjen kapcsolatba a Freshkom Komárom kárpittisztítóval. Tel: +421 917 240 819. Hétfőtől szombatig 7:00–21:00.",
+      description: "Lépjen kapcsolatba a Freshkom Komárom kárpittisztítóval. Tel: +421 917 240 819, email: info@freshkom.sk. Hétfőtől szombatig 7:00–21:00.",
     },
   },
 };
