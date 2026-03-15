@@ -190,7 +190,9 @@ export default function SeoHead({ page }: SeoHeadProps) {
   const data = seoData[lang][page];
   const path = paths[page];
   const base = getSiteUrl();
-  const canonicalUrl = `${base}${path}`;
+  const canonicalUrl = `${base}${path}${lang !== "sk" ? `?lang=${lang}` : ""}`;
+  const skUrl = `${base}${path}?lang=sk`;
+  const huUrl = `${base}${path}?lang=hu`;
   const ogImage = `${base}/images/opengraph.jpg`;
   const localBusinessSchema = buildLocalBusinessSchema(base);
 
@@ -217,8 +219,8 @@ export default function SeoHead({ page }: SeoHeadProps) {
       <title>{data.title}</title>
       <meta name="description" content={data.description} />
       <link rel="canonical" href={canonicalUrl} />
-      <link rel="alternate" hrefLang="sk" href={`${base}${path}`} />
-      <link rel="alternate" hrefLang="hu" href={`${base}${path}`} />
+      <link rel="alternate" hrefLang="sk" href={skUrl} />
+      <link rel="alternate" hrefLang="hu" href={huUrl} />
       <link rel="alternate" hrefLang="x-default" href={`${base}${path}`} />
 
       <meta property="og:type" content="website" />

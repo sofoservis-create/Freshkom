@@ -34,14 +34,21 @@ function getNestedValue(obj: Record<string, unknown>, path: string): string {
   return typeof current === "string" ? current : path;
 }
 
+function getInitialLang(): Lang {
+  if (typeof window !== "undefined") {
+    const params = new URLSearchParams(window.location.search);
+    const urlLang = params.get("lang");
+    if (urlLang === "sk" || urlLang === "hu") return urlLang;
+  }
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored === "sk" || stored === "hu") return stored;
+  } catch {}
+  return "sk";
+}
+
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Lang>(() => {
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored === "sk" || stored === "hu") return stored;
-    } catch {}
-    return "sk";
-  });
+  const [lang, setLangState] = useState<Lang>(getInitialLang);
 
   const setLang = useCallback((newLang: Lang) => {
     setLangState(newLang);
