@@ -84,7 +84,7 @@ export const hu: TranslationKeys = {
   },
   pricing: {
     pageTitle: "Szolgáltatások árlistája",
-    pageSubtitle: "Átlátható árak rejtett díjak nélkül. Minden ár végleges. Kiszállítás Komáromban 5 €, Komáromon kívül 0,30 € / km.",
+    pageSubtitle: "Átlátható árak rejtett díjak nélkül. Minden ár végleges. Kiszállítás Komáromban 5 €, Komáromon kívül + 0,30 € / km.",
     sectionCouches: "Ülőgarnitúrák és bútorok",
     sectionCarpets: "Szőnyegek",
     sectionMattresses: "Matracok",

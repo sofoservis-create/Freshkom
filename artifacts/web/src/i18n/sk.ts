@@ -82,7 +82,7 @@ export const sk = {
   },
   pricing: {
     pageTitle: "Cenník služieb",
-    pageSubtitle: "Transparentné ceny bez skrytých poplatkov. Všetky ceny sú konečné. Doprava v Komárne 5 €, mimo Komárna 0,30 € / km.",
+    pageSubtitle: "Transparentné ceny bez skrytých poplatkov. Všetky ceny sú konečné. Doprava v Komárne 5 €, mimo Komárna + 0,30 € / km.",
     sectionCouches: "Sedačky a nábytok",
     sectionCarpets: "Koberce",
     sectionMattresses: "Matrace",
