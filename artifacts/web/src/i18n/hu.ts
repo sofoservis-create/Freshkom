@@ -189,7 +189,7 @@ export const hu: TranslationKeys = {
   owner: {
     tag: "Alapító & tulajdonos",
     name: "Sébestyen Attila",
-    bio: "Zavart, hogy Komáromban nem volt elérhető és minőségi cég a kárpittisztításra és ablakpucolásra — ezért alapítottam egyet magam.",
+    bio: "Zavart, hogy Komáromban nem volt elérhető és megbízható cég a kárpittisztításra és ablakpucolásra — ezért alapítottam egyet magam.",
     followInstagram: "Kövess Instagramon",
     followFacebook: "Kövess Facebookon",
   },
