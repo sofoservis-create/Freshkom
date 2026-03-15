@@ -88,7 +88,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2" onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}>
             <img src={`${import.meta.env.BASE_URL}images/logo-mascot.png`} alt="Freshkom" className="h-16 w-16 object-contain" />
-            <span className="font-display font-bold text-2xl tracking-tight text-foreground">Freshkom</span>
+            <img src={`${import.meta.env.BASE_URL}images/logo-text.png`} alt="Freshkom" className="h-7 sm:h-9 w-auto object-contain" />
           </Link>
 
           <div className="hidden md:flex items-center gap-6">
@@ -158,7 +158,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <div>
               <Link href="/" className="flex items-center gap-3 mb-6">
                 <img src={`${import.meta.env.BASE_URL}images/logo-mascot.png`} alt="Freshkom" className="h-12 w-12 object-contain" />
-                <span className="font-display font-bold text-2xl tracking-tight">Freshkom</span>
+                <img src={`${import.meta.env.BASE_URL}images/logo-text.png`} alt="Freshkom" className="h-10 w-auto object-contain brightness-0 invert" />
               </Link>
               <p className="text-gray-400 mb-6 max-w-sm">
                 {t("footer.description")}
