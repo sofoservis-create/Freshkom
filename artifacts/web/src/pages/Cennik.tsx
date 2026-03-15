@@ -155,6 +155,8 @@ export default function Cennik() {
                           src={`${import.meta.env.BASE_URL}images/${item.img}`}
                           alt={item.name}
                           loading="lazy"
+                          width={300}
+                          height={300}
                           className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                         />
                       </div>

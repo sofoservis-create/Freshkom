@@ -110,6 +110,8 @@ export default function Landing() {
           <img
             src={`${import.meta.env.BASE_URL}images/hero-real.jpeg`}
             alt={t("hero.heroAlt")}
+            width={1200}
+            height={800}
             className="w-full h-full object-cover scale-x-[-1]"
             style={{ objectPosition: '40% 0%' }}
           />
@@ -216,6 +218,8 @@ export default function Landing() {
                       src={`${import.meta.env.BASE_URL}images/${service.img}`}
                       alt={service.title}
                       loading="lazy"
+                      width={400}
+                      height={400}
                       className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>
@@ -259,6 +263,8 @@ export default function Landing() {
                   src={`${import.meta.env.BASE_URL}images/hero-real-2.jpg`}
                   alt={t("howItWorks.workAlt")}
                   loading="lazy"
+                  width={600}
+                  height={450}
                   className="w-full h-[350px] sm:h-[450px] object-cover"
                 />
               </div>

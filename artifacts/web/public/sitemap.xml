@@ -2,30 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>/</loc>
+    <loc>https://freshkom.sk/</loc>
     <lastmod>2026-03-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="sk" href="/"/>
-    <xhtml:link rel="alternate" hreflang="hu" href="/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://freshkom.sk/"/>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://freshkom.sk/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://freshkom.sk/"/>
   </url>
   <url>
-    <loc>/cennik</loc>
+    <loc>https://freshkom.sk/cennik</loc>
     <lastmod>2026-03-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="sk" href="/cennik"/>
-    <xhtml:link rel="alternate" hreflang="hu" href="/cennik"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="/cennik"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://freshkom.sk/cennik"/>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://freshkom.sk/cennik"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://freshkom.sk/cennik"/>
   </url>
   <url>
-    <loc>/kontakt</loc>
+    <loc>https://freshkom.sk/kontakt</loc>
     <lastmod>2026-03-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="sk" href="/kontakt"/>
-    <xhtml:link rel="alternate" hreflang="hu" href="/kontakt"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="/kontakt"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://freshkom.sk/kontakt"/>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://freshkom.sk/kontakt"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://freshkom.sk/kontakt"/>
   </url>
 </urlset>

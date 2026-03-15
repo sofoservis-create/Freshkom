@@ -47,22 +47,27 @@ const paths: Record<string, string> = {
   kontakt: "/kontakt",
 };
 
-function getCanonicalBase(): string {
+function getSiteUrl(): string {
+  if (import.meta.env.VITE_APP_URL) {
+    return import.meta.env.VITE_APP_URL.replace(/\/$/, "");
+  }
   if (typeof window !== "undefined") {
     return window.location.origin;
   }
   return "";
 }
 
-const localBusinessSchema = {
+function buildLocalBusinessSchema(base: string) {
+  return {
   "@context": "https://schema.org",
-  "@type": "CleaningService",
+  "@type": ["LocalBusiness", "CleaningService"],
   name: "Freshkom",
+  url: base || undefined,
   description: "Profesionálna firma na tepovanie sedačiek, kobercov, matracov a umývanie okien v Komárne a okolí do 30 km.",
   telephone: `+421917240819`,
   email: EMAIL,
-  image: "/images/hero-real.jpeg",
-  logo: "/images/logo-mascot.png",
+  image: `${base}/images/hero-real.jpeg`,
+  logo: `${base}/images/logo-mascot.png`,
   address: {
     "@type": "PostalAddress",
     addressLocality: "Komárno",
@@ -112,7 +117,8 @@ const localBusinessSchema = {
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Hĺbkové čistenie" } },
     ],
   },
-};
+  };
+}
 
 const faqSchema = {
   sk: {
@@ -183,9 +189,10 @@ export default function SeoHead({ page }: SeoHeadProps) {
   const { lang } = useLanguage();
   const data = seoData[lang][page];
   const path = paths[page];
-  const base = getCanonicalBase();
+  const base = getSiteUrl();
   const canonicalUrl = `${base}${path}`;
   const ogImage = `${base}/images/opengraph.jpg`;
+  const localBusinessSchema = buildLocalBusinessSchema(base);
 
   const breadcrumbNames: Record<string, Record<string, string>> = {
     sk: { cennik: "Cenník", kontakt: "Kontakt" },
