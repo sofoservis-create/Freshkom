@@ -157,7 +157,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
             <div>
               <Link href="/" className="flex items-center gap-3 mb-6">
-                <img src={`${import.meta.env.BASE_URL}images/logo-mascot.png`} alt="Freshkom" className="h-12 w-12 object-contain" />
+                <img src={`${import.meta.env.BASE_URL}images/logo-mascot-white.png`} alt="Freshkom" className="h-12 w-12 object-contain" />
                 <img src={`${import.meta.env.BASE_URL}images/logo-text.png`} alt="Freshkom" className="h-10 w-auto object-contain brightness-0 invert" />
               </Link>
               <p className="text-gray-400 mb-6 max-w-sm">
