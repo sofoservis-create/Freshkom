@@ -28,7 +28,7 @@ export const hu: TranslationKeys = {
     badge: "Komárom és környéke",
     titleLine1: "Tiszta otthonok,",
     titleLine2: "elégedett családok",
-    subtitle: "Professzionális kanapé-, szőnyeg- és kárpittisztítás Komáromban és környékén. Gyorsan, alaposan és a legmagasabb minőség garanciájával.",
+    subtitle: "Kanapé- és szőnyegtisztítás, ablaktisztítás Komáromban – olyan lesz, mint új, garanciával.",
     ctaOrder: "Rendeljen most — ingyenes",
     ctaCall: "Hívjon minket",
     heroAlt: "Freshkom technikus kanapé tisztítás közben",

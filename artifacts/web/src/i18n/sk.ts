@@ -26,7 +26,7 @@ export const sk = {
     badge: "Komárno a okolie",
     titleLine1: "Čisté domovy,",
     titleLine2: "spokojné rodiny",
-    subtitle: "Profesionálne tepovanie sedačiek, kobercov a čistenie v Komárne a okolí. Rýchlo, dôkladne a s garanciou najvyššej kvality.",
+    subtitle: "Tepovanie sedačiek, kobercov a umývanie okien v Komárne – výsledok ako nový, s garanciou.",
     ctaOrder: "Objednajte teraz — je to zadarmo",
     ctaCall: "Zavolajte nám",
     heroAlt: "Freshkom technik pri tepovaní sedačky",
