@@ -251,7 +251,7 @@ export default function Landing() {
             >
               <div className="relative rounded-3xl overflow-hidden shadow-2xl">
                 <img
-                  src={`${import.meta.env.BASE_URL}images/hero-real.jpeg`}
+                  src={`${import.meta.env.BASE_URL}images/hero-real-2.jpg`}
                   alt="Freshkom pri práci"
                   className="w-full h-[350px] sm:h-[450px] object-cover"
                 />
