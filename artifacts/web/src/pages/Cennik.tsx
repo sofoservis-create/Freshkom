@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import SeoHead from "@/components/SeoHead";
@@ -20,6 +21,7 @@ interface PricingItem {
 }
 
 interface PricingSection {
+  id: string;
   title: string;
   titleKey: string;
   items: PricingItem[];
@@ -41,8 +43,18 @@ const fadeInUp = {
 export default function Cennik() {
   const { t } = useLanguage();
 
+  useEffect(() => {
+    const hash = window.location.hash.slice(1);
+    if (!hash) return;
+    const el = document.getElementById(hash);
+    if (el) {
+      setTimeout(() => el.scrollIntoView({ behavior: "smooth", block: "start" }), 100);
+    }
+  }, []);
+
   const pricingSections: PricingSection[] = [
     {
+      id: "tepovanie-gaucov",
       title: t("pricing.sectionCouches"),
       titleKey: "sectionCouches",
       items: [
@@ -55,6 +67,7 @@ export default function Cennik() {
       ],
     },
     {
+      id: "tepovanie-kobercov",
       title: t("pricing.sectionCarpets"),
       titleKey: "sectionCarpets",
       items: [
@@ -63,6 +76,7 @@ export default function Cennik() {
       ],
     },
     {
+      id: "tepovanie-matracov",
       title: t("pricing.sectionMattresses"),
       titleKey: "sectionMattresses",
       items: [
@@ -71,6 +85,7 @@ export default function Cennik() {
       ],
     },
     {
+      id: "tepovanie-aut",
       title: t("pricing.sectionCars"),
       titleKey: "sectionCars",
       items: [
@@ -79,6 +94,7 @@ export default function Cennik() {
       ],
     },
     {
+      id: "umyvanie-okien",
       title: t("pricing.sectionWindows"),
       titleKey: "sectionWindows",
       items: [
@@ -115,7 +131,7 @@ export default function Cennik() {
       <section className="py-8 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {pricingSections.map((section, sIdx) => (
-            <div key={sIdx}>
+            <div key={sIdx} id={section.id} className="scroll-mt-24">
               {sIdx > 0 && <div className="mt-8" />}
               <motion.h2
                 initial="hidden"

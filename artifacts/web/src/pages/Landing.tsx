@@ -42,6 +42,7 @@ export default function Landing() {
   const services = [
     {
       id: "tepovanie-gaucov",
+      cennikHref: "/cennik#tepovanie-gaucov",
       title: t("services.couchTitle"),
       icon: Sofa,
       desc: t("services.couchDesc"),
@@ -49,6 +50,7 @@ export default function Landing() {
     },
     {
       id: "tepovanie-kobercov",
+      cennikHref: "/cennik#tepovanie-kobercov",
       title: t("services.carpetTitle"),
       icon: Sparkles,
       desc: t("services.carpetDesc"),
@@ -56,6 +58,7 @@ export default function Landing() {
     },
     {
       id: "tepovanie-matracov",
+      cennikHref: "/cennik#tepovanie-matracov",
       title: t("services.mattressTitle"),
       icon: ShieldCheck,
       desc: t("services.mattressDesc"),
@@ -63,6 +66,7 @@ export default function Landing() {
     },
     {
       id: "tepovanie-aut",
+      cennikHref: "/cennik#tepovanie-aut",
       title: t("services.carTitle"),
       icon: Car,
       desc: t("services.carDesc"),
@@ -70,6 +74,7 @@ export default function Landing() {
     },
     {
       id: "umyvanie-okien",
+      cennikHref: "/cennik#umyvanie-okien",
       title: t("services.windowTitle"),
       icon: Droplets,
       desc: t("services.windowDesc"),
@@ -77,6 +82,7 @@ export default function Landing() {
     },
     {
       id: "hlbkove-cistenie",
+      cennikHref: "/cennik",
       title: t("services.deepCleanTitle"),
       icon: Sparkles,
       desc: t("services.deepCleanDesc"),
@@ -212,27 +218,32 @@ export default function Landing() {
                   visible: { opacity: 1, y: 0, transition: { delay: i * 0.1, duration: 0.5 } },
                 }}
               >
-                <Card className="h-full border-0 shadow-md hover:shadow-xl transition-shadow duration-300 rounded-3xl overflow-hidden group bg-white">
-                  <div className="h-44 sm:h-52 overflow-hidden bg-gray-50 p-4">
-                    <img
-                      src={`${import.meta.env.BASE_URL}images/${service.img}`}
-                      alt={service.title}
-                      loading="lazy"
-                      width={400}
-                      height={400}
-                      className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                  <CardContent className="p-6">
-                    <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-accent flex items-center justify-center mb-3 -mt-10 relative z-10 border-4 border-white shadow-md group-hover:scale-110 transition-transform">
-                      <service.icon className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
+                <Link href={service.cennikHref} className="block h-full">
+                  <Card className="h-full border-0 shadow-md hover:shadow-xl transition-shadow duration-300 rounded-3xl overflow-hidden group bg-white cursor-pointer">
+                    <div className="h-44 sm:h-52 overflow-hidden bg-gray-50 p-4">
+                      <img
+                        src={`${import.meta.env.BASE_URL}images/${service.img}`}
+                        alt={service.title}
+                        loading="lazy"
+                        width={400}
+                        height={400}
+                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                      />
                     </div>
-                    <h3 className="text-lg sm:text-xl font-bold mb-2 group-hover:text-primary transition-colors">
-                      {service.title}
-                    </h3>
-                    <p className="text-sm sm:text-base text-muted-foreground">{service.desc}</p>
-                  </CardContent>
-                </Card>
+                    <CardContent className="p-6">
+                      <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-accent flex items-center justify-center mb-3 -mt-10 relative z-10 border-4 border-white shadow-md group-hover:scale-110 transition-transform">
+                        <service.icon className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
+                      </div>
+                      <div className="flex items-start justify-between gap-2">
+                        <h3 className="text-lg sm:text-xl font-bold mb-2 group-hover:text-primary transition-colors">
+                          {service.title}
+                        </h3>
+                        <ArrowRight className="h-4 w-4 text-gray-300 group-hover:text-primary group-hover:translate-x-0.5 transition-all flex-shrink-0 mt-1.5" />
+                      </div>
+                      <p className="text-sm sm:text-base text-muted-foreground">{service.desc}</p>
+                    </CardContent>
+                  </Card>
+                </Link>
               </motion.div>
             ))}
           </div>
