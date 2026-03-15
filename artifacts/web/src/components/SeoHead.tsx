@@ -120,6 +120,22 @@ function buildLocalBusinessSchema(base: string) {
   };
 }
 
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Attila Sébestyen",
+  jobTitle: "Zakladateľ a majiteľ",
+  worksFor: {
+    "@type": "LocalBusiness",
+    name: "Freshkom",
+  },
+  image: "https://freshkom.sk/images/attila.jpg",
+  sameAs: [
+    "https://www.instagram.com/sebestyen.atti/",
+    "https://www.facebook.com/profile.php?id=61573024706738",
+  ],
+};
+
 const faqSchema = {
   sk: {
     "@context": "https://schema.org",
@@ -247,6 +263,9 @@ export default function SeoHead({ page }: SeoHeadProps) {
       <script type="application/ld+json">{JSON.stringify(localBusinessSchema)}</script>
       {page === "landing" && (
         <script type="application/ld+json">{JSON.stringify(faqSchema[lang])}</script>
+      )}
+      {page === "landing" && (
+        <script type="application/ld+json">{JSON.stringify(personSchema)}</script>
       )}
       {breadcrumbSchema && (
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
