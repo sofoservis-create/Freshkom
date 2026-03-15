@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import SeoHead from "@/components/SeoHead";
-import { ArrowRight, Phone, Star, Award } from "lucide-react";
+import { ArrowRight, Phone, Star, Award, Truck, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Check } from "lucide-react";
@@ -190,6 +190,69 @@ export default function Cennik() {
         </div>
       </section>
 
+      <section className="py-8 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.h2
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-30px" }}
+            variants={fadeInUp}
+            className="text-xl md:text-2xl font-bold text-center mb-6 text-foreground"
+          >
+            {t("pricing.sectionTransport")}
+          </motion.h2>
+
+          <div className="grid grid-cols-2 gap-4 max-w-xs mx-auto">
+            {[
+              { icon: Truck, name: t("pricing.transportKomarno"), price: "5 €" },
+              { icon: MapPin, name: t("pricing.transportOutside"), price: "0,30 € / km" },
+            ].map((item, iIdx) => (
+              <motion.div
+                key={iIdx}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-20px" }}
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    transition: { delay: iIdx * 0.06, duration: 0.4 },
+                  },
+                }}
+                className="group"
+              >
+                <div className="bg-gray-50 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative">
+                  <div className="bg-white p-4 flex items-center justify-center">
+                    <item.icon className="w-10 h-10 text-primary/70" />
+                  </div>
+                  <div className="p-2.5 text-center border-t border-gray-100">
+                    <p className="text-sm font-medium text-gray-800 mb-0.5 leading-tight">
+                      {item.name}
+                    </p>
+                    <p className="text-base md:text-lg font-bold text-primary">
+                      {item.price}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="mt-4 flex items-center justify-center gap-3 py-3 px-4 bg-primary/5 rounded-xl max-w-lg mx-auto">
+            <span className="text-sm text-gray-700 font-medium">{t("pricing.interestedInCleaning")}</span>
+            <a
+              href={`tel:${PHONE_NUMBER.replace(/\s/g, "")}`}
+              className="text-sm font-bold text-primary hover:underline flex items-center gap-1"
+            >
+              <Phone className="h-3.5 w-3.5" />
+              {t("pricing.callUs")}
+              <ArrowRight className="h-3.5 w-3.5" />
+            </a>
+          </div>
+        </div>
+      </section>
+
       <section className="py-10 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <Card className="border-0 shadow-xl rounded-3xl bg-white overflow-hidden">
@@ -197,10 +260,6 @@ export default function Cennik() {
               <CardTitle className="text-xl text-center">{t("pricing.importantInfo")}</CardTitle>
             </CardHeader>
             <CardContent className="p-6 space-y-3">
-              <div className="flex items-start gap-3">
-                <Check className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                <p className="text-gray-700">{t("pricing.info1")}</p>
-              </div>
               <div className="flex items-start gap-3">
                 <Check className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                 <p className="text-gray-700">{t("pricing.info2")}</p>
