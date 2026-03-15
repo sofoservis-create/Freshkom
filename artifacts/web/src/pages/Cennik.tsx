@@ -221,7 +221,7 @@ export default function Cennik() {
           <div className="grid grid-cols-2 gap-4 max-w-xs mx-auto">
             {[
               { icon: Truck, name: t("pricing.transportKomarno"), price: "5 €" },
-              { icon: MapPin, name: t("pricing.transportOutside"), price: "0,30 € / km" },
+              { icon: MapPin, name: t("pricing.transportOutside"), price: "+ 0,30 € / km" },
             ].map((item, iIdx) => (
               <motion.div
                 key={iIdx}
