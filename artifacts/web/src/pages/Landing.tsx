@@ -336,6 +336,9 @@ export default function Landing() {
               <img
                 src={`${import.meta.env.BASE_URL}images/attila.webp`}
                 alt="Attila Sébestyen – zakladateľ Freshkom, tepovanie a umývanie okien Komárno"
+                width={224}
+                height={224}
+                loading="lazy"
                 className="w-44 h-44 md:w-56 md:h-56 rounded-full object-cover object-top shadow-xl ring-4 ring-primary/20"
               />
             </div>
