@@ -56,7 +56,7 @@ export const sk = {
     fastDryTitle: "Rýchle schnutie",
     fastDryDesc: "Vďaka silným extraktorom povrchy rýchlo schnú.",
     satisfactionTitle: "Spokojnosť zaručená",
-    satisfactionDesc: "Stovky spokojných zákazníkov v Komárne a okolí.",
+    satisfactionDesc: "Množstvo spokojných zákazníkov v Komárne a okolí.",
   },
   howItWorks: {
     title: "Ako to funguje?",
