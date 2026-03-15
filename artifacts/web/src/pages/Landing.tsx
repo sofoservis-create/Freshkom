@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
+import SeoHead from "@/components/SeoHead";
 import {
   Phone,
   Sofa,
@@ -102,6 +103,7 @@ export default function Landing() {
 
   return (
     <>
+      <SeoHead page="landing" />
       <section className="relative pt-16 pb-24 lg:pt-24 lg:pb-32 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-transparent z-10" />
@@ -213,6 +215,7 @@ export default function Landing() {
                     <img
                       src={`${import.meta.env.BASE_URL}images/${service.img}`}
                       alt={service.title}
+                      loading="lazy"
                       className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>
@@ -255,6 +258,7 @@ export default function Landing() {
                 <img
                   src={`${import.meta.env.BASE_URL}images/hero-real-2.jpg`}
                   alt={t("howItWorks.workAlt")}
+                  loading="lazy"
                   className="w-full h-[350px] sm:h-[450px] object-cover"
                 />
               </div>

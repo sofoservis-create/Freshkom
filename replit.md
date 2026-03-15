@@ -93,11 +93,14 @@ Generated React Query hooks and fetch client from the OpenAPI spec (e.g. `useHea
 
 ### `artifacts/web` (`@workspace/web`)
 
-React + Vite frontend for Freshkom — professional cleaning company in Komárno, Slovakia. Multi-page Slovak-language website with lead capture.
+React + Vite frontend for Freshkom — professional cleaning company in Komárno, Slovakia. Bilingual (SK/HU) multi-page website with lead capture and full local SEO.
 
 - Pages: Landing (`/`), Cenník (`/cennik`), Kontakt (`/kontakt`)
-- Components: `Layout.tsx` (shared header/footer with top bar, navigation, social links), `LeadForm.tsx` (reusable lead capture form)
-- Real brand assets in `public/images/`: `logo-mascot.png`, `hero-real.jpeg`, AI-generated service images (`service-sofa.png`, `service-carpet.png`, etc.)
+- Components: `Layout.tsx` (shared header/footer with top bar, navigation, social links, SK/HU toggle), `LeadForm.tsx` (reusable lead capture form), `SeoHead.tsx` (per-page SEO meta/schema)
+- i18n: `src/i18n/sk.ts` + `hu.ts`, context in `src/contexts/LanguageContext.tsx`, localStorage persistence
+- SEO: react-helmet-async for dynamic `<title>`, meta description, canonical, hreflang, Open Graph, Twitter Card, JSON-LD schemas (LocalBusiness/CleaningService, AggregateRating, FAQ, BreadcrumbList)
+- Static SEO: `public/robots.txt`, `public/sitemap.xml` with hreflang alternates
+- Real brand assets in `public/images/`: `logo-mascot.png`, `hero-real.jpeg`, `hero-real-2.jpg`, product photos (`item-*.png`), `opengraph.jpg`
 - Contact: +421 917 240 819, freshkomsluzby@gmail.com
 - Uses `@workspace/api-client-react` for form submission via `useLeadSubmission` hook
 - Routing: wouter with base path from `import.meta.env.BASE_URL`

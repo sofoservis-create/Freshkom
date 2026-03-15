@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Phone, Mail, Clock, MapPin, ArrowRight } from "lucide-react";
+import SeoHead from "@/components/SeoHead";
 import { Card, CardContent } from "@/components/ui/card";
 import LeadForm from "@/components/LeadForm";
 import GoogleReviewCard from "@/components/GoogleReviewCard";
@@ -62,6 +63,7 @@ export default function Kontakt() {
 
   return (
     <>
+      <SeoHead page="kontakt" />
       <section className="pt-12 pb-6 bg-gradient-to-b from-accent/40 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.h1

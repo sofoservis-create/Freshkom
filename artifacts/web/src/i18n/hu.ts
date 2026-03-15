@@ -13,7 +13,7 @@ export const hu: TranslationKeys = {
     hours: "HÉ–SZO 7:00–21:00",
   },
   footer: {
-    description: "Professzionális kárpittisztító és takarító cég Komáromban és környékén. Mosolyogva és becsületes munkával.",
+    description: "Professzionális kárpittisztítás, szőnyegtisztítás, matrackarbantartás és ablaktisztítás Komáromban, Érsekújvárban, Ógyallán, Gútán és környékén.",
     ourServices: "Szolgáltatásaink",
     serviceCouchUpholstery: "Kanapék és ülőgarnitúrák tisztítása",
     serviceCarpets: "Szőnyegtisztítás",
@@ -28,7 +28,7 @@ export const hu: TranslationKeys = {
     badge: "Komárom és környéke",
     titleLine1: "Tiszta otthonok,",
     titleLine2: "elégedett családok",
-    subtitle: "Professzionális kárpittisztítás és takarítás Komáromban és környékén. Gyorsan, alaposan és a legmagasabb minőség garanciájával.",
+    subtitle: "Professzionális kanapé-, szőnyeg- és kárpittisztítás Komáromban és környékén. Gyorsan, alaposan és a legmagasabb minőség garanciájával.",
     ctaOrder: "Rendeljen most — ingyenes",
     ctaCall: "Hívjon minket",
     heroAlt: "Freshkom technikus kanapé tisztítás közben",

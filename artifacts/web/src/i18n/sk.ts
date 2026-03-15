@@ -11,7 +11,7 @@ export const sk = {
     hours: "PO–SOB 7:00–21:00",
   },
   footer: {
-    description: "Profesionálna firma na tepovanie a čistenie pre Komárno a okolie. S úsmevom a poctivou prácou.",
+    description: "Profesionálne tepovanie sedačiek, kobercov, matracov a umývanie okien v Komárne, Nových Zámkoch, Hurbanove, Kolárove a okolí.",
     ourServices: "Naše služby",
     serviceCouchUpholstery: "Tepovanie gaučov a sedačiek",
     serviceCarpets: "Tepovanie kobercov",
@@ -26,7 +26,7 @@ export const sk = {
     badge: "Komárno a okolie",
     titleLine1: "Čisté domovy,",
     titleLine2: "spokojné rodiny",
-    subtitle: "Profesionálne tepovanie a čistenie v Komárne a okolí. Rýchlo, dôkladne a s garanciou najvyššej kvality.",
+    subtitle: "Profesionálne tepovanie sedačiek, kobercov a čistenie v Komárne a okolí. Rýchlo, dôkladne a s garanciou najvyššej kvality.",
     ctaOrder: "Objednajte teraz — je to zadarmo",
     ctaCall: "Zavolajte nám",
     heroAlt: "Freshkom technik pri tepovaní sedačky",

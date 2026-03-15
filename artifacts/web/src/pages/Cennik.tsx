@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
+import SeoHead from "@/components/SeoHead";
 import { ArrowRight, Phone, Star, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -90,6 +91,7 @@ export default function Cennik() {
 
   return (
     <>
+      <SeoHead page="cennik" />
       <section className="pt-12 pb-6 bg-gradient-to-b from-accent/40 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.h1
@@ -152,6 +154,7 @@ export default function Cennik() {
                         <img
                           src={`${import.meta.env.BASE_URL}images/${item.img}`}
                           alt={item.name}
+                          loading="lazy"
                           className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                         />
                       </div>
