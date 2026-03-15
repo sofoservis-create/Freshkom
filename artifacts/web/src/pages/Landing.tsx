@@ -16,6 +16,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import LeadForm from "@/components/LeadForm";
+import GoogleReviewCard, { GoogleRatingBadge } from "@/components/GoogleReviewCard";
+import { googleReviews, GOOGLE_RATING, GOOGLE_REVIEW_COUNT } from "@/data/googleReviews";
 
 const PHONE_NUMBER = "+421 917 240 819";
 
@@ -75,29 +77,6 @@ const steps = [
   { step: "1", title: "Kontaktujte nás", desc: "Zavolajte nám alebo vyplňte krátky formulár na webe." },
   { step: "2", title: "Naplánujeme termín", desc: "Dohodneme si čas, ktorý vám bude najviac vyhovovať." },
   { step: "3", title: "Dokonalé výsledky", desc: "Prídeme, vyčistíme a vy si užívate čistý domov." },
-];
-
-const testimonials = [
-  {
-    name: "Svitlana Muraško",
-    text: "Všetko bolo super, sú snažliví a precízni",
-    rating: 5,
-  },
-  {
-    name: "Michal Šimko",
-    text: "Prišli aj cez víkend, dobrá práca za super cenu",
-    rating: 5,
-  },
-  {
-    name: "Péter Hegedűs",
-    text: "Nagyon köszönöm a szuper munkát, sokkal szebb lett a kanapé, mint vártam!",
-    rating: 5,
-  },
-  {
-    name: "Jana Aradská",
-    text: "Dobrá práca za fajn cenu, slušný mladý muž, práca mu išla od ruky",
-    rating: 5,
-  },
 ];
 
 const fadeInUp = {
@@ -176,6 +155,9 @@ export default function Landing() {
                   Zavolajte nám
                 </a>
               </Button>
+            </motion.div>
+            <motion.div variants={fadeInUp} className="mt-6">
+              <GoogleRatingBadge rating={GOOGLE_RATING} reviewCount={GOOGLE_REVIEW_COUNT} />
             </motion.div>
           </motion.div>
         </div>
@@ -306,17 +288,17 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="py-24 bg-accent/30">
+      <section id="recenzie" className="py-24 bg-accent/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold mb-4">Čo o nás hovoria klienti</h2>
             <p className="text-lg text-muted-foreground">
-              Skutočné recenzie od skutočných zákazníkov.
+              Skutočné recenzie od skutočných zákazníkov na Google.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {testimonials.map((testi, i) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {googleReviews.slice(0, 6).map((review, i) => (
               <motion.div
                 key={i}
                 initial="hidden"
@@ -327,23 +309,31 @@ export default function Landing() {
                   visible: { opacity: 1, scale: 1, transition: { delay: i * 0.1 } },
                 }}
               >
-                <Card className="h-full border-none shadow-lg rounded-3xl bg-white relative">
-                  <CardContent className="p-8 pt-10">
-                    <div className="absolute -top-5 left-8 bg-primary text-white p-2 rounded-full shadow-md">
-                      <ThumbsUp className="w-5 h-5" />
-                    </div>
-                    <div className="flex gap-1 mb-4">
-                      {[...Array(testi.rating)].map((_, j) => (
-                        <Star key={j} className="w-5 h-5 fill-amber-400 text-amber-400" />
-                      ))}
-                    </div>
-                    <p className="text-gray-700 mb-6 italic leading-relaxed">"{testi.text}"</p>
-                    <div className="font-bold text-foreground">{testi.name}</div>
-                    <div className="text-sm text-muted-foreground">Overený zákazník</div>
-                  </CardContent>
-                </Card>
+                <GoogleReviewCard review={review} />
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-4 bg-gray-50 border-y border-gray-200">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-gray-600">
+            <span className="font-medium">Viac ako 40 spokojných zákazníkov</span>
+            <span className="text-gray-300">·</span>
+            <span className="flex items-center gap-1">
+              {GOOGLE_RATING}
+              <span className="flex gap-0.5">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                ))}
+              </span>
+              na Google
+            </span>
+            <span className="text-gray-300">·</span>
+            <button type="button" className="text-primary font-medium cursor-pointer hover:underline bg-transparent border-none p-0" onClick={() => document.getElementById('recenzie')?.scrollIntoView({ behavior: 'smooth' })}>
+              Zobraziť recenzie
+            </button>
           </div>
         </div>
       </section>

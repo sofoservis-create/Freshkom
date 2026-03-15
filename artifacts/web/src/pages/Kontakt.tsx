@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { Phone, Mail, Clock, MapPin } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import LeadForm from "@/components/LeadForm";
+import GoogleReviewCard from "@/components/GoogleReviewCard";
+import { googleReviews } from "@/data/googleReviews";
 
 const PHONE_NUMBER = "+421 917 240 819";
 const EMAIL = "freshkomsluzby@gmail.com";
@@ -118,6 +120,18 @@ export default function Kontakt() {
               variants={fadeInUp}
               className="space-y-8"
             >
+              <div>
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">Čo hovoria naši klienti</h2>
+                <p className="text-lg text-muted-foreground mb-6">
+                  Recenzie od spokojných zákazníkov na Google.
+                </p>
+                <div className="space-y-4">
+                  {googleReviews.slice(0, 3).map((review, i) => (
+                    <GoogleReviewCard key={i} review={review} compact />
+                  ))}
+                </div>
+              </div>
+
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold mb-4">Kde nás nájdete</h2>
                 <p className="text-lg text-muted-foreground mb-8">

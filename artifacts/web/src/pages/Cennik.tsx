@@ -1,9 +1,11 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { ArrowRight, Phone } from "lucide-react";
+import { ArrowRight, Phone, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Check } from "lucide-react";
+import GoogleReviewCard from "@/components/GoogleReviewCard";
+import { googleReviews, GOOGLE_RATING } from "@/data/googleReviews";
 
 const PHONE_NUMBER = "+421 917 240 819";
 
@@ -170,6 +172,46 @@ export default function Cennik() {
               </div>
             </CardContent>
           </Card>
+        </div>
+      </section>
+
+      <section className="py-16 bg-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            className="text-center mb-10"
+          >
+            <h2 className="text-2xl md:text-3xl font-bold mb-2 flex items-center justify-center gap-2">
+              Zákazníci hodnotia {GOOGLE_RATING}
+              <span className="flex gap-0.5">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
+                ))}
+              </span>
+              na Google
+            </h2>
+          </motion.div>
+
+          <div className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide">
+            {googleReviews.slice(0, 3).map((review, i) => (
+              <motion.div
+                key={i}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { opacity: 1, y: 0, transition: { delay: i * 0.1 } },
+                }}
+                className="min-w-[300px] flex-1 snap-center"
+              >
+                <GoogleReviewCard review={review} compact />
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
