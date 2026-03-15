@@ -72,14 +72,23 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </Button>
           </div>
 
-          <button
-            className="md:hidden p-2 text-foreground"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label={mobileMenuOpen ? "Zavrieť menu" : "Otvoriť menu"}
-            aria-expanded={mobileMenuOpen}
-          >
-            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+          <div className="md:hidden flex items-center gap-1">
+            <a
+              href={`tel:${PHONE_NUMBER.replace(/\s/g, '')}`}
+              className="p-2.5 rounded-full text-primary hover:bg-primary/10 transition-colors"
+              aria-label="Zavolať"
+            >
+              <Phone className="h-6 w-6" />
+            </a>
+            <button
+              className="p-2 text-foreground"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label={mobileMenuOpen ? "Zavrieť menu" : "Otvoriť menu"}
+              aria-expanded={mobileMenuOpen}
+            >
+              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
         </div>
 
         {mobileMenuOpen && (
