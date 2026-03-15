@@ -108,7 +108,8 @@ export default function Landing() {
           <img
             src={`${import.meta.env.BASE_URL}images/hero-real.jpeg`}
             alt={t("hero.heroAlt")}
-            className="w-full h-full object-cover object-top scale-x-[-1]"
+            className="w-full h-full object-cover scale-x-[-1]"
+            style={{ objectPosition: '40% 0%' }}
           />
         </div>
 
