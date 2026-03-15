@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { ArrowRight, Phone, Star } from "lucide-react";
+import { ArrowRight, Phone, Star, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Check } from "lucide-react";
@@ -13,6 +13,7 @@ interface PricingItem {
   name: string;
   price: string;
   img: string;
+  badge?: string;
 }
 
 interface PricingSection {
@@ -26,7 +27,7 @@ const pricingSections: PricingSection[] = [
     items: [
       { name: "Kreslo", price: "20 €", img: "item-kreslo.png" },
       { name: "Sedačka 2-miestna", price: "30 €", img: "item-sedacka-2m.png" },
-      { name: "Sedačka 3-miestna", price: "40 €", img: "item-sedacka-3m.png" },
+      { name: "Sedačka 3-miestna", price: "40 €", img: "item-sedacka-3m.png", badge: "Najobľúbenejšie" },
       { name: "Sedačka L-ková", price: "50 €", img: "item-sedacka-l.png" },
       { name: "Sedačka U-čková", price: "60 €", img: "item-sedacka-u.png" },
       { name: "Stolička", price: "5 €", img: "item-stolicka.png" },
@@ -64,6 +65,13 @@ const pricingSections: PricingSection[] = [
   },
 ];
 
+function getGridClasses(count: number): string {
+  if (count <= 2) return "grid-cols-2 max-w-lg mx-auto";
+  if (count === 3) return "grid-cols-2 sm:grid-cols-3 max-w-3xl mx-auto";
+  if (count <= 6) return "grid-cols-2 sm:grid-cols-3 max-w-5xl mx-auto";
+  return "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4";
+}
+
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
@@ -72,40 +80,41 @@ const fadeInUp = {
 export default function Cennik() {
   return (
     <>
-      <section className="pt-20 pb-16 bg-gradient-to-b from-accent/40 to-white">
+      <section className="pt-12 pb-6 bg-gradient-to-b from-accent/40 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.h1
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl font-extrabold mb-6"
+            className="text-3xl md:text-5xl font-extrabold mb-3"
           >
             Cenník služieb
           </motion.h1>
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1, transition: { delay: 0.2 } }}
-            className="text-xl text-muted-foreground max-w-2xl mx-auto"
+            className="text-lg text-gray-700 max-w-2xl mx-auto"
           >
             Transparentné ceny bez skrytých poplatkov. Všetky ceny sú konečné vrátane dopravy v Komárne.
           </motion.p>
         </div>
       </section>
 
-      <section className="py-16 bg-white">
+      <section className="py-8 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {pricingSections.map((section, sIdx) => (
-            <div key={sIdx} className={sIdx > 0 ? "mt-16" : ""}>
+            <div key={sIdx}>
+              {sIdx > 0 && <div className="mt-8" />}
               <motion.h2
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-30px" }}
                 variants={fadeInUp}
-                className="text-2xl md:text-3xl font-bold text-center mb-10 text-foreground"
+                className="text-xl md:text-2xl font-bold text-center mb-6 text-foreground"
               >
                 {section.title}
               </motion.h2>
 
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+              <div className={`grid gap-4 md:gap-6 ${getGridClasses(section.items.length)}`}>
                 {section.items.map((item, iIdx) => (
                   <motion.div
                     key={iIdx}
@@ -122,7 +131,13 @@ export default function Cennik() {
                     }}
                     className="group"
                   >
-                    <div className="bg-gray-50 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                    <div className="bg-gray-50 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative">
+                      {item.badge && (
+                        <div className="absolute top-2 right-2 z-10 flex items-center gap-1 bg-primary text-white text-xs font-bold px-2.5 py-1 rounded-full shadow-lg">
+                          <Award className="h-3 w-3" />
+                          {item.badge}
+                        </div>
+                      )}
                       <div className="aspect-square overflow-hidden bg-white p-3">
                         <img
                           src={`${import.meta.env.BASE_URL}images/${item.img}`}
@@ -130,8 +145,8 @@ export default function Cennik() {
                           className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                         />
                       </div>
-                      <div className="p-4 text-center border-t border-gray-100">
-                        <p className="text-sm md:text-base font-medium text-gray-800 mb-1 leading-tight">
+                      <div className="p-3 text-center border-t border-gray-100">
+                        <p className="text-sm md:text-base font-medium text-gray-800 mb-0.5 leading-tight">
                           {item.name}
                         </p>
                         <p className="text-lg md:text-xl font-bold text-primary">
@@ -142,18 +157,27 @@ export default function Cennik() {
                   </motion.div>
                 ))}
               </div>
+
+              <div className="mt-4 flex items-center justify-center gap-3 py-3 px-4 bg-primary/5 rounded-xl max-w-lg mx-auto">
+                <span className="text-sm text-gray-700 font-medium">Záujem o {section.title.toLowerCase()}?</span>
+                <Link href="/kontakt">
+                  <span className="text-sm font-bold text-primary hover:underline cursor-pointer flex items-center gap-1">
+                    Napíšte nám <ArrowRight className="h-3.5 w-3.5" />
+                  </span>
+                </Link>
+              </div>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="py-16 bg-gray-50">
+      <section className="py-10 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <Card className="border-0 shadow-xl rounded-3xl bg-white overflow-hidden">
-            <CardHeader className="bg-primary/5 p-8 border-b">
-              <CardTitle className="text-2xl text-center">Dôležité informácie</CardTitle>
+            <CardHeader className="bg-primary/5 p-6 border-b">
+              <CardTitle className="text-xl text-center">Dôležité informácie</CardTitle>
             </CardHeader>
-            <CardContent className="p-8 space-y-4">
+            <CardContent className="p-6 space-y-3">
               <div className="flex items-start gap-3">
                 <Check className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                 <p className="text-gray-700">Ceny zahŕňajú dopravu v Komárne a blízkom okolí.</p>
@@ -175,16 +199,16 @@ export default function Cennik() {
         </div>
       </section>
 
-      <section className="py-16 bg-white">
+      <section className="py-10 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeInUp}
-            className="text-center mb-10"
+            className="text-center mb-6"
           >
-            <h2 className="text-2xl md:text-3xl font-bold mb-2 flex items-center justify-center gap-2">
+            <h2 className="text-xl md:text-2xl font-bold mb-2 flex items-center justify-center gap-2">
               Zákazníci hodnotia {GOOGLE_RATING}
               <span className="flex gap-0.5">
                 {[...Array(5)].map((_, i) => (
@@ -215,7 +239,7 @@ export default function Cennik() {
         </div>
       </section>
 
-      <section className="py-20 bg-foreground text-white">
+      <section className="py-14 bg-foreground text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial="hidden"
@@ -223,10 +247,10 @@ export default function Cennik() {
             viewport={{ once: true }}
             variants={fadeInUp}
           >
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">
+            <h2 className="text-2xl md:text-4xl font-bold mb-4">
               Máte záujem? Ozvite sa nám!
             </h2>
-            <p className="text-lg text-gray-300 mb-10 max-w-2xl mx-auto">
+            <p className="text-base text-gray-300 mb-8 max-w-2xl mx-auto">
               Kontaktujte nás telefonicky alebo nám zanechajte dopyt. Radi vám pripravíme nezáväznú ponuku.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
