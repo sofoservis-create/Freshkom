@@ -34,7 +34,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <Phone className="h-3.5 w-3.5" />
               <span>{PHONE_NUMBER}</span>
             </a>
-            <a href={`mailto:${EMAIL}`} className="hidden sm:flex items-center gap-1.5 hover:text-primary transition-colors">
+            <a href={`mailto:${EMAIL}`} className="hidden lg:flex items-center gap-1.5 hover:text-primary transition-colors">
               <Mail className="h-3.5 w-3.5" />
               <span>{EMAIL}</span>
             </a>
@@ -139,7 +139,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 </li>
                 <li className="flex items-center gap-3">
                   <Mail className="h-5 w-5 text-primary flex-shrink-0" />
-                  <a href={`mailto:${EMAIL}`} className="hover:text-white transition-colors">{EMAIL}</a>
+                  <a href={`mailto:${EMAIL}`} className="hover:text-white transition-colors break-all">{EMAIL}</a>
                 </li>
                 <li className="flex items-center gap-3">
                   <Clock className="h-5 w-5 text-primary flex-shrink-0" />
