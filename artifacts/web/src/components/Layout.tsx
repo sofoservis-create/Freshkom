@@ -183,12 +183,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <div>
               <h4 className="font-bold text-lg mb-6">{t("footer.ourServices")}</h4>
               <ul className="space-y-3 text-gray-400">
-                <li>{t("footer.serviceCouchUpholstery")}</li>
-                <li>{t("footer.serviceCarpets")}</li>
-                <li>{t("footer.serviceMattresses")}</li>
-                <li>{t("footer.serviceCars")}</li>
-                <li>{t("footer.serviceWindows")}</li>
-                <li>{t("footer.serviceDeepCleaning")}</li>
+                <li><Link href="/cennik#tepovanie-gaucov" className="hover:text-white transition-colors">{t("footer.serviceCouchUpholstery")}</Link></li>
+                <li><Link href="/cennik#tepovanie-kobercov" className="hover:text-white transition-colors">{t("footer.serviceCarpets")}</Link></li>
+                <li><Link href="/cennik#tepovanie-matracov" className="hover:text-white transition-colors">{t("footer.serviceMattresses")}</Link></li>
+                <li><Link href="/cennik#tepovanie-aut" className="hover:text-white transition-colors">{t("footer.serviceCars")}</Link></li>
+                <li><Link href="/cennik#umyvanie-okien" className="hover:text-white transition-colors">{t("footer.serviceWindows")}</Link></li>
+                <li><Link href="/cennik" className="hover:text-white transition-colors">{t("footer.serviceDeepCleaning")}</Link></li>
               </ul>
             </div>
             <div>
