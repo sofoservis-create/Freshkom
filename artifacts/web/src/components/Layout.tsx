@@ -74,7 +74,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
       <nav className="sticky top-0 z-50 glass-effect">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2" onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}>
             <img src={`${import.meta.env.BASE_URL}images/logo-mascot.png`} alt="Freshkom" className="h-14 w-14 object-contain" />
             <span className="font-display font-bold text-2xl tracking-tight text-foreground hidden sm:block">Freshkom</span>
           </Link>
