@@ -181,4 +181,11 @@ export const hu: TranslationKeys = {
     toastErrorTitle: "Hiba a küldés során",
     toastErrorDesc: "Nem sikerült elküldeni az űrlapot. Kérjük, próbálja újra, vagy hívjon minket.",
   },
+  owner: {
+    tag: "Alapító & tulajdonos",
+    name: "Sébestyen Attila",
+    bio: "Zavart, hogy Komáromban nem volt elérhető és minőségi cég a kárpittisztításra és ablakpucolásra — ezért alapítottam egyet magam.",
+    followInstagram: "Kövess Instagramon",
+    followFacebook: "Kövess Facebookon",
+  },
 };

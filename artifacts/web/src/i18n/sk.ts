@@ -179,6 +179,13 @@ export const sk = {
     toastErrorTitle: "Chyba pri odosielaní",
     toastErrorDesc: "Nepodarilo sa odoslať formulár. Skúste to prosím znova, alebo nám zavolajte.",
   },
+  owner: {
+    tag: "Zakladateľ & majiteľ",
+    name: "Attila Sébestyen",
+    bio: "Vadilo ma, že v Komárne nebola dostupná a kvalitná firma na tepovanie a umývanie okien — tak som si ju založil sám.",
+    followInstagram: "Sledovať na Instagrame",
+    followFacebook: "Sledovať na Facebooku",
+  },
 };
 
 export type TranslationKeys = typeof sk;
