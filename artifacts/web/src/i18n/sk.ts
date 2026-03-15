@@ -182,7 +182,7 @@ export const sk = {
   owner: {
     tag: "Zakladateľ & majiteľ",
     name: "Attila Sébestyen",
-    bio: "Vadilo ma, že v Komárne nebola dostupná a kvalitná firma na tepovanie a umývanie okien — tak som si ju založil sám.",
+    bio: "Vadili ma, že v Komárne nebola dostupná a spoľahlivá firma na tepovanie a umývanie okien — tak som si ju založil sám.",
     followInstagram: "Sledovať na Instagrame",
     followFacebook: "Sledovať na Facebooku",
   },
