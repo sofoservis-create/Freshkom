@@ -158,7 +158,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <div>
               <Link href="/" className="flex items-center gap-3 mb-6">
                 <img src={`${import.meta.env.BASE_URL}images/logo-mascot.png`} alt="Freshkom" className="h-12 w-12 object-contain" />
-                <img src={`${import.meta.env.BASE_URL}images/logo-text.png`} alt="Freshkom" className="h-10 w-auto object-contain brightness-0 invert" />
+                <img src={`${import.meta.env.BASE_URL}images/logo-text.png`} alt="Freshkom" className="h-8 w-auto max-w-[110px] object-contain brightness-0 invert" />
               </Link>
               <p className="text-gray-400 mb-6 max-w-sm">
                 {t("footer.description")}
