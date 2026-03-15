@@ -50,7 +50,7 @@ export const sk = {
   },
   features: {
     fastServiceTitle: "Rýchly servis",
-    fastServiceDesc: "Prídeme k vám do 48 hodín od objednania.",
+    fastServiceDesc: "Prídeme k vám do najbližších dní od objednania.",
     ecoTitle: "Ekologické prostriedky",
     ecoDesc: "Šetrné k prírode, bezpečné pre deti a zvieratá.",
     fastDryTitle: "Rýchle schnutie",

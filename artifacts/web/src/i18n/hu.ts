@@ -52,7 +52,7 @@ export const hu: TranslationKeys = {
   },
   features: {
     fastServiceTitle: "Gyors szerviz",
-    fastServiceDesc: "48 órán belül kiszállunk a megrendelés után.",
+    fastServiceDesc: "A megrendelés után a legközelebbi napokon kiszállunk.",
     ecoTitle: "Ökológiai szerek",
     ecoDesc: "Környezetbarát, gyerekeknek és állatoknak biztonságos.",
     fastDryTitle: "Gyors száradás",
