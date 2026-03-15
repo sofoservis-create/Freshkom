@@ -25,42 +25,42 @@ const services = [
     title: "Tepovanie gaučov a sedačiek",
     icon: Sofa,
     desc: "Hĺbkové čistenie a oživenie farieb vášho obľúbeného miesta na oddych.",
-    img: "service-sofa.png",
+    img: "item-sedacka-3m.png",
   },
   {
     id: "tepovanie-kobercov",
     title: "Tepovanie kobercov",
     icon: Sparkles,
     desc: "Odstránenie zažratej špiny, roztočov a alergénov z kobercov všetkých druhov.",
-    img: "service-carpet.png",
+    img: "item-koberec-kratky.png",
   },
   {
     id: "tepovanie-matracov",
     title: "Tepovanie matracov",
     icon: ShieldCheck,
     desc: "Pre zdravý spánok bez prachu, potu a nepríjemných pachov.",
-    img: "service-mattress.png",
+    img: "item-matrac-1.png",
   },
   {
     id: "tepovanie-aut",
     title: "Tepovanie áut",
     icon: Car,
     desc: "Kompletné vyčistenie sedačiek a celého interiéru vozidla.",
-    img: "service-car.png",
+    img: "item-auto-interier.png",
   },
   {
     id: "umyvanie-okien",
     title: "Umývanie okien a výkladov",
     icon: Droplets,
     desc: "Žiarivo čisté okná bez šmúh pre domácnosti aj firmy.",
-    img: "service-windows.png",
+    img: "item-okno-2.png",
   },
   {
     id: "hlbkove-cistenie",
     title: "Hĺbkové čistenie",
     icon: Sparkles,
     desc: "Kompletný servis a detailné vyčistenie extrémne znečistených povrchov.",
-    img: "service-deep-clean.png",
+    img: "item-sedacka-l.png",
   },
 ];
 
@@ -225,11 +225,11 @@ export default function Landing() {
                 }}
               >
                 <Card className="h-full border-0 shadow-md hover:shadow-xl transition-shadow duration-300 rounded-3xl overflow-hidden group bg-white">
-                  <div className="h-52 overflow-hidden">
+                  <div className="h-52 overflow-hidden bg-gray-50 p-4">
                     <img
                       src={`${import.meta.env.BASE_URL}images/${service.img}`}
                       alt={service.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>
                   <CardContent className="p-8">
