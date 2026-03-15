@@ -68,6 +68,7 @@ const pricingSections: PricingSection[] = [
 function getGridClasses(count: number): string {
   if (count <= 2) return "grid-cols-2 max-w-lg mx-auto";
   if (count === 3) return "grid-cols-2 sm:grid-cols-3 max-w-3xl mx-auto";
+  if (count === 4) return "grid-cols-2 sm:grid-cols-4 max-w-5xl mx-auto";
   if (count <= 6) return "grid-cols-2 sm:grid-cols-3 max-w-5xl mx-auto";
   return "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4";
 }
@@ -85,7 +86,7 @@ export default function Cennik() {
           <motion.h1
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-3xl md:text-5xl font-extrabold mb-3"
+            className="text-3xl md:text-4xl font-extrabold mb-3"
           >
             Cenník služieb
           </motion.h1>
@@ -159,12 +160,15 @@ export default function Cennik() {
               </div>
 
               <div className="mt-4 flex items-center justify-center gap-3 py-3 px-4 bg-primary/5 rounded-xl max-w-lg mx-auto">
-                <span className="text-sm text-gray-700 font-medium">Záujem o {section.title.toLowerCase()}?</span>
-                <Link href="/kontakt">
-                  <span className="text-sm font-bold text-primary hover:underline cursor-pointer flex items-center gap-1">
-                    Napíšte nám <ArrowRight className="h-3.5 w-3.5" />
-                  </span>
-                </Link>
+                <span className="text-sm text-gray-700 font-medium">Záujem o čistenie?</span>
+                <a
+                  href={`tel:${PHONE_NUMBER.replace(/\s/g, "")}`}
+                  className="text-sm font-bold text-primary hover:underline flex items-center gap-1"
+                >
+                  <Phone className="h-3.5 w-3.5" />
+                  Zavolajte nám
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </a>
               </div>
             </div>
           ))}
@@ -247,7 +251,7 @@ export default function Cennik() {
             viewport={{ once: true }}
             variants={fadeInUp}
           >
-            <h2 className="text-2xl md:text-4xl font-bold mb-4">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
               Máte záujem? Ozvite sa nám!
             </h2>
             <p className="text-base text-gray-300 mb-8 max-w-2xl mx-auto">

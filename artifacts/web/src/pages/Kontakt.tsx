@@ -52,7 +52,7 @@ export default function Kontakt() {
           <motion.h1
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-3"
+            className="text-3xl sm:text-4xl md:text-4xl font-extrabold mb-3"
           >
             Kontaktujte nás
           </motion.h1>
