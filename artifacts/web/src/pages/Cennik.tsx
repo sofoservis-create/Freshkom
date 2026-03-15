@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Check } from "lucide-react";
 import GoogleReviewCard from "@/components/GoogleReviewCard";
+import LeadForm from "@/components/LeadForm";
 import { googleReviews, GOOGLE_RATING, GOOGLE_REVIEW_COUNT } from "@/data/googleReviews";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -264,7 +265,28 @@ export default function Cennik() {
         </div>
       </section>
 
-      <section className="py-14 bg-foreground text-white">
+      <section id="kontakt" className="py-16 relative bg-foreground text-white overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: "radial-gradient(#ffffff 1px, transparent 1px)",
+            backgroundSize: "30px 30px",
+          }}
+        />
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3">
+              {t("contactSection.title")}
+            </h2>
+            <p className="text-base sm:text-lg text-gray-300">
+              {t("contactSection.subtitle")}
+            </p>
+          </div>
+          <LeadForm />
+        </div>
+      </section>
+
+      <section className="py-14 bg-foreground text-white border-t border-white/10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial="hidden"
