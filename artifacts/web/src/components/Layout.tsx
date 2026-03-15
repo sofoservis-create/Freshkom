@@ -2,19 +2,21 @@ import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { Phone, Mail, Clock, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const PHONE_NUMBER = "+421 917 240 819";
 const EMAIL = "freshkomsluzby@gmail.com";
 
-const navLinks = [
-  { href: "/", label: "Úvod" },
-  { href: "/cennik", label: "Cenník" },
-  { href: "/kontakt", label: "Kontakt" },
-];
-
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [location, setLocation] = useLocation();
+  const { lang, setLang, t } = useLanguage();
+
+  const navLinks = [
+    { href: "/", label: t("nav.home") },
+    { href: "/cennik", label: t("nav.pricing") },
+    { href: "/kontakt", label: t("nav.contact") },
+  ];
 
   const scrollToContact = () => {
     if (location === "/") {
@@ -40,10 +42,26 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </a>
             <span className="hidden md:flex items-center gap-1.5 text-gray-400">
               <Clock className="h-3.5 w-3.5" />
-              <span>PO–SOB 7:00–21:00</span>
+              <span>{t("topBar.hours")}</span>
             </span>
           </div>
           <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1 mr-2">
+              <button
+                onClick={() => setLang("sk")}
+                className={`px-2 py-0.5 rounded text-xs font-bold transition-colors ${lang === "sk" ? "bg-primary text-white" : "bg-white/10 text-gray-300 hover:bg-white/20"}`}
+                aria-label="Slovenčina"
+              >
+                🇸🇰 SK
+              </button>
+              <button
+                onClick={() => setLang("hu")}
+                className={`px-2 py-0.5 rounded text-xs font-bold transition-colors ${lang === "hu" ? "bg-primary text-white" : "bg-white/10 text-gray-300 hover:bg-white/20"}`}
+                aria-label="Magyar"
+              >
+                🇭🇺 HU
+              </button>
+            </div>
             <a href="https://www.facebook.com/profile.php?id=61585033404394" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors" aria-label="Facebook">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-4 w-4 fill-current"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
             </a>
@@ -68,7 +86,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </Link>
             ))}
             <Button size="lg" onClick={scrollToContact} className="rounded-full shadow-lg shadow-primary/25 font-semibold">
-              Získať cenovú ponuku
+              {t("nav.getQuote")}
             </Button>
           </div>
 
@@ -76,14 +94,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <a
               href={`tel:${PHONE_NUMBER.replace(/\s/g, '')}`}
               className="p-2.5 rounded-full text-primary hover:bg-primary/10 transition-colors"
-              aria-label="Zavolať"
+              aria-label={t("hero.ctaCall")}
             >
               <Phone className="h-6 w-6" />
             </a>
             <button
               className="p-2 text-foreground"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label={mobileMenuOpen ? "Zavrieť menu" : "Otvoriť menu"}
+              aria-label={mobileMenuOpen ? t("nav.closeMenu") : t("nav.openMenu")}
               aria-expanded={mobileMenuOpen}
             >
               {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -101,7 +119,21 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <a href={`tel:${PHONE_NUMBER.replace(/\s/g, '')}`} className="flex items-center gap-3 text-lg font-medium p-3">
               <Phone className="h-5 w-5 text-primary" /> {PHONE_NUMBER}
             </a>
-            <Button className="w-full mt-2" size="lg" onClick={scrollToContact}>Získať cenovú ponuku</Button>
+            <div className="flex items-center gap-2 p-3">
+              <button
+                onClick={() => setLang("sk")}
+                className={`flex-1 px-3 py-2 rounded-xl text-sm font-bold transition-colors ${lang === "sk" ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
+              >
+                🇸🇰 SK
+              </button>
+              <button
+                onClick={() => setLang("hu")}
+                className={`flex-1 px-3 py-2 rounded-xl text-sm font-bold transition-colors ${lang === "hu" ? "bg-primary text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
+              >
+                🇭🇺 HU
+              </button>
+            </div>
+            <Button className="w-full mt-2" size="lg" onClick={scrollToContact}>{t("nav.getQuote")}</Button>
           </div>
         )}
       </nav>
@@ -117,7 +149,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <span className="font-display font-bold text-2xl tracking-tight">Freshkom</span>
               </Link>
               <p className="text-gray-400 mb-6 max-w-sm">
-                Profesionálna firma na tepovanie a čistenie pre Komárno a okolie. S úsmevom a poctivou prácou.
+                {t("footer.description")}
               </p>
               <div className="flex items-center gap-4">
                 <a href="https://www.facebook.com/profile.php?id=61585033404394" target="_blank" rel="noopener noreferrer" className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors" aria-label="Facebook">
@@ -129,18 +161,18 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </div>
             </div>
             <div>
-              <h4 className="font-bold text-lg mb-6">Naše služby</h4>
+              <h4 className="font-bold text-lg mb-6">{t("footer.ourServices")}</h4>
               <ul className="space-y-3 text-gray-400">
-                <li>Tepovanie gaučov a sedačiek</li>
-                <li>Tepovanie kobercov</li>
-                <li>Tepovanie matracov</li>
-                <li>Tepovanie áut</li>
-                <li>Umývanie okien</li>
-                <li>Hĺbkové čistenie</li>
+                <li>{t("footer.serviceCouchUpholstery")}</li>
+                <li>{t("footer.serviceCarpets")}</li>
+                <li>{t("footer.serviceMattresses")}</li>
+                <li>{t("footer.serviceCars")}</li>
+                <li>{t("footer.serviceWindows")}</li>
+                <li>{t("footer.serviceDeepCleaning")}</li>
               </ul>
             </div>
             <div>
-              <h4 className="font-bold text-lg mb-6">Kontakt</h4>
+              <h4 className="font-bold text-lg mb-6">{t("footer.contactTitle")}</h4>
               <ul className="space-y-4 text-gray-400">
                 <li className="flex items-center gap-3">
                   <Phone className="h-5 w-5 text-primary flex-shrink-0" />
@@ -152,13 +184,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 </li>
                 <li className="flex items-center gap-3">
                   <Clock className="h-5 w-5 text-primary flex-shrink-0" />
-                  <span>PO–SOB 7:00–21:00</span>
+                  <span>{t("topBar.hours")}</span>
                 </li>
               </ul>
             </div>
           </div>
           <div className="border-t border-white/10 pt-8 text-center text-gray-500 text-sm">
-            © {new Date().getFullYear()} Freshkom. Všetky práva vyhradené. Komárno a okolie.
+            © {new Date().getFullYear()} Freshkom. {t("footer.copyright")}
           </div>
         </div>
       </footer>

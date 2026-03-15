@@ -4,52 +4,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import LeadForm from "@/components/LeadForm";
 import GoogleReviewCard from "@/components/GoogleReviewCard";
 import { googleReviews } from "@/data/googleReviews";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const PHONE_NUMBER = "+421 917 240 819";
 const EMAIL = "freshkomsluzby@gmail.com";
-
-const contactInfo = [
-  {
-    icon: Phone,
-    title: "Zavolajte nám",
-    value: PHONE_NUMBER,
-    href: `tel:${PHONE_NUMBER.replace(/\s/g, "")}`,
-    iconBg: "bg-green-100",
-    iconColor: "text-green-600",
-    accent: "border-green-400",
-    label: "Voláme PO–SOB 7:00–21:00",
-  },
-  {
-    icon: Mail,
-    title: "Napíšte nám",
-    value: EMAIL,
-    href: `mailto:${EMAIL}`,
-    iconBg: "bg-blue-100",
-    iconColor: "text-blue-600",
-    accent: "border-blue-400",
-    label: "Odpovieme do 24 hodín",
-  },
-  {
-    icon: Clock,
-    title: "Pracovná doba",
-    value: "PO–SOB 7:00–21:00",
-    href: null,
-    iconBg: "bg-amber-100",
-    iconColor: "text-amber-600",
-    accent: "border-amber-400",
-    label: "Každý deň okrem nedele",
-  },
-  {
-    icon: MapPin,
-    title: "Oblasť pôsobenia",
-    value: "Komárno a okolie",
-    href: null,
-    iconBg: "bg-violet-100",
-    iconColor: "text-violet-600",
-    accent: "border-violet-400",
-    label: "Dochádzame do 30 km",
-  },
-];
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -57,6 +15,51 @@ const fadeInUp = {
 };
 
 export default function Kontakt() {
+  const { t } = useLanguage();
+
+  const contactInfo = [
+    {
+      icon: Phone,
+      title: t("kontakt.callUs"),
+      value: PHONE_NUMBER,
+      href: `tel:${PHONE_NUMBER.replace(/\s/g, "")}`,
+      iconBg: "bg-green-100",
+      iconColor: "text-green-600",
+      accent: "border-green-400",
+      label: t("kontakt.callLabel"),
+    },
+    {
+      icon: Mail,
+      title: t("kontakt.writeUs"),
+      value: EMAIL,
+      href: `mailto:${EMAIL}`,
+      iconBg: "bg-blue-100",
+      iconColor: "text-blue-600",
+      accent: "border-blue-400",
+      label: t("kontakt.writeLabel"),
+    },
+    {
+      icon: Clock,
+      title: t("kontakt.workingHours"),
+      value: t("kontakt.workingHoursValue"),
+      href: null,
+      iconBg: "bg-amber-100",
+      iconColor: "text-amber-600",
+      accent: "border-amber-400",
+      label: t("kontakt.workingHoursLabel"),
+    },
+    {
+      icon: MapPin,
+      title: t("kontakt.area"),
+      value: t("kontakt.areaValue"),
+      href: null,
+      iconBg: "bg-violet-100",
+      iconColor: "text-violet-600",
+      accent: "border-violet-400",
+      label: t("kontakt.areaLabel"),
+    },
+  ];
+
   return (
     <>
       <section className="pt-12 pb-6 bg-gradient-to-b from-accent/40 to-white">
@@ -66,14 +69,14 @@ export default function Kontakt() {
             animate={{ opacity: 1, y: 0 }}
             className="text-3xl sm:text-4xl md:text-4xl font-extrabold mb-3"
           >
-            Kontaktujte nás
+            {t("kontakt.pageTitle")}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1, transition: { delay: 0.2 } }}
             className="text-lg text-gray-700 max-w-2xl mx-auto"
           >
-            Radi vám odpovieme na všetky otázky. Zavolajte nám alebo vyplňte formulár.
+            {t("kontakt.pageSubtitle")}
           </motion.p>
         </div>
       </section>
@@ -131,9 +134,9 @@ export default function Kontakt() {
               viewport={{ once: true }}
               variants={fadeInUp}
             >
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3">Nezáväzný dopyt</h2>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3">{t("kontakt.formTitle")}</h2>
               <p className="text-base sm:text-lg text-gray-700 mb-6">
-                Vyplňte formulár a ozveme sa vám do 24 hodín s cenovou ponukou.
+                {t("kontakt.formSubtitle")}
               </p>
               <LeadForm />
             </motion.div>
@@ -146,9 +149,9 @@ export default function Kontakt() {
               className="space-y-6"
             >
               <div>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3">Čo hovoria naši klienti</h2>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3">{t("kontakt.reviewsTitle")}</h2>
                 <p className="text-base sm:text-lg text-gray-700 mb-4">
-                  Recenzie od spokojných zákazníkov na Google.
+                  {t("kontakt.reviewsSubtitle")}
                 </p>
                 <div className="space-y-3">
                   {googleReviews.slice(0, 3).map((review, i) => (
@@ -158,18 +161,18 @@ export default function Kontakt() {
               </div>
 
               <div>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3">Kde nás nájdete</h2>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3">{t("kontakt.whereToFind")}</h2>
                 <p className="text-base sm:text-lg text-gray-700 mb-4">
-                  Pôsobíme v celom Komárne a okolí do 30 km. Príplatok za dopravu mimo Komárna je individuálny.
+                  {t("kontakt.whereToFindDesc")}
                 </p>
               </div>
 
               <Card className="border-0 shadow-lg rounded-3xl bg-primary/5 overflow-hidden">
                 <CardContent className="p-6 text-center">
                   <MapPin className="h-10 w-10 text-primary mx-auto mb-3" />
-                  <h3 className="text-lg font-bold mb-1.5">Komárno a okolie</h3>
-                  <p className="text-muted-foreground text-sm mb-1">Pôsobíme v celom meste Komárno a v okruhu do 30 km.</p>
-                  <p className="text-muted-foreground text-sm">Nové Zámky, Hurbanovo, Kolárovo, Štúrovo a ďalšie.</p>
+                  <h3 className="text-lg font-bold mb-1.5">{t("kontakt.mapTitle")}</h3>
+                  <p className="text-muted-foreground text-sm mb-1">{t("kontakt.mapDesc1")}</p>
+                  <p className="text-muted-foreground text-sm">{t("kontakt.mapDesc2")}</p>
                 </CardContent>
               </Card>
 

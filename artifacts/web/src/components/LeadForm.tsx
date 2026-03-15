@@ -22,40 +22,50 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useLeadSubmission } from "@/hooks/use-leads";
+import { useLanguage } from "@/contexts/LanguageContext";
 
-const services = [
-  { id: "tepovanie-gaucov", title: "Tepovanie gaučov a sedačiek" },
-  { id: "tepovanie-kobercov", title: "Tepovanie kobercov" },
-  { id: "tepovanie-matracov", title: "Tepovanie matracov" },
-  { id: "tepovanie-aut", title: "Tepovanie áut" },
-  { id: "cistenie-caluneneho-nabytku", title: "Čistenie čalúneného nábytku" },
-  { id: "umyvanie-okien", title: "Umývanie okien a výkladov" },
-  { id: "hlbkove-cistenie", title: "Hĺbkové čistenie" },
-];
+const serviceIds = [
+  "tepovanie-gaucov",
+  "tepovanie-kobercov",
+  "tepovanie-matracov",
+  "tepovanie-aut",
+  "cistenie-caluneneho-nabytku",
+  "umyvanie-okien",
+  "hlbkove-cistenie",
+  "ine"
+] as const;
 
-const leadSchema = z.object({
-  name: z.string().min(2, "Meno musí obsahovať aspoň 2 znaky"),
-  phone: z.string().min(9, "Zadajte platné telefónne číslo"),
-  email: z.string().email("Zadajte platný email").optional().or(z.literal("")),
-  service: z.enum([
-    "tepovanie-gaucov",
-    "tepovanie-kobercov",
-    "tepovanie-matracov",
-    "tepovanie-aut",
-    "cistenie-caluneneho-nabytku",
-    "umyvanie-okien",
-    "hlbkove-cistenie",
-    "ine"
-  ], {
-    required_error: "Prosím, vyberte druh služby",
-  }),
-  message: z.string().optional(),
-});
-
-type LeadFormValues = z.infer<typeof leadSchema>;
+type LeadFormValues = {
+  name: string;
+  phone: string;
+  email?: string;
+  service: (typeof serviceIds)[number];
+  message?: string;
+};
 
 export default function LeadForm({ defaultService }: { defaultService?: string }) {
   const { mutate: submitLead, isPending } = useLeadSubmission();
+  const { t } = useLanguage();
+
+  const leadSchema = z.object({
+    name: z.string().min(2, t("leadForm.validationName")),
+    phone: z.string().min(9, t("leadForm.validationPhone")),
+    email: z.string().email(t("leadForm.validationEmail")).optional().or(z.literal("")),
+    service: z.enum(serviceIds, {
+      required_error: t("leadForm.validationService"),
+    }),
+    message: z.string().optional(),
+  });
+
+  const services = [
+    { id: "tepovanie-gaucov", title: t("leadForm.serviceCouches") },
+    { id: "tepovanie-kobercov", title: t("leadForm.serviceCarpets") },
+    { id: "tepovanie-matracov", title: t("leadForm.serviceMattresses") },
+    { id: "tepovanie-aut", title: t("leadForm.serviceCars") },
+    { id: "cistenie-caluneneho-nabytku", title: t("leadForm.serviceUpholstery") },
+    { id: "umyvanie-okien", title: t("leadForm.serviceWindows") },
+    { id: "hlbkove-cistenie", title: t("leadForm.serviceDeepClean") },
+  ];
 
   const form = useForm<LeadFormValues>({
     resolver: zodResolver(leadSchema),
@@ -87,9 +97,9 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-base">Meno a priezvisko</FormLabel>
+                    <FormLabel className="text-base">{t("leadForm.name")}</FormLabel>
                     <FormControl>
-                      <Input placeholder="Jozef Mak" className="h-12 rounded-xl bg-gray-50 border-gray-200 focus:bg-white" {...field} />
+                      <Input placeholder={t("leadForm.namePlaceholder")} className="h-12 rounded-xl bg-gray-50 border-gray-200 focus:bg-white" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -100,9 +110,9 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
                 name="phone"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-base">Telefónne číslo <span className="text-destructive">*</span></FormLabel>
+                    <FormLabel className="text-base">{t("leadForm.phone")} <span className="text-destructive">*</span></FormLabel>
                     <FormControl>
-                      <Input placeholder="+421 9XX XXX XXX" className="h-12 rounded-xl bg-gray-50 border-gray-200 focus:bg-white" {...field} />
+                      <Input placeholder={t("leadForm.phonePlaceholder")} className="h-12 rounded-xl bg-gray-50 border-gray-200 focus:bg-white" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -115,9 +125,9 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-base">Email (nepovinné)</FormLabel>
+                    <FormLabel className="text-base">{t("leadForm.email")}</FormLabel>
                     <FormControl>
-                      <Input placeholder="jozef@email.sk" type="email" className="h-12 rounded-xl bg-gray-50 border-gray-200 focus:bg-white" {...field} />
+                      <Input placeholder={t("leadForm.emailPlaceholder")} type="email" className="h-12 rounded-xl bg-gray-50 border-gray-200 focus:bg-white" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -128,18 +138,18 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
                 name="service"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-base">Druh služby <span className="text-destructive">*</span></FormLabel>
+                    <FormLabel className="text-base">{t("leadForm.serviceType")} <span className="text-destructive">*</span></FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger className="h-12 rounded-xl bg-gray-50 border-gray-200 focus:bg-white">
-                          <SelectValue placeholder="Vyberte si službu" />
+                          <SelectValue placeholder={t("leadForm.selectService")} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
                         {services.map(s => (
                           <SelectItem key={s.id} value={s.id}>{s.title}</SelectItem>
                         ))}
-                        <SelectItem value="ine">Iné / Zmiešané</SelectItem>
+                        <SelectItem value="ine">{t("leadForm.serviceOther")}</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -152,10 +162,10 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
               name="message"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-base">Správa / Detaily (nepovinné)</FormLabel>
+                  <FormLabel className="text-base">{t("leadForm.message")}</FormLabel>
                   <FormControl>
                     <Textarea
-                      placeholder="Mám záujem o vytepovanie rohovej sedačky a jedného koberca..."
+                      placeholder={t("leadForm.messagePlaceholder")}
                       className="resize-none min-h-[120px] rounded-xl bg-gray-50 border-gray-200 focus:bg-white"
                       {...field}
                     />
@@ -170,15 +180,15 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
               className="w-full h-16 text-lg rounded-xl shadow-xl shadow-primary/20 hover:shadow-primary/40 transition-all font-bold group"
               disabled={isPending}
             >
-              {isPending ? "Odosiela sa..." : (
+              {isPending ? t("leadForm.submitting") : (
                 <>
-                  Odoslať dopyt zadarmo
+                  {t("leadForm.submit")}
                   <CheckCircle2 className="ml-2 w-6 h-6 group-hover:scale-110 transition-transform" />
                 </>
               )}
             </Button>
             <p className="text-center text-sm text-muted-foreground mt-4">
-              Vaše údaje sú v bezpečí. Odošlite formulár a my sa vám ozveme čo najskôr.
+              {t("leadForm.disclaimer")}
             </p>
           </form>
         </Form>

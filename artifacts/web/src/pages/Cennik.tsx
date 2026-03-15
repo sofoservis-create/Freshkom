@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Check } from "lucide-react";
 import GoogleReviewCard from "@/components/GoogleReviewCard";
 import { googleReviews, GOOGLE_RATING } from "@/data/googleReviews";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const PHONE_NUMBER = "+421 917 240 819";
 
@@ -18,52 +19,9 @@ interface PricingItem {
 
 interface PricingSection {
   title: string;
+  titleKey: string;
   items: PricingItem[];
 }
-
-const pricingSections: PricingSection[] = [
-  {
-    title: "Sedačky a nábytok",
-    items: [
-      { name: "Kreslo", price: "20 €", img: "item-kreslo.png" },
-      { name: "Sedačka 2-miestna", price: "30 €", img: "item-sedacka-2m.png" },
-      { name: "Sedačka 3-miestna", price: "40 €", img: "item-sedacka-3m.png", badge: "Najobľúbenejšie" },
-      { name: "Sedačka L-ková", price: "50 €", img: "item-sedacka-l.png" },
-      { name: "Sedačka U-čková", price: "60 €", img: "item-sedacka-u.png" },
-      { name: "Stolička", price: "5 €", img: "item-stolicka.png" },
-    ],
-  },
-  {
-    title: "Koberce",
-    items: [
-      { name: "Krátkovlasý koberec", price: "3 € / m²", img: "item-koberec-kratky.png" },
-      { name: "Dlhovlasý koberec", price: "4,50 € / m²", img: "item-koberec-dlhy.png" },
-    ],
-  },
-  {
-    title: "Matrace",
-    items: [
-      { name: "Jednolôžkový matrac (1 strana)", price: "11 €", img: "item-matrac-1.png" },
-      { name: "Dvojlôžkový matrac (1 strana)", price: "22 €", img: "item-matrac-2.png" },
-    ],
-  },
-  {
-    title: "Tepovanie áut",
-    items: [
-      { name: "Sedačky", price: "50 €", img: "item-auto-sedacky.png" },
-      { name: "Celý interiér", price: "80 €", img: "item-auto-interier.png" },
-    ],
-  },
-  {
-    title: "Umývanie okien",
-    items: [
-      { name: "Jednokrídlové okno", price: "10 €", img: "item-okno-1.png" },
-      { name: "Dvojkrídlové okno", price: "12,50 €", img: "item-okno-2.png" },
-      { name: "Trojkrídlové okno", price: "15 €", img: "item-okno-3.png" },
-      { name: "Výklad", price: "Dohodou", img: "item-vyklad.png" },
-    ],
-  },
-];
 
 function getGridClasses(count: number): string {
   if (count <= 2) return "grid-cols-2 max-w-lg mx-auto";
@@ -79,6 +37,57 @@ const fadeInUp = {
 };
 
 export default function Cennik() {
+  const { t } = useLanguage();
+
+  const pricingSections: PricingSection[] = [
+    {
+      title: t("pricing.sectionCouches"),
+      titleKey: "sectionCouches",
+      items: [
+        { name: t("pricing.armchair"), price: "20 €", img: "item-kreslo.png" },
+        { name: t("pricing.couch2"), price: "30 €", img: "item-sedacka-2m.png" },
+        { name: t("pricing.couch3"), price: "40 €", img: "item-sedacka-3m.png", badge: t("pricing.badgeMostPopular") },
+        { name: t("pricing.couchL"), price: "50 €", img: "item-sedacka-l.png" },
+        { name: t("pricing.couchU"), price: "60 €", img: "item-sedacka-u.png" },
+        { name: t("pricing.chair"), price: "5 €", img: "item-stolicka.png" },
+      ],
+    },
+    {
+      title: t("pricing.sectionCarpets"),
+      titleKey: "sectionCarpets",
+      items: [
+        { name: t("pricing.carpetShort"), price: "3 € / m²", img: "item-koberec-kratky.png" },
+        { name: t("pricing.carpetLong"), price: "4,50 € / m²", img: "item-koberec-dlhy.png" },
+      ],
+    },
+    {
+      title: t("pricing.sectionMattresses"),
+      titleKey: "sectionMattresses",
+      items: [
+        { name: t("pricing.mattressSingle"), price: "11 €", img: "item-matrac-1.png" },
+        { name: t("pricing.mattressDouble"), price: "22 €", img: "item-matrac-2.png" },
+      ],
+    },
+    {
+      title: t("pricing.sectionCars"),
+      titleKey: "sectionCars",
+      items: [
+        { name: t("pricing.carSeats"), price: "50 €", img: "item-auto-sedacky.png" },
+        { name: t("pricing.carInterior"), price: "80 €", img: "item-auto-interier.png" },
+      ],
+    },
+    {
+      title: t("pricing.sectionWindows"),
+      titleKey: "sectionWindows",
+      items: [
+        { name: t("pricing.window1"), price: "10 €", img: "item-okno-1.png" },
+        { name: t("pricing.window2"), price: "12,50 €", img: "item-okno-2.png" },
+        { name: t("pricing.window3"), price: "15 €", img: "item-okno-3.png" },
+        { name: t("pricing.shopWindow"), price: t("pricing.byAgreement"), img: "item-vyklad.png" },
+      ],
+    },
+  ];
+
   return (
     <>
       <section className="pt-12 pb-6 bg-gradient-to-b from-accent/40 to-white">
@@ -88,14 +97,14 @@ export default function Cennik() {
             animate={{ opacity: 1, y: 0 }}
             className="text-3xl md:text-4xl font-extrabold mb-3"
           >
-            Cenník služieb
+            {t("pricing.pageTitle")}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1, transition: { delay: 0.2 } }}
             className="text-lg text-gray-700 max-w-2xl mx-auto"
           >
-            Transparentné ceny bez skrytých poplatkov. Všetky ceny sú konečné vrátane dopravy v Komárne.
+            {t("pricing.pageSubtitle")}
           </motion.p>
         </div>
       </section>
@@ -115,7 +124,7 @@ export default function Cennik() {
                 {section.title}
               </motion.h2>
 
-              <div className={`grid gap-4 md:gap-6 ${section.title === "Umývanie okien" ? "grid-cols-2 sm:grid-cols-4 max-w-5xl mx-auto" : getGridClasses(section.items.length)}`}>
+              <div className={`grid gap-4 md:gap-6 ${section.titleKey === "sectionWindows" ? "grid-cols-2 sm:grid-cols-4 max-w-5xl mx-auto" : getGridClasses(section.items.length)}`}>
                 {section.items.map((item, iIdx) => (
                   <motion.div
                     key={iIdx}
@@ -160,13 +169,13 @@ export default function Cennik() {
               </div>
 
               <div className="mt-4 flex items-center justify-center gap-3 py-3 px-4 bg-primary/5 rounded-xl max-w-lg mx-auto">
-                <span className="text-sm text-gray-700 font-medium">Záujem o čistenie?</span>
+                <span className="text-sm text-gray-700 font-medium">{t("pricing.interestedInCleaning")}</span>
                 <a
                   href={`tel:${PHONE_NUMBER.replace(/\s/g, "")}`}
                   className="text-sm font-bold text-primary hover:underline flex items-center gap-1"
                 >
                   <Phone className="h-3.5 w-3.5" />
-                  Zavolajte nám
+                  {t("pricing.callUs")}
                   <ArrowRight className="h-3.5 w-3.5" />
                 </a>
               </div>
@@ -179,24 +188,24 @@ export default function Cennik() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <Card className="border-0 shadow-xl rounded-3xl bg-white overflow-hidden">
             <CardHeader className="bg-primary/5 p-6 border-b">
-              <CardTitle className="text-xl text-center">Dôležité informácie</CardTitle>
+              <CardTitle className="text-xl text-center">{t("pricing.importantInfo")}</CardTitle>
             </CardHeader>
             <CardContent className="p-6 space-y-3">
               <div className="flex items-start gap-3">
                 <Check className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                <p className="text-gray-700">Ceny zahŕňajú dopravu v Komárne a blízkom okolí.</p>
+                <p className="text-gray-700">{t("pricing.info1")}</p>
               </div>
               <div className="flex items-start gap-3">
                 <Check className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                <p className="text-gray-700">Pri extrémne znečistených povrchoch môže byť cena upravená individuálne.</p>
+                <p className="text-gray-700">{t("pricing.info2")}</p>
               </div>
               <div className="flex items-start gap-3">
                 <Check className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                <p className="text-gray-700">Používame profesionálne ekologické čistiace prostriedky.</p>
+                <p className="text-gray-700">{t("pricing.info3")}</p>
               </div>
               <div className="flex items-start gap-3">
                 <Check className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                <p className="text-gray-700">Pri väčšom objeme je možná zľava — neváhajte sa spýtať!</p>
+                <p className="text-gray-700">{t("pricing.info4")}</p>
               </div>
             </CardContent>
           </Card>
@@ -213,13 +222,13 @@ export default function Cennik() {
             className="text-center mb-6"
           >
             <h2 className="text-xl md:text-2xl font-bold mb-2 flex items-center justify-center gap-2">
-              Zákazníci hodnotia {GOOGLE_RATING}
+              {t("pricing.customersRate")} {GOOGLE_RATING}
               <span className="flex gap-0.5">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
                 ))}
               </span>
-              na Google
+              {t("pricing.onGoogle")}
             </h2>
           </motion.div>
 
@@ -252,10 +261,10 @@ export default function Cennik() {
             variants={fadeInUp}
           >
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              Máte záujem? Ozvite sa nám!
+              {t("pricing.ctaTitle")}
             </h2>
             <p className="text-base text-gray-300 mb-8 max-w-2xl mx-auto">
-              Kontaktujte nás telefonicky alebo nám zanechajte dopyt. Radi vám pripravíme nezáväznú ponuku.
+              {t("pricing.ctaSubtitle")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/kontakt">
@@ -263,7 +272,7 @@ export default function Cennik() {
                   size="xl"
                   className="text-lg px-10 py-7 rounded-full shadow-xl shadow-primary/30 hover:scale-105 transition-transform"
                 >
-                  Napíšte nám dopyt
+                  {t("pricing.ctaButton")}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
