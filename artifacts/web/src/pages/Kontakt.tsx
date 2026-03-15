@@ -129,27 +129,27 @@ export default function Kontakt() {
             ))}
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeInUp}
-            >
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3">{t("kontakt.formTitle")}</h2>
-              <p className="text-base sm:text-lg text-gray-700 mb-6">
-                {t("kontakt.formSubtitle")}
-              </p>
-              <LeadForm />
-            </motion.div>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            className="max-w-4xl mx-auto mb-12"
+          >
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3">{t("kontakt.formTitle")}</h2>
+            <p className="text-base sm:text-lg text-gray-700 mb-6">
+              {t("kontakt.formSubtitle")}
+            </p>
+            <LeadForm />
+          </motion.div>
 
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeInUp}
-              className="space-y-6"
-            >
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            className="space-y-6"
+          >
               <div>
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3">{t("kontakt.reviewsTitle")}</h2>
                 <p className="text-base sm:text-lg text-gray-700 mb-4">
@@ -202,8 +202,7 @@ export default function Kontakt() {
                   <span className="font-semibold text-pink-700 group-hover:underline">Instagram</span>
                 </a>
               </div>
-            </motion.div>
-          </div>
+          </motion.div>
         </div>
       </section>
     </>
