@@ -73,6 +73,7 @@ export const sk = {
     subtitle: "Skutočné recenzie od skutočných zákazníkov na Google.",
     customersCount: "Viac ako 40 spokojných zákazníkov",
     onGoogle: "na Google",
+    ratingsLabel: "recenzií na Google",
     showReviews: "Zobraziť recenzie",
   },
   contactSection: {

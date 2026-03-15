@@ -1,5 +1,6 @@
 import { Star } from "lucide-react";
 import type { GoogleReview } from "@/data/googleReviews";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 function getInitials(name: string): string {
   const parts = name.split(" ");
@@ -55,21 +56,23 @@ export default function GoogleReviewCard({ review, compact = false }: GoogleRevi
 interface GoogleRatingBadgeProps {
   rating: number;
   reviewCount: number;
-  size?: "sm" | "md";
+  size?: "sm" | "md" | "lg";
 }
 
 export function GoogleRatingBadge({ rating, reviewCount, size = "md" }: GoogleRatingBadgeProps) {
+  const { t } = useLanguage();
   const isSmall = size === "sm";
+  const isLarge = size === "lg";
   return (
-    <div className={`inline-flex items-center gap-2 bg-white border border-gray-200 rounded-full shadow-sm ${isSmall ? "px-3 py-1.5" : "px-4 py-2"}`}>
-      <GoogleLogo className={isSmall ? "h-4 w-4" : "h-5 w-5"} />
-      <span className={`font-bold text-gray-900 ${isSmall ? "text-sm" : "text-base"}`}>{rating}</span>
-      <div className="flex gap-0.5">
+    <div className={`inline-flex items-center gap-2 bg-white border border-gray-200 rounded-full shadow-sm ${isSmall ? "px-3 py-1.5" : isLarge ? "px-5 py-2.5 shadow-md" : "px-4 py-2"}`}>
+      <GoogleLogo className={isSmall ? "h-4 w-4" : isLarge ? "h-6 w-6" : "h-5 w-5"} />
+      <span className={`font-bold text-gray-900 ${isSmall ? "text-sm" : isLarge ? "text-xl" : "text-base"}`}>{rating}</span>
+      <div className={`flex ${isLarge ? "gap-1" : "gap-0.5"}`}>
         {[...Array(5)].map((_, i) => (
-          <Star key={i} className={`${isSmall ? "w-3 h-3" : "w-3.5 h-3.5"} fill-amber-400 text-amber-400`} />
+          <Star key={i} className={`${isSmall ? "w-3 h-3" : isLarge ? "w-4 h-4" : "w-3.5 h-3.5"} fill-amber-400 text-amber-400`} />
         ))}
       </div>
-      <span className={`text-gray-500 ${isSmall ? "text-xs" : "text-sm"}`}>· {reviewCount} recenzií na Google</span>
+      <span className={`text-gray-500 ${isSmall ? "text-xs" : isLarge ? "text-sm" : "text-sm"}`}>· {reviewCount} {t("reviews.ratingsLabel")}</span>
     </div>
   );
 }

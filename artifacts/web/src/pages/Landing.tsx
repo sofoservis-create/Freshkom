@@ -164,7 +164,7 @@ export default function Landing() {
               </Button>
             </motion.div>
             <motion.div variants={fadeInUp} className="mt-5">
-              <GoogleRatingBadge rating={GOOGLE_RATING} reviewCount={GOOGLE_REVIEW_COUNT} />
+              <GoogleRatingBadge rating={GOOGLE_RATING} reviewCount={GOOGLE_REVIEW_COUNT} size="lg" />
             </motion.div>
           </motion.div>
         </div>

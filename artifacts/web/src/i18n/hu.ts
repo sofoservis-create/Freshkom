@@ -75,6 +75,7 @@ export const hu: TranslationKeys = {
     subtitle: "Valódi vélemények valódi ügyfelektől a Google-on.",
     customersCount: "Több mint 40 elégedett ügyfél",
     onGoogle: "a Google-on",
+    ratingsLabel: "recenzió a Google-on",
     showReviews: "Vélemények megtekintése",
   },
   contactSection: {
