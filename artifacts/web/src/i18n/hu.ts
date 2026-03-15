@@ -181,6 +181,11 @@ export const hu: TranslationKeys = {
     toastErrorTitle: "Hiba a küldés során",
     toastErrorDesc: "Nem sikerült elküldeni az űrlapot. Kérjük, próbálja újra, vagy hívjon minket.",
   },
+  social: {
+    instagramCta: "Nézze meg munkáinkat Instagramon",
+    followFreshkom: "Vagy kövessen minket a közösségi médiában",
+    freshkomSocials: "Freshkom a közösségi médiában:",
+  },
   owner: {
     tag: "Alapító & tulajdonos",
     name: "Sébestyen Attila",

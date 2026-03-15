@@ -179,6 +179,11 @@ export const sk = {
     toastErrorTitle: "Chyba pri odosielaní",
     toastErrorDesc: "Nepodarilo sa odoslať formulár. Skúste to prosím znova, alebo nám zavolajte.",
   },
+  social: {
+    instagramCta: "Pozrite si naše výsledky na Instagrame",
+    followFreshkom: "Alebo nás sledujte na sociálnych sieťach",
+    freshkomSocials: "Freshkom na sociálnych sieťach:",
+  },
   owner: {
     tag: "Zakladateľ & majiteľ",
     name: "Attila Sébestyen",
