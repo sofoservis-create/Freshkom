@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 
-const NOTIFY_EMAIL = "freshkomsluzby@gmail.com";
+const NOTIFY_EMAIL = "info@freshkom.sk";
 
 function createTransporter() {
   const user = process.env.GMAIL_USER;
@@ -79,7 +79,7 @@ export async function sendLeadNotification(lead: LeadData): Promise<void> {
     </div>
   </div>
   <div style="padding:16px 28px;background:#f9fafb;font-size:12px;color:#9ca3af;text-align:center">
-    Freshkom · freshkomsluzby@gmail.com · +421 917 240 819
+    Freshkom · info@freshkom.sk · +421 917 240 819
   </div>
 </div>
   `.trim();

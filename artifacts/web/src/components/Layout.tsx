@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const PHONE_NUMBER = "+421 917 240 819";
-const EMAIL = "freshkomsluzby@gmail.com";
+const EMAIL = "info@freshkom.sk";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

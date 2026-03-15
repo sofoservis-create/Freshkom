@@ -8,7 +8,7 @@ import { googleReviews, GOOGLE_RATING, GOOGLE_REVIEW_COUNT } from "@/data/google
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const PHONE_NUMBER = "+421 917 240 819";
-const EMAIL = "freshkomsluzby@gmail.com";
+const EMAIL = "info@freshkom.sk";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },

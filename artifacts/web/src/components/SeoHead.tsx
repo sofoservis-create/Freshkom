@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const PHONE = "+421917240819";
-const EMAIL = "freshkomsluzby@gmail.com";
+const EMAIL = "info@freshkom.sk";
 const FACEBOOK = "https://www.facebook.com/profile.php?id=61585033404394";
 const INSTAGRAM = "https://www.instagram.com/fresh_kom/";
 
@@ -22,7 +22,7 @@ const seoData = {
     },
     kontakt: {
       title: "Kontakt — Tepovanie Komárno | Freshkom",
-      description: "Kontaktujte Freshkom Komárno — tepovanie a čistenie. Tel: +421 917 240 819, email: freshkomsluzby@gmail.com. Pracujeme PO–SOB 7:00–21:00.",
+      description: "Kontaktujte Freshkom Komárno — tepovanie a čistenie. Tel: +421 917 240 819, email: info@freshkom.sk. Pracujeme PO–SOB 7:00–21:00.",
     },
   },
   hu: {
@@ -164,7 +164,7 @@ const faqSchema = {
       {
         "@type": "Question",
         name: "Ako si môžem objednať tepovanie?",
-        acceptedAnswer: { "@type": "Answer", text: "Zavolajte na +421 917 240 819, napíšte email na freshkomsluzby@gmail.com alebo vyplňte formulár na našom webe. Ozveme sa do 24 hodín." },
+        acceptedAnswer: { "@type": "Answer", text: "Zavolajte na +421 917 240 819, napíšte email na info@freshkom.sk alebo vyplňte formulár na našom webe. Ozveme sa do 24 hodín." },
       },
     ],
   },
@@ -195,7 +195,7 @@ const faqSchema = {
       {
         "@type": "Question",
         name: "Hogyan rendelhetek kárpittisztítást?",
-        acceptedAnswer: { "@type": "Answer", text: "Hívjon a +421 917 240 819 számon, írjon e-mailt a freshkomsluzby@gmail.com címre, vagy töltse ki az űrlapot weboldalunkon. 24 órán belül jelentkezünk." },
+        acceptedAnswer: { "@type": "Answer", text: "Hívjon a +421 917 240 819 számon, írjon e-mailt az info@freshkom.sk címre, vagy töltse ki az űrlapot weboldalunkon. 24 órán belül jelentkezünk." },
       },
     ],
   },
