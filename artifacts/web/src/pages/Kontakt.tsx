@@ -164,9 +164,9 @@ export default function Kontakt() {
                 {t("kontakt.formSubtitle")}
               </p>
               {/* Trust micro-signals above form */}
-              <div className="flex flex-wrap gap-3 mb-6">
+              <div className="grid grid-cols-3 gap-2 mb-6">
                 {trustPoints.map((point, i) => (
-                  <span key={i} className="inline-flex items-center gap-1.5 text-sm text-green-700 bg-green-50 border border-green-200 rounded-full px-3 py-1 font-medium">
+                  <span key={i} className="flex items-center justify-center gap-1.5 text-xs sm:text-sm text-green-700 bg-green-50 border border-green-200 rounded-full px-2 py-1.5 font-medium text-center leading-tight">
                     <CheckCircle className="w-3.5 h-3.5 flex-shrink-0" />
                     {point}
                   </span>
