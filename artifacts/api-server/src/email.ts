@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 
-const NOTIFY_EMAIL = "info@freshkom.sk";
+const NOTIFY_EMAIL = "freshkomsluzby@gmail.com";
 
 function createTransporter() {
   const user = process.env.GMAIL_USER;
