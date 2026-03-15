@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Phone, Mail, Clock, MapPin } from "lucide-react";
+import { Phone, Mail, Clock, MapPin, ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import LeadForm from "@/components/LeadForm";
 import GoogleReviewCard from "@/components/GoogleReviewCard";
@@ -11,31 +11,43 @@ const EMAIL = "freshkomsluzby@gmail.com";
 const contactInfo = [
   {
     icon: Phone,
-    title: "Telefón",
+    title: "Zavolajte nám",
     value: PHONE_NUMBER,
     href: `tel:${PHONE_NUMBER.replace(/\s/g, "")}`,
-    color: "bg-green-100 text-green-600",
+    iconBg: "bg-green-100",
+    iconColor: "text-green-600",
+    accent: "border-green-400",
+    label: "Voláme PO–SOB 7:00–21:00",
   },
   {
     icon: Mail,
-    title: "Email",
+    title: "Napíšte nám",
     value: EMAIL,
     href: `mailto:${EMAIL}`,
-    color: "bg-blue-100 text-blue-600",
+    iconBg: "bg-blue-100",
+    iconColor: "text-blue-600",
+    accent: "border-blue-400",
+    label: "Odpovieme do 24 hodín",
   },
   {
     icon: Clock,
     title: "Pracovná doba",
     value: "PO–SOB 7:00–21:00",
     href: null,
-    color: "bg-amber-100 text-amber-600",
+    iconBg: "bg-amber-100",
+    iconColor: "text-amber-600",
+    accent: "border-amber-400",
+    label: "Každý deň okrem nedele",
   },
   {
     icon: MapPin,
     title: "Oblasť pôsobenia",
-    value: "Komárno a okolie (do 30 km)",
+    value: "Komárno a okolie",
     href: null,
-    color: "bg-violet-100 text-violet-600",
+    iconBg: "bg-violet-100",
+    iconColor: "text-violet-600",
+    accent: "border-violet-400",
+    label: "Dochádzame do 30 km",
   },
 ];
 
@@ -68,7 +80,7 @@ export default function Kontakt() {
 
       <section className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-12">
             {contactInfo.map((info, i) => (
               <motion.div
                 key={i}
@@ -77,24 +89,37 @@ export default function Kontakt() {
                 viewport={{ once: true }}
                 variants={{
                   hidden: { opacity: 0, y: 20 },
-                  visible: { opacity: 1, y: 0, transition: { delay: i * 0.1 } },
+                  visible: { opacity: 1, y: 0, transition: { delay: i * 0.08 } },
                 }}
+                className="h-full"
               >
-                <Card className="h-full border-0 shadow-md rounded-2xl hover:shadow-lg transition-shadow text-center">
-                  <CardContent className="p-4 sm:p-6 flex flex-col items-center">
-                    <div className={`h-12 w-12 sm:h-14 sm:w-14 rounded-2xl ${info.color} flex items-center justify-center mb-3`}>
-                      <info.icon className="h-6 w-6 sm:h-7 sm:w-7" />
+                {info.href ? (
+                  <a
+                    href={info.href}
+                    className={`group flex items-center gap-4 p-5 bg-white rounded-2xl shadow-md border-l-4 ${info.accent} hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200 h-full`}
+                  >
+                    <div className={`shrink-0 h-14 w-14 rounded-2xl ${info.iconBg} ${info.iconColor} flex items-center justify-center`}>
+                      <info.icon className="h-7 w-7" />
                     </div>
-                    <h3 className="font-bold text-sm sm:text-base mb-1">{info.title}</h3>
-                    {info.href ? (
-                      <a href={info.href} className="text-primary hover:underline font-medium text-xs sm:text-sm break-all">
-                        {info.value}
-                      </a>
-                    ) : (
-                      <p className="text-muted-foreground text-xs sm:text-sm">{info.value}</p>
-                    )}
-                  </CardContent>
-                </Card>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-0.5">{info.title}</p>
+                      <p className="font-bold text-sm sm:text-base text-gray-900 break-all leading-snug">{info.value}</p>
+                      <p className="text-xs text-muted-foreground mt-1">{info.label}</p>
+                    </div>
+                    <ArrowRight className="shrink-0 h-4 w-4 text-muted-foreground group-hover:text-gray-600 group-hover:translate-x-0.5 transition-all" />
+                  </a>
+                ) : (
+                  <div className={`flex items-center gap-4 p-5 bg-white rounded-2xl shadow-md border-l-4 ${info.accent} h-full`}>
+                    <div className={`shrink-0 h-14 w-14 rounded-2xl ${info.iconBg} ${info.iconColor} flex items-center justify-center`}>
+                      <info.icon className="h-7 w-7" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-0.5">{info.title}</p>
+                      <p className="font-bold text-sm sm:text-base text-gray-900 leading-snug">{info.value}</p>
+                      <p className="text-xs text-muted-foreground mt-1">{info.label}</p>
+                    </div>
+                  </div>
+                )}
               </motion.div>
             ))}
           </div>
