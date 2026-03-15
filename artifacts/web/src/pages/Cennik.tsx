@@ -115,7 +115,7 @@ export default function Cennik() {
                 {section.title}
               </motion.h2>
 
-              <div className={`grid gap-4 md:gap-6 ${getGridClasses(section.items.length)}`}>
+              <div className={`grid gap-4 md:gap-6 ${section.title === "Umývanie okien" ? "grid-cols-2 sm:grid-cols-4 max-w-5xl mx-auto" : getGridClasses(section.items.length)}`}>
                 {section.items.map((item, iIdx) => (
                   <motion.div
                     key={iIdx}
