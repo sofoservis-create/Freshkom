@@ -87,7 +87,7 @@ export default function Kontakt() {
                     </div>
                     <h3 className="font-bold text-sm sm:text-base mb-1">{info.title}</h3>
                     {info.href ? (
-                      <a href={info.href} className="text-primary hover:underline font-medium text-xs sm:text-sm">
+                      <a href={info.href} className="text-primary hover:underline font-medium text-xs sm:text-sm break-all">
                         {info.value}
                       </a>
                     ) : (
