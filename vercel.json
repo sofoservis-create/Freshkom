@@ -1,6 +1,7 @@
 {
   "buildCommand": "pnpm --filter @workspace/web build",
   "outputDirectory": "artifacts/web/dist/public",
+  "framework": "vite",
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]
