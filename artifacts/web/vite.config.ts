@@ -12,7 +12,7 @@ function seoCanonicalPlugin(): Plugin {
     closeBundle() {
       const siteUrl = (process.env.VITE_APP_URL || PLACEHOLDER_DOMAIN).replace(/\/$/, "");
       if (siteUrl === PLACEHOLDER_DOMAIN) return;
-      const outDir = path.resolve(import.meta.dirname, "dist/public");
+      const outDir = path.resolve(import.meta.dirname, "dist");
       for (const file of ["sitemap.xml", "robots.txt"]) {
         const filePath = path.join(outDir, file);
         if (fs.existsSync(filePath)) {
@@ -63,7 +63,7 @@ export default defineConfig({
   },
   root: path.resolve(import.meta.dirname),
   build: {
-    outDir: path.resolve(import.meta.dirname, "dist/public"),
+    outDir: path.resolve(import.meta.dirname, "dist"),
     emptyOutDir: true,
   },
   server: {
