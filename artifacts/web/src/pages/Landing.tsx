@@ -113,7 +113,7 @@ export default function Landing() {
             width={1200}
             height={800}
             className="w-full h-full object-cover scale-x-[-1]"
-            style={{ objectPosition: '40% 0%' }}
+            style={{ objectPosition: '35% 0%' }}
           />
         </div>
 
