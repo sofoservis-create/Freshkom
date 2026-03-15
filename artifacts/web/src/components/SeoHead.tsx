@@ -193,7 +193,7 @@ export default function SeoHead({ page }: SeoHeadProps) {
   const canonicalUrl = `${base}${path}${lang !== "sk" ? `?lang=${lang}` : ""}`;
   const skUrl = `${base}${path}?lang=sk`;
   const huUrl = `${base}${path}?lang=hu`;
-  const ogImage = `${base}/images/opengraph.jpg`;
+  const ogImage = `${base}/opengraph.jpg`;
   const localBusinessSchema = buildLocalBusinessSchema(base);
 
   const breadcrumbNames: Record<string, Record<string, string>> = {
