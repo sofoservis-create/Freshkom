@@ -9,7 +9,12 @@
     "typecheck": "pnpm run typecheck:libs && pnpm -r --filter \"./artifacts/**\" --filter \"./scripts\" --if-present run typecheck"
   },
   "private": true,
+  "dependencies": {
+    "nodemailer": "^8.0.2"
+  },
   "devDependencies": {
+    "@types/nodemailer": "^6.4.17",
+    "@vercel/node": "^5.2.1",
     "typescript": "~5.9.2",
     "prettier": "^3.8.1"
   }
