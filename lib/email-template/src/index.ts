@@ -1,13 +1,25 @@
-export function EmailNotification() {
-  const lead = {
-    name: "Ján Novák",
-    phone: "+421 905 771 151",
-    email: "jan.novak@email.sk",
-    service: "tepovanie-kobercov",
-    message: "Mám záujem o vytepovanie rohovej sedačky a jedného koberca v obývacej izbe. Byt je na 3. poschodí bez výťahu.",
-  };
+export type LeadEmailData = {
+  name: string;
+  phone: string;
+  email?: string | null;
+  service: string;
+  message?: string | null;
+};
 
-  const html = `
+export const serviceLabels: Record<string, string> = {
+  "tepovanie-gaucov": "Tepovanie gaučov a sedačiek",
+  "tepovanie-kobercov": "Tepovanie kobercov",
+  "tepovanie-matracov": "Tepovanie matracov",
+  "tepovanie-aut": "Tepovanie áut",
+  "cistenie-caluneneho-nabytku": "Čistenie čalúneného nábytku",
+  "umyvanie-okien": "Umývanie okien a výkladov",
+  "hlbkove-cistenie": "Hĺbkové čistenie",
+  ine: "Iné / Zmiešané",
+};
+
+export function buildLeadEmailHtml(lead: LeadEmailData): string {
+  const serviceLabel = serviceLabels[lead.service] ?? lead.service;
+  return `
 <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden">
   <div style="background:#0d7577;padding:24px 28px">
     <h1 style="color:#fff;margin:0;font-size:22px">🚀 Nový dopyt — Freshkom</h1>
@@ -24,29 +36,31 @@ export function EmailNotification() {
           <a href="tel:${lead.phone}" style="color:#0d7577;text-decoration:none">${lead.phone}</a>
         </td>
       </tr>
+      ${lead.email ? `
       <tr>
         <td style="padding:10px 0;border-bottom:1px solid #f3f4f6;color:#6b7280;font-size:14px">Email</td>
         <td style="padding:10px 0;border-bottom:1px solid #f3f4f6;font-size:15px">
           <a href="mailto:${lead.email}" style="color:#0d7577;text-decoration:none">${lead.email}</a>
         </td>
-      </tr>
+      </tr>` : ""}
       <tr>
         <td style="padding:10px 0;border-bottom:1px solid #f3f4f6;color:#6b7280;font-size:14px">Služba</td>
-        <td style="padding:10px 0;border-bottom:1px solid #f3f4f6;font-size:15px">${lead.service}</td>
+        <td style="padding:10px 0;border-bottom:1px solid #f3f4f6;font-size:15px">${serviceLabel}</td>
       </tr>
+      ${lead.message ? `
       <tr>
         <td style="padding:10px 0;color:#6b7280;font-size:14px;vertical-align:top">Správa</td>
         <td style="padding:10px 0;font-size:15px;white-space:pre-wrap">${lead.message}</td>
-      </tr>
+      </tr>` : ""}
     </table>
     <table style="margin-top:24px;border-collapse:collapse">
       <tr>
         <td style="padding:0 12px 0 0;vertical-align:middle">
           <a href="tel:${lead.phone}" style="display:inline-block;background:#0d7577;color:#fff;padding:13px 24px;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px;line-height:1.2;vertical-align:middle;border:2px solid transparent">📞 Zavolať ${lead.name}</a>
         </td>
-        <td style="padding:0;vertical-align:middle">
+        ${lead.email ? `<td style="padding:0;vertical-align:middle">
           <a href="mailto:${lead.email}" style="display:inline-block;background:#fff;color:#0d7577;padding:13px 24px;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px;line-height:1.2;vertical-align:middle;border:2px solid #0d7577">✉️ Odpovedať emailom</a>
-        </td>
+        </td>` : ""}
       </tr>
     </table>
   </div>
@@ -54,14 +68,4 @@ export function EmailNotification() {
     Freshkom · info@freshkom.sk · +421 917 240 819
   </div>
 </div>`.trim();
-
-  return (
-    <div className="min-h-screen bg-gray-100 p-8 flex flex-col items-center">
-      <p className="text-xs text-gray-400 mb-4 tracking-wide uppercase">Náhľad — notifikačný email</p>
-      <div
-        style={{ maxWidth: 640, width: "100%" }}
-        dangerouslySetInnerHTML={{ __html: html }}
-      />
-    </div>
-  );
 }

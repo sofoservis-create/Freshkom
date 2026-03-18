@@ -10,6 +10,7 @@
   },
   "private": true,
   "dependencies": {
+    "@workspace/email-template": "workspace:*",
     "nodemailer": "^8.0.2"
   },
   "devDependencies": {
