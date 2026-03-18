@@ -153,7 +153,7 @@ export const sk = {
     namePlaceholder: "Jozef Mak",
     phone: "Telefónne číslo",
     phonePlaceholder: "+421 9XX XXX XXX",
-    email: "Email (nepovinné)",
+    email: "Email",
     emailPlaceholder: "jozef@email.sk",
     serviceType: "Druh služby",
     selectService: "Vyberte si službu",

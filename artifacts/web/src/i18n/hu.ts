@@ -155,7 +155,7 @@ export const hu: TranslationKeys = {
     namePlaceholder: "Kiss István",
     phone: "Telefonszám",
     phonePlaceholder: "+421 9XX XXX XXX",
-    email: "Email (nem kötelező)",
+    email: "Email",
     emailPlaceholder: "istvan@email.sk",
     serviceType: "Szolgáltatás típusa",
     selectService: "Válasszon szolgáltatást",

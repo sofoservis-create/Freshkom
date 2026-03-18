@@ -49,8 +49,9 @@ function buildHtml(lead: { name: string; phone: string; email?: string | null; s
         <td style="padding:10px 0;font-size:15px;white-space:pre-wrap">${lead.message}</td>
       </tr>` : ""}
     </table>
-    <div style="margin-top:24px">
+    <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
       <a href="tel:${lead.phone}" style="display:inline-block;background:#0d7577;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px">📞 Zavolať ${lead.name}</a>
+      ${lead.email ? `<a href="mailto:${lead.email}" style="display:inline-block;background:#fff;color:#0d7577;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px;border:2px solid #0d7577">✉️ Odpovedať emailom</a>` : ""}
     </div>
   </div>
   <div style="padding:16px 28px;background:#f9fafb;font-size:12px;color:#9ca3af;text-align:center">

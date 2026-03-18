@@ -38,7 +38,7 @@ const serviceIds = [
 type LeadFormValues = {
   name: string;
   phone: string;
-  email?: string;
+  email: string;
   service: (typeof serviceIds)[number];
   message?: string;
 };
@@ -50,7 +50,7 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
   const leadSchema = z.object({
     name: z.string().min(2, t("leadForm.validationName")),
     phone: z.string().min(9, t("leadForm.validationPhone")),
-    email: z.string().email(t("leadForm.validationEmail")).optional().or(z.literal("")),
+    email: z.string().email(t("leadForm.validationEmail")),
     service: z.enum(serviceIds, {
       required_error: t("leadForm.validationService"),
     }),
@@ -125,7 +125,7 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-base">{t("leadForm.email")}</FormLabel>
+                    <FormLabel className="text-base">{t("leadForm.email")} <span className="text-destructive">*</span></FormLabel>
                     <FormControl>
                       <Input placeholder={t("leadForm.emailPlaceholder")} type="email" className="h-12 rounded-xl bg-gray-50 border-gray-200 focus:bg-white" {...field} />
                     </FormControl>
