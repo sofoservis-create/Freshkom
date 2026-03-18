@@ -97,7 +97,7 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-base">{t("leadForm.name")}</FormLabel>
+                    <FormLabel className="text-base">{t("leadForm.name")} <span className="text-destructive">*</span></FormLabel>
                     <FormControl>
                       <Input placeholder={t("leadForm.namePlaceholder")} className="h-12 rounded-xl bg-gray-50 border-gray-200 focus:bg-white" {...field} />
                     </FormControl>
