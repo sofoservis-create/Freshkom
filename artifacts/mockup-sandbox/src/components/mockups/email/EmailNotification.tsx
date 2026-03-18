@@ -32,7 +32,7 @@ export function EmailNotification() {
       </tr>
       <tr>
         <td style="padding:10px 0;border-bottom:1px solid #f3f4f6;color:#6b7280;font-size:14px">Služba</td>
-        <td style="padding:10px 0;border-bottom:1px solid #f3f4f6;font-size:15px">Tepovanie kobercov</td>
+        <td style="padding:10px 0;border-bottom:1px solid #f3f4f6;font-size:15px">${lead.service}</td>
       </tr>
       <tr>
         <td style="padding:10px 0;color:#6b7280;font-size:14px;vertical-align:top">Správa</td>
