@@ -51,7 +51,7 @@ export function EmailNotification() {
     </table>
   </div>
   <div style="padding:16px 28px;background:#f9fafb;font-size:12px;color:#9ca3af;text-align:center">
-    Freshkom · <a href="mailto:info@freshkom.sk" style="color:#9ca3af">info@freshkom.sk</a> · +421 917 240 819
+    Freshkom · info@freshkom.sk · +421 917 240 819
   </div>
 </div>`.trim();
 
