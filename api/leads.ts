@@ -52,10 +52,10 @@ function buildHtml(lead: { name: string; phone: string; email?: string | null; s
     <table style="margin-top:24px;border-collapse:collapse">
       <tr>
         <td style="padding:0 12px 0 0;vertical-align:middle">
-          <a href="tel:${lead.phone}" style="display:inline-block;background:#0d7577;color:#fff;padding:13px 24px;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px;line-height:1.2">📞 Zavolať ${lead.name}</a>
+          <a href="tel:${lead.phone}" style="display:inline-block;background:#0d7577;color:#fff;padding:13px 24px;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px;line-height:1.2;vertical-align:middle;border:2px solid transparent">📞 Zavolať ${lead.name}</a>
         </td>
         ${lead.email ? `<td style="padding:0;vertical-align:middle">
-          <a href="mailto:${lead.email}" style="display:inline-block;background:#fff;color:#0d7577;padding:13px 24px;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px;line-height:1.2;border:2px solid #0d7577">✉️ Odpovedať emailom</a>
+          <a href="mailto:${lead.email}" style="display:inline-block;background:#fff;color:#0d7577;padding:13px 24px;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px;line-height:1.2;vertical-align:middle;border:2px solid #0d7577">✉️ Odpovedať emailom</a>
         </td>` : ""}
       </tr>
     </table>
