@@ -108,5 +108,5 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     console.warn("[leads] GMAIL_USER or GMAIL_APP_PASSWORD not set — skipping email");
   }
 
-  return res.status(200).json({ success: true, message: "Lead received" });
+  return res.status(201).json({ success: true, message: "Lead received", id: Date.now() });
 }

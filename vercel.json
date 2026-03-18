@@ -2,6 +2,9 @@
   "buildCommand": "pnpm --filter @workspace/web build",
   "outputDirectory": "artifacts/web/dist",
   "framework": "vite",
+  "functions": {
+    "api/leads.ts": { "runtime": "nodejs22.x" }
+  },
   "rewrites": [
     { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]
