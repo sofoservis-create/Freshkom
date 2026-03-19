@@ -51,7 +51,7 @@ const html = `
         <td style="padding:9px 0;font-size:14px;white-space:pre-wrap">${lead.message}</td>
       </tr>
     </table>
-    <table style="margin-top:20px;border-collapse:collapse;width:100%">
+    <table style="margin-top:20px;border-collapse:collapse;width:100%;text-align:center">
       <tr>
         <td style="padding:0 0 8px 0;display:block">
           <a href="tel:${lead.phone}" style="display:block;background:#0d7577;color:#fff;padding:13px 16px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;line-height:1.2;text-align:center;border:2px solid transparent">📞 Zavolať ${lead.name}</a>
