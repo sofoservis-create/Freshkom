@@ -98,9 +98,9 @@ export default function Cennik() {
       title: t("pricing.sectionWindows"),
       titleKey: "sectionWindows",
       items: [
+        { name: t("pricing.windowSmall"), price: "6 €", img: "item-okno-male.png" },
         { name: t("pricing.window1"), price: "10 €", img: "item-okno-1.webp" },
-        { name: t("pricing.window2"), price: "12,50 €", img: "item-okno-2.webp" },
-        { name: t("pricing.window3"), price: "15 €", img: "item-okno-3.webp" },
+        { name: t("pricing.windowBalcony"), price: "12 €", img: "item-okno-balkon.png" },
         { name: t("pricing.shopWindow"), price: t("pricing.byAgreement"), img: "item-vyklad.webp" },
       ],
     },
