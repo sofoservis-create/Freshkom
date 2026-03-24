@@ -89,7 +89,7 @@ export default function Cennik() {
       title: t("pricing.sectionCars"),
       titleKey: "sectionCars",
       items: [
-        { name: t("pricing.carSeats"), price: "50 €", img: "item-auto-sedacky.webp" },
+        { name: t("pricing.carSeats"), price: "55 €", img: "item-auto-sedacky.webp" },
         { name: t("pricing.carInterior"), price: "80 €", img: "item-auto-interier.webp" },
       ],
     },
