@@ -188,7 +188,7 @@ export const hu: TranslationKeys = {
   },
   owner: {
     tag: "Alapító & tulajdonos",
-    name: "Sébestyen Attila",
+    name: "Sebestyén Attila",
     bio: "Azt szerettem volna Komáromba hozni, hogy legyen egy kárpittisztítási és ablakpucolási szolgáltatás, amelyhez az emberek mindig fordulhatnak és elégedetten távoznak.",
     followInstagram: "Kövess Instagramon",
     followFacebook: "Kövess Facebookon",
