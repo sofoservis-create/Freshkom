@@ -72,7 +72,7 @@ export function GoogleRatingBadge({ rating, reviewCount, size = "md" }: GoogleRa
           <Star key={i} className={`${isSmall ? "w-3 h-3" : isLarge ? "w-4 h-4" : "w-3.5 h-3.5"} fill-amber-400 text-amber-400`} />
         ))}
       </div>
-      <span className={`text-gray-500 ${isSmall ? "text-xs" : isLarge ? "text-sm" : "text-sm"}`}>· {reviewCount} {t("reviews.ratingsLabel")}</span>
+      <span className={`text-gray-500 ${isSmall ? "text-xs" : isLarge ? "text-sm" : "text-sm"}`}>· {t("reviews.ratingsLabel")}</span>
     </div>
   );
 }
