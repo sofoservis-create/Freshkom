@@ -199,7 +199,7 @@ export default function Kontakt() {
                         </svg>
                       ))}
                     </div>
-                    <p className="text-xs text-gray-500">{GOOGLE_REVIEW_COUNT} recenzií na Google</p>
+                    <p className="text-xs text-gray-500">recenzie na Google</p>
                   </div>
                 </div>
                 <p className="text-sm text-gray-600 mt-2">{t("kontakt.reviewsSubtitle")}</p>
