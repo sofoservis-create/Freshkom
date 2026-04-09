@@ -193,4 +193,10 @@ export const hu: TranslationKeys = {
     followInstagram: "Kövess Instagramon",
     followFacebook: "Kövess Facebookon",
   },
+  notFound: {
+    heading: "Az oldal nem található",
+    subtext: "A keresett oldal nem létezik vagy áthelyezték.",
+    backHome: "Vissza a főoldalra",
+    help: "Segítségre van szüksége? Hívjon minket:",
+  },
 };

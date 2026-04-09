@@ -191,6 +191,12 @@ export const sk = {
     followInstagram: "Sledovať na Instagrame",
     followFacebook: "Sledovať na Facebooku",
   },
+  notFound: {
+    heading: "Stránka sa nenašla",
+    subtext: "Stránka, ktorú hľadáte, neexistuje alebo bola presunutá.",
+    backHome: "Späť na úvod",
+    help: "Potrebujete pomoc? Zavolajte nám:",
+  },
 };
 
 export type TranslationKeys = typeof sk;
