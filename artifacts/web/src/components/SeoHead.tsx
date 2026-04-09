@@ -123,7 +123,7 @@ function buildLocalBusinessSchema(base: string) {
 const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: "Attila Sébestyen",
+  name: "Attila Sebestyén",
   jobTitle: "Zakladateľ a majiteľ",
   worksFor: {
     "@type": "LocalBusiness",
@@ -207,9 +207,9 @@ export default function SeoHead({ page }: SeoHeadProps) {
   const path = paths[page];
   const base = getSiteUrl();
   const canonicalUrl = `${base}${path}${lang !== "sk" ? `?lang=${lang}` : ""}`;
-  const skUrl = `${base}${path}?lang=sk`;
+  const skUrl = `${base}${path}`;
   const huUrl = `${base}${path}?lang=hu`;
-  const ogImage = `${base}/opengraph.webp`;
+  const ogImage = `${base}/opengraph.jpg`;
   const localBusinessSchema = buildLocalBusinessSchema(base);
 
   const breadcrumbNames: Record<string, Record<string, string>> = {
@@ -234,6 +234,7 @@ export default function SeoHead({ page }: SeoHeadProps) {
       <html lang={lang} />
       <title>{data.title}</title>
       <meta name="description" content={data.description} />
+      <meta name="robots" content="index, follow" />
       <link rel="canonical" href={canonicalUrl} />
       <link rel="alternate" hrefLang="sk" href={skUrl} />
       <link rel="alternate" hrefLang="hu" href={huUrl} />

@@ -335,7 +335,7 @@ export default function Landing() {
             <div className="flex-shrink-0">
               <img
                 src={`${import.meta.env.BASE_URL}images/attila.webp`}
-                alt="Attila Sébestyen – zakladateľ Freshkom, tepovanie a umývanie okien Komárno"
+                alt="Attila Sebestyén – zakladateľ Freshkom, tepovanie a umývanie okien Komárno"
                 width={224}
                 height={224}
                 loading="lazy"
