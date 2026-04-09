@@ -31,11 +31,12 @@ export default function NotFound() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Link href="/">
-              <span className="inline-flex items-center gap-2 bg-primary text-white font-semibold px-6 py-3 rounded-xl shadow-md hover:bg-primary/90 active:scale-95 transition-all cursor-pointer">
-                <ArrowLeft className="w-4 h-4" />
-                {t("notFound.backHome")}
-              </span>
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 bg-primary text-white font-semibold px-6 py-3 rounded-xl shadow-md hover:bg-primary/90 active:scale-95 transition-all"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              {t("notFound.backHome")}
             </Link>
 
             <a
