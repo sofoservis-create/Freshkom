@@ -1,7 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "wouter";
 import { ArrowLeft, Phone } from "lucide-react";
-import Layout from "@/components/Layout";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const PHONE_NUMBER = "+421 917 240 819";
@@ -11,7 +10,7 @@ export default function NotFound() {
   const { t } = useLanguage();
 
   return (
-    <Layout>
+    <>
       <Helmet>
         <title>404 — Freshkom</title>
         <meta name="robots" content="noindex, nofollow" />
@@ -56,6 +55,6 @@ export default function NotFound() {
           </p>
         </div>
       </section>
-    </Layout>
+    </>
   );
 }
