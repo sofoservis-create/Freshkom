@@ -3,8 +3,8 @@ import { Link } from "wouter";
 import { ArrowLeft, Phone } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const PHONE_NUMBER = "+421 917 240 819";
-const PHONE_HREF = "tel:+421917240819";
+const PHONE_NUMBER = "+421 909 159 609";
+const PHONE_HREF = "tel:+421909159609";
 
 export default function NotFound() {
   const { t } = useLanguage();

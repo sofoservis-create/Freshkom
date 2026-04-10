@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const PHONE = "+421917240819";
+const PHONE = "+421909159609";
 const EMAIL = "info@freshkom.sk";
 const FACEBOOK = "https://www.facebook.com/profile.php?id=61585033404394";
 const INSTAGRAM = "https://www.instagram.com/fresh_kom/";
@@ -14,7 +14,7 @@ const seoData = {
   sk: {
     landing: {
       title: "Tepovanie a Čistenie Komárno | Freshkom",
-      description: "Profesionálne tepovanie sedačiek, kobercov a áut v Komárne. Rýchle schnutie, ekologické prostriedky, 4.9★ na Google. Zavolajte: +421 917 240 819.",
+      description: "Profesionálne tepovanie sedačiek, kobercov a áut v Komárne. Rýchle schnutie, ekologické prostriedky, 4.9★ na Google. Zavolajte: +421 909 159 609.",
     },
     cennik: {
       title: "Cenník Tepovacích Služieb Komárno | Freshkom",
@@ -22,13 +22,13 @@ const seoData = {
     },
     kontakt: {
       title: "Kontakt — Tepovanie Komárno | Freshkom",
-      description: "Kontaktujte Freshkom Komárno — tepovanie a čistenie. Tel: +421 917 240 819, email: info@freshkom.sk. Pracujeme PO–SOB 7:00–21:00.",
+      description: "Kontaktujte Freshkom Komárno — tepovanie a čistenie. Tel: +421 909 159 609, email: info@freshkom.sk. Pracujeme PO–SOB 7:00–21:00.",
     },
   },
   hu: {
     landing: {
       title: "Kárpittisztítás és Ablaktisztítás Komárom | Freshkom",
-      description: "Professzionális kárpittisztítás Komáromban. Kanapé, szőnyeg, matrac, autó tisztítás. 4.9★ Google értékelés. Hívjon: +421 917 240 819.",
+      description: "Professzionális kárpittisztítás Komáromban. Kanapé, szőnyeg, matrac, autó tisztítás. 4.9★ Google értékelés. Hívjon: +421 909 159 609.",
     },
     cennik: {
       title: "Takarítási Árlista Komárom | Freshkom",
@@ -36,7 +36,7 @@ const seoData = {
     },
     kontakt: {
       title: "Kapcsolat — Kárpittisztítás Komárom | Freshkom",
-      description: "Lépjen kapcsolatba a Freshkom Komárom kárpittisztítóval. Tel: +421 917 240 819, email: info@freshkom.sk. Hétfőtől szombatig 7:00–21:00.",
+      description: "Lépjen kapcsolatba a Freshkom Komárom kárpittisztítóval. Tel: +421 909 159 609, email: info@freshkom.sk. Hétfőtől szombatig 7:00–21:00.",
     },
   },
 };
@@ -64,7 +64,7 @@ function buildLocalBusinessSchema(base: string) {
   name: "Freshkom",
   url: base || undefined,
   description: "Profesionálna firma na tepovanie sedačiek, kobercov, matracov a umývanie okien v Komárne a okolí do 30 km.",
-  telephone: `+421917240819`,
+  telephone: `+421909159609`,
   email: EMAIL,
   image: `${base}/images/hero-real.webp`,
   logo: `${base}/images/logo-mascot.webp`,
@@ -164,7 +164,7 @@ const faqSchema = {
       {
         "@type": "Question",
         name: "Ako si môžem objednať tepovanie?",
-        acceptedAnswer: { "@type": "Answer", text: "Zavolajte na +421 917 240 819, napíšte email na info@freshkom.sk alebo vyplňte formulár na našom webe. Ozveme sa do 24 hodín." },
+        acceptedAnswer: { "@type": "Answer", text: "Zavolajte na +421 909 159 609, napíšte email na info@freshkom.sk alebo vyplňte formulár na našom webe. Ozveme sa do 24 hodín." },
       },
     ],
   },
@@ -195,7 +195,7 @@ const faqSchema = {
       {
         "@type": "Question",
         name: "Hogyan rendelhetek kárpittisztítást?",
-        acceptedAnswer: { "@type": "Answer", text: "Hívjon a +421 917 240 819 számon, írjon e-mailt az info@freshkom.sk címre, vagy töltse ki az űrlapot weboldalunkon. 24 órán belül jelentkezünk." },
+        acceptedAnswer: { "@type": "Answer", text: "Hívjon a +421 909 159 609 számon, írjon e-mailt az info@freshkom.sk címre, vagy töltse ki az űrlapot weboldalunkon. 24 órán belül jelentkezünk." },
       },
     ],
   },

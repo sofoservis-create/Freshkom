@@ -11,7 +11,7 @@ import LeadForm from "@/components/LeadForm";
 import { googleReviews, GOOGLE_RATING, GOOGLE_REVIEW_COUNT } from "@/data/googleReviews";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const PHONE_NUMBER = "+421 917 240 819";
+const PHONE_NUMBER = "+421 909 159 609";
 
 interface PricingItem {
   name: string;

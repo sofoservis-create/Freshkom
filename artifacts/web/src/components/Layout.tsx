@@ -4,7 +4,7 @@ import { Phone, Mail, Clock, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const PHONE_NUMBER = "+421 917 240 819";
+const PHONE_NUMBER = "+421 909 159 609";
 const EMAIL = "info@freshkom.sk";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -216,7 +216,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </footer>
 
       <a
-        href="https://wa.me/421917240819"
+        href="https://wa.me/421909159609"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Napíšte nám na WhatsApp"

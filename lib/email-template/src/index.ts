@@ -65,7 +65,7 @@ export function buildLeadEmailHtml(lead: LeadEmailData): string {
     </table>
   </div>
   <div style="padding:16px 28px;background:#f9fafb;font-size:12px;color:#9ca3af;text-align:center">
-    Freshkom · info@freshkom.sk · +421 917 240 819
+    Freshkom · info@freshkom.sk · +421 909 159 609
   </div>
 </div>`.trim();
 }

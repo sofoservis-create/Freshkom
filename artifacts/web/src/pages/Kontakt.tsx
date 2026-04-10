@@ -7,7 +7,7 @@ import GoogleReviewCard, { GoogleRatingBadge } from "@/components/GoogleReviewCa
 import { googleReviews, GOOGLE_RATING, GOOGLE_REVIEW_COUNT } from "@/data/googleReviews";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const PHONE_NUMBER = "+421 917 240 819";
+const PHONE_NUMBER = "+421 909 159 609";
 const EMAIL = "info@freshkom.sk";
 
 const fadeInUp = {
