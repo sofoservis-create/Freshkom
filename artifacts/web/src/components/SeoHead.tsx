@@ -14,7 +14,7 @@ const seoData = {
   sk: {
     landing: {
       title: "Tepovanie a Čistenie Komárno | Freshkom",
-      description: "Profesionálne tepovanie sedačiek, kobercov a áut v Komárne. Rýchle schnutie, ekologické prostriedky, 4.9★ na Google. Zavolajte: +421 909 159 609.",
+      description: "Profesionálne tepovanie sedačiek, kobercov a áut v Komárne. Rýchle schnutie, ekologické prostriedky, 5.0★ na Google. Zavolajte: +421 909 159 609.",
     },
     cennik: {
       title: "Cenník Tepovacích Služieb Komárno | Freshkom",
@@ -28,7 +28,7 @@ const seoData = {
   hu: {
     landing: {
       title: "Kárpittisztítás és Ablaktisztítás Komárom | Freshkom",
-      description: "Professzionális kárpittisztítás Komáromban. Kanapé, szőnyeg, matrac, autó tisztítás. 4.9★ Google értékelés. Hívjon: +421 909 159 609.",
+      description: "Professzionális kárpittisztítás Komáromban. Kanapé, szőnyeg, matrac, autó tisztítás. 5.0★ Google értékelés. Hívjon: +421 909 159 609.",
     },
     cennik: {
       title: "Takarítási Árlista Komárom | Freshkom",
@@ -98,8 +98,8 @@ function buildLocalBusinessSchema(base: string) {
   ],
   aggregateRating: {
     "@type": "AggregateRating",
-    ratingValue: "4.9",
-    reviewCount: "47",
+    ratingValue: "5.0",
+    reviewCount: "15",
     bestRating: "5",
   },
   priceRange: "€€",

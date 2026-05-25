@@ -6,8 +6,8 @@ export interface GoogleReview {
   avatarColor: string;
 }
 
-export const GOOGLE_RATING = 4.9;
-export const GOOGLE_REVIEW_COUNT = 47;
+export const GOOGLE_RATING = 5.0;
+export const GOOGLE_REVIEW_COUNT = 15;
 
 const avatarColors = [
   "#4285F4",
