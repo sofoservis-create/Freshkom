@@ -432,7 +432,7 @@ export default function Landing() {
             <span className="font-medium">{t("reviews.customersCount")}</span>
             <span className="text-gray-300">·</span>
             <span className="flex items-center gap-1">
-              {GOOGLE_RATING}
+              {GOOGLE_RATING.toFixed(1)}
               <span className="flex gap-0.5">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />

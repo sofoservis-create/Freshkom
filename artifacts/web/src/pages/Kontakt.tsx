@@ -190,7 +190,7 @@ export default function Kontakt() {
                   <p className="font-semibold text-gray-900 text-sm">{t("kontakt.reviewsTitle")}</p>
                 </div>
                 <div className="flex items-end gap-3 mb-1">
-                  <span className="text-5xl font-extrabold text-gray-900 leading-none">{GOOGLE_RATING}</span>
+                  <span className="text-5xl font-extrabold text-gray-900 leading-none">{GOOGLE_RATING.toFixed(1)}</span>
                   <div className="pb-1">
                     <div className="flex gap-0.5 mb-1">
                       {[...Array(5)].map((_, i) => (

@@ -308,7 +308,7 @@ export default function Cennik() {
               Google recenzie
             </div>
             <div className="flex items-center justify-center gap-4 mb-3">
-              <span className="text-6xl font-extrabold text-foreground tracking-tight">{GOOGLE_RATING}</span>
+              <span className="text-6xl font-extrabold text-foreground tracking-tight">{GOOGLE_RATING.toFixed(1)}</span>
               <div className="flex flex-col items-start gap-1">
                 <div className="flex gap-1">
                   {[...Array(5)].map((_, i) => (
