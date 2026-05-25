@@ -4,7 +4,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 const PHONE = "+421909159609";
 const EMAIL = "info@freshkom.sk";
 const FACEBOOK = "https://www.facebook.com/profile.php?id=61585033404394";
-const INSTAGRAM = "https://www.instagram.com/fresh_kom/";
+const INSTAGRAM = "https://www.instagram.com/freshkom.sk/";
 
 interface SeoHeadProps {
   page: "landing" | "cennik" | "kontakt";

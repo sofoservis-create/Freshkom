@@ -250,7 +250,7 @@ export default function Kontakt() {
                   <span className="font-semibold text-sm text-blue-700">Facebook</span>
                 </a>
                 <a
-                  href="https://www.instagram.com/fresh_kom/"
+                  href="https://www.instagram.com/freshkom.sk/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex-1 flex items-center justify-center gap-2 p-3 bg-pink-50 rounded-2xl hover:bg-pink-100 transition-colors group border border-pink-100"
