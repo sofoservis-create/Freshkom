@@ -87,11 +87,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <nav ref={navRef} className="sticky top-0 z-50 glass-effect">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2" onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}>
-            <img src={`${import.meta.env.BASE_URL}images/logo-mascot.webp`} alt="Freshkom" className="h-16 w-16 object-contain" />
-            <img src={`${import.meta.env.BASE_URL}images/logo-text.webp`} alt="Freshkom" className="h-7 sm:h-9 w-auto object-contain" />
+            <img src={`${import.meta.env.BASE_URL}images/optimized/logo-mascot.webp`} alt="Freshkom" width={160} height={160} className="h-16 w-16 object-contain" />
+            <img src={`${import.meta.env.BASE_URL}images/optimized/logo-text.webp`} alt="Freshkom" width={400} height={68} className="h-7 sm:h-9 w-auto object-contain" />
           </Link>
 
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden lg:flex items-center gap-6">
             {navLinks.map(link => (
               <Link key={link.href} href={link.href} className={`font-medium transition-colors hover:text-primary ${location === link.href ? 'text-primary' : 'text-foreground'}`}>
                 {link.label}
@@ -102,7 +102,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </Button>
           </div>
 
-          <div className="md:hidden flex items-center gap-1">
+          <div className="lg:hidden flex items-center gap-1">
             <a
               href={`tel:${PHONE_NUMBER.replace(/\s/g, '')}`}
               className="p-2.5 rounded-full text-primary hover:bg-primary/10 transition-colors"
@@ -122,7 +122,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </div>
 
         {mobileMenuOpen && (
-          <div className="md:hidden absolute top-20 left-0 w-full bg-white border-b shadow-lg py-4 px-4 flex flex-col gap-2">
+          <div className="lg:hidden absolute top-20 left-0 w-full bg-white border-b shadow-lg py-4 px-4 flex flex-col gap-2">
             {navLinks.map(link => (
               <Link key={link.href} href={link.href} onClick={() => setMobileMenuOpen(false)} className={`text-lg font-medium p-3 rounded-xl transition-colors ${location === link.href ? 'bg-primary/10 text-primary' : 'hover:bg-gray-50'}`}>
                 {link.label}
@@ -165,8 +165,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
             <div>
               <Link href="/" className="flex items-center gap-3 mb-6">
-                <img src={`${import.meta.env.BASE_URL}images/logo-mascot.webp`} alt="Freshkom" className="h-12 w-12 object-contain" />
-                <img src={`${import.meta.env.BASE_URL}images/logo-text.webp`} alt="Freshkom" className="h-10 w-auto max-w-[160px] object-contain brightness-0 invert" />
+                <img src={`${import.meta.env.BASE_URL}images/optimized/logo-mascot.webp`} alt="Freshkom" width={160} height={160} loading="lazy" className="h-12 w-12 object-contain" />
+                <img src={`${import.meta.env.BASE_URL}images/optimized/logo-text.webp`} alt="Freshkom" width={400} height={68} loading="lazy" className="h-10 w-auto max-w-[160px] object-contain brightness-0 invert" />
               </Link>
               <p className="text-gray-400 mb-6 max-w-sm">
                 {t("footer.description")}

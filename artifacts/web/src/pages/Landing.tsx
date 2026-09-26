@@ -115,10 +115,13 @@ export default function Landing() {
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-transparent z-10" />
           <img
-            src={`${import.meta.env.BASE_URL}images/hero-real.webp`}
+            src={`${import.meta.env.BASE_URL}images/optimized/hero-1600.webp`}
+            srcSet={`${import.meta.env.BASE_URL}images/optimized/hero-800.webp 800w, ${import.meta.env.BASE_URL}images/optimized/hero-1600.webp 1600w`}
+            sizes="100vw"
             alt={t("hero.heroAlt")}
-            width={1200}
-            height={800}
+            width={1600}
+            height={1200}
+            fetchPriority="high"
             className="w-full h-full object-cover scale-x-[-1]"
             style={{ objectPosition: '35% 0%' }}
           />
@@ -235,7 +238,7 @@ export default function Landing() {
                   <Card className="h-full border-0 shadow-md hover:shadow-xl transition-shadow duration-300 rounded-3xl overflow-hidden group bg-white cursor-pointer">
                     <div className="h-44 sm:h-52 overflow-hidden bg-gray-50 p-4">
                       <img
-                        src={`${import.meta.env.BASE_URL}images/${service.img}`}
+                        src={`${import.meta.env.BASE_URL}images/optimized/${service.img}`}
                         alt={service.title}
                         loading="lazy"
                         width={400}
@@ -284,7 +287,7 @@ export default function Landing() {
             >
               <div className="relative rounded-3xl overflow-hidden shadow-2xl">
                 <img
-                  src={`${import.meta.env.BASE_URL}images/hero-real-2.webp`}
+                  src={`${import.meta.env.BASE_URL}images/optimized/hero-real-2.webp`}
                   alt={t("howItWorks.workAlt")}
                   loading="lazy"
                   width={600}
@@ -335,7 +338,7 @@ export default function Landing() {
           >
             <div className="flex-shrink-0">
               <img
-                src={`${import.meta.env.BASE_URL}images/attila.webp`}
+                src={`${import.meta.env.BASE_URL}images/optimized/attila.webp`}
                 alt="Attila Sebestyén – zakladateľ Freshkom, tepovanie a umývanie okien Komárno"
                 width={224}
                 height={224}

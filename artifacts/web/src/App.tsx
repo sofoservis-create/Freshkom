@@ -6,8 +6,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import Layout from "@/components/Layout";
+import Landing from "@/pages/Landing";
 
-const Landing = lazy(() => import("@/pages/Landing"));
 const Cennik = lazy(() => import("@/pages/Cennik"));
 const Kontakt = lazy(() => import("@/pages/Kontakt"));
 const NotFound = lazy(() => import("@/pages/not-found"));

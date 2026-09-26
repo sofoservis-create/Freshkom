@@ -170,7 +170,7 @@ export default function Cennik() {
                       )}
                       <div className="aspect-square overflow-hidden bg-white p-3">
                         <img
-                          src={`${import.meta.env.BASE_URL}images/${item.img}`}
+                          src={`${import.meta.env.BASE_URL}images/optimized/${item.img.replace(/\.png$/, ".webp")}`}
                           alt={item.name}
                           loading="lazy"
                           width={300}
