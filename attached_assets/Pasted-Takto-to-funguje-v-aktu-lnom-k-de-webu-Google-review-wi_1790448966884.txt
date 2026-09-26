@@ -1,0 +1,85 @@
+Takto to funguje **v aktuálnom kóde webu**. Google review widget nie je vložený externý iframe – je to vlastný komponent, ktorý číta údaje z Google Places API.
+
+### 1. Spoločný zdroj hodnotenia a recenzií
+
+V `src/lib/googleRating.ts` sa načíta priemerné hodnotenie, celkový počet hodnotení a recenzie:
+
+```ts
+const response = await fetch(
+  `https://maps.googleapis.com/maps/api/place/details/json` +
+    `?place_id=${PLACE_ID}` +
+    `&fields=reviews,rating,user_ratings_total` +
+    `&reviews_sort=newest&reviews_no_translations=true` +
+    `&language=sk&key=${apiKey}`,
+  { next: { revalidate: 86400 } }
+);
+
+const data = await response.json();
+
+const ratingValue = data.result.rating;
+const reviewCount = data.result.user_ratings_total;
+```
+
+Údaje sa cachujú na **24 hodín**. Na získanie živých údajov server používa `GOOGLE_PLACES_API_KEY`. Ak kľúč chýba alebo API nevráti platnú odpoveď, kód použije záložné hodnoty **4,9 / 500** a statické recenzie. Zobrazované recenzie sa skladajú z dostupných živých päťhviezdičkových textových recenzií a uložených statických recenzií; výsledok je obmedzený na 15.
+
+### 2. `AggregateRating` pre vyhľadávače
+
+`AggregateRating` nie je viditeľný widget. Je to štruktúrovaný údaj JSON-LD v HTML. Napríklad `src/components/seo/ReviewAggregateJsonLd.tsx` ho vytvára takto:
+
+```ts
+const { ratingValue, reviewCount } = await getGoogleRating();
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "MovingCompany",
+  name: "Sofoservis",
+  url: "https://www.sofoservis.sk",
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue,
+    reviewCount,
+    bestRating: 5,
+    worstRating: 1,
+  },
+};
+```
+
+`SEOProvider.tsx` používa ten istý zdroj údajov aj pre schému firmy na úvodnej stránke a schémy služieb. JSON-LD **nezaručuje**, že Google vo výsledkoch zobrazí hviezdičky; o tom rozhoduje Google.
+
+### 3. Viditeľný widget na stránke
+
+`GoogleReviews.tsx` načíta tie isté údaje a odovzdá ich komponentom pre hodnotenie, odznaky a karusel:
+
+```tsx
+const { reviews, ratingValue, reviewCount } =
+  await getGoogleReviewsData();
+
+return (
+  <section id="reviews">
+    <GoogleRatingMark
+      initialRating={ratingValue}
+      initialReviewCount={reviewCount}
+      showReviewCount
+      theme="light"
+    />
+    <ReviewsShowcase
+      ratingValue={ratingValue}
+      reviewCount={reviewCount}
+      reviews={reviews}
+    />
+    <ReviewCarousel reviews={reviews} lang="sk" />
+  </section>
+);
+```
+
+Menšie značky hodnotenia inde na webe (`GoogleRatingMark`) si v prípade chýbajúcich úvodných údajov dotiahnu hodnotenie cez **`/api/reviews`**. Tento endpoint vracia:
+
+```json
+{
+  "reviews": [],
+  "rating": 4.9,
+  "totalReviews": 500
+}
+```
+
+Čísla v ukážke sú **záložné hodnoty z kódu**, nie potvrdený aktuálny stav na Google. Dôležitá nuansa: odznak **Facebook** v `ReviewsShowcase` má teraz hodnotenie a text o počte recenzií nastavené napevno; nie je napojený na rovnaké živé API ako Google.
