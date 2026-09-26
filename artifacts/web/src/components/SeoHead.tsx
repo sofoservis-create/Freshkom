@@ -1,5 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useGoogleReviews } from "@/hooks/use-google-reviews";
+import type { GoogleReviewsResponse } from "@workspace/api-client-react";
 
 const PHONE = "+421909159609";
 const EMAIL = "info@freshkom.sk";
@@ -14,7 +16,7 @@ const seoData = {
   sk: {
     landing: {
       title: "Tepovanie a Čistenie Komárno | Freshkom",
-      description: "Profesionálne tepovanie sedačiek, kobercov a áut v Komárne. Rýchle schnutie, ekologické prostriedky, 5.0★ na Google. Zavolajte: +421 909 159 609.",
+      description: "Profesionálne tepovanie sedačiek, kobercov a áut v Komárne. Rýchle schnutie, ekologické prostriedky, recenzie na Google. Zavolajte: +421 909 159 609.",
     },
     cennik: {
       title: "Cenník Tepovacích Služieb Komárno | Freshkom",
@@ -28,7 +30,7 @@ const seoData = {
   hu: {
     landing: {
       title: "Kárpittisztítás és Ablaktisztítás Komárom | Freshkom",
-      description: "Professzionális kárpittisztítás Komáromban. Kanapé, szőnyeg, matrac, autó tisztítás. 5.0★ Google értékelés. Hívjon: +421 909 159 609.",
+      description: "Professzionális kárpittisztítás Komáromban. Kanapé, szőnyeg, matrac, autó tisztítás. Google értékelések. Hívjon: +421 909 159 609.",
     },
     cennik: {
       title: "Takarítási Árlista Komárom | Freshkom",
@@ -57,7 +59,7 @@ function getSiteUrl(): string {
   return "";
 }
 
-function buildLocalBusinessSchema(base: string) {
+function buildLocalBusinessSchema(base: string, reviews?: GoogleReviewsResponse) {
   return {
   "@context": "https://schema.org",
   "@type": ["LocalBusiness", "CleaningService"],
@@ -96,12 +98,15 @@ function buildLocalBusinessSchema(base: string) {
       closes: "21:00",
     },
   ],
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "5.0",
-    reviewCount: "15",
-    bestRating: "5",
-  },
+  ...(reviews ? {
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: reviews.rating,
+      reviewCount: reviews.reviewCount,
+      bestRating: 5,
+      worstRating: 1,
+    },
+  } : {}),
   priceRange: "€€",
   availableLanguage: ["Slovak", "Hungarian"],
   sameAs: [FACEBOOK, INSTAGRAM],
@@ -203,6 +208,7 @@ const faqSchema = {
 
 export default function SeoHead({ page }: SeoHeadProps) {
   const { lang } = useLanguage();
+  const { data: reviews } = useGoogleReviews();
   const data = seoData[lang][page];
   const path = paths[page];
   const base = getSiteUrl();
@@ -210,7 +216,7 @@ export default function SeoHead({ page }: SeoHeadProps) {
   const skUrl = `${base}${path}`;
   const huUrl = `${base}${path}?lang=hu`;
   const ogImage = `${base}/opengraph.jpg`;
-  const localBusinessSchema = buildLocalBusinessSchema(base);
+  const localBusinessSchema = buildLocalBusinessSchema(base, reviews);
 
   const breadcrumbNames: Record<string, Record<string, string>> = {
     sk: { cennik: "Cenník", kontakt: "Kontakt" },

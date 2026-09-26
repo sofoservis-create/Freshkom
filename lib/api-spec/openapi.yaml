@@ -11,6 +11,8 @@ tags:
     description: Health operations
   - name: leads
     description: Lead capture operations
+  - name: reviews
+    description: Google reviews
 paths:
   /healthz:
     get:
@@ -50,8 +52,53 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
+  /reviews:
+    get:
+      operationId: getGoogleReviews
+      tags: [reviews]
+      summary: Get current Google rating and public reviews
+      parameters:
+        - name: lang
+          in: query
+          schema:
+            type: string
+            enum: [sk, hu]
+            default: sk
+      responses:
+        "200":
+          description: Google rating and available reviews (cached for 24 hours)
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GoogleReviewsResponse"
+        "503":
+          description: Google Places data unavailable
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
 components:
   schemas:
+    GoogleReview:
+      type: object
+      required: [name, text, rating, date, authorUrl]
+      properties:
+        name: { type: string }
+        text: { type: string }
+        rating: { type: integer }
+        date: { type: string }
+        authorUrl: { type: string }
+    GoogleReviewsResponse:
+      type: object
+      required: [rating, reviewCount, reviews, mapsUrl]
+      properties:
+        rating: { type: number }
+        reviewCount: { type: integer }
+        mapsUrl: { type: string }
+        reviews:
+          type: array
+          items:
+            $ref: "#/components/schemas/GoogleReview"
     HealthStatus:
       type: object
       properties:

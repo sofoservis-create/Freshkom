@@ -18,7 +18,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import LeadForm from "@/components/LeadForm";
 import GoogleReviewCard, { GoogleRatingBadge } from "@/components/GoogleReviewCard";
-import { googleReviews, GOOGLE_RATING, GOOGLE_REVIEW_COUNT } from "@/data/googleReviews";
+import { useGoogleReviews } from "@/hooks/use-google-reviews";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const PHONE_NUMBER = "+421 909 159 609";
@@ -37,6 +37,7 @@ const staggerContainer = {
 };
 
 export default function Landing() {
+  const { data: reviewData, isPending: reviewsPending } = useGoogleReviews();
   const { t } = useLanguage();
 
   const services = [
@@ -170,7 +171,7 @@ export default function Landing() {
               </Button>
             </motion.div>
             <motion.div variants={fadeInUp} className="mt-5">
-              <GoogleRatingBadge rating={GOOGLE_RATING} reviewCount={GOOGLE_REVIEW_COUNT} size="lg" />
+              {reviewData && <GoogleRatingBadge rating={reviewData.rating} reviewCount={reviewData.reviewCount} size="lg" />}
             </motion.div>
             <motion.div variants={fadeInUp} className="mt-3">
               <a
@@ -407,8 +408,10 @@ export default function Landing() {
             </p>
           </div>
 
+          {!reviewData && <p role="status" className="text-center text-gray-600">{reviewsPending ? t("reviews.loading") : t("reviews.unavailable")}</p>}
+          {reviewData && reviewData.reviews.length === 0 && <p className="text-center text-gray-600">{t("reviews.noText")}</p>}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {googleReviews.slice(0, 6).map((review, i) => (
+            {reviewData?.reviews.map((review, i) => (
               <motion.div
                 key={i}
                 initial="hidden"
@@ -423,19 +426,20 @@ export default function Landing() {
               </motion.div>
             ))}
           </div>
+          {reviewData && <a href={reviewData.mapsUrl} target="_blank" rel="noopener noreferrer" className="block text-center mt-6 text-primary font-medium hover:underline">{t("reviews.openGoogle")}</a>}
         </div>
       </section>
 
-      <section className="py-3 bg-gray-50 border-y border-gray-200">
+      {reviewData && <section className="py-3 bg-gray-50 border-y border-gray-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-gray-600">
-            <span className="font-medium">{t("reviews.customersCount")}</span>
+            <span className="font-medium">{reviewData.reviewCount} {t("reviews.ratingsLabel")}</span>
             <span className="text-gray-300">·</span>
             <span className="flex items-center gap-1">
-              {GOOGLE_RATING.toFixed(1)}
+              {reviewData.rating.toFixed(1)}
               <span className="flex gap-0.5">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                   <Star key={i} className={`w-3.5 h-3.5 ${i < Math.round(reviewData.rating) ? "fill-amber-400 text-amber-400" : "text-gray-300"}`} />
                 ))}
               </span>
               {t("reviews.onGoogle")}
@@ -446,7 +450,7 @@ export default function Landing() {
             </button>
           </div>
         </div>
-      </section>
+      </section>}
 
       <section id="kontakt" className="py-16 relative bg-foreground text-white overflow-hidden">
         <div

@@ -7,6 +7,10 @@
  */
 
 export * from "./errorResponse";
+export * from "./getGoogleReviewsLang";
+export * from "./getGoogleReviewsParams";
+export * from "./googleReview";
+export * from "./googleReviewsResponse";
 export * from "./healthStatus";
 export * from "./leadSubmission";
 export * from "./leadSubmissionResponse";

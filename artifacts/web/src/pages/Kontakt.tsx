@@ -4,7 +4,7 @@ import SeoHead from "@/components/SeoHead";
 import { Card, CardContent } from "@/components/ui/card";
 import LeadForm from "@/components/LeadForm";
 import GoogleReviewCard, { GoogleRatingBadge } from "@/components/GoogleReviewCard";
-import { googleReviews, GOOGLE_RATING, GOOGLE_REVIEW_COUNT } from "@/data/googleReviews";
+import { useGoogleReviews } from "@/hooks/use-google-reviews";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const PHONE_NUMBER = "+421 909 159 609";
@@ -17,6 +17,7 @@ const fadeInUp = {
 
 export default function Kontakt() {
   const { t } = useLanguage();
+  const { data: reviewData, isPending: reviewsPending } = useGoogleReviews();
 
   const contactInfo = [
     {
@@ -79,7 +80,7 @@ export default function Kontakt() {
             animate={{ opacity: 1, y: 0 }}
             className="mb-3"
           >
-            <GoogleRatingBadge rating={GOOGLE_RATING} reviewCount={GOOGLE_REVIEW_COUNT} />
+            {reviewData && <GoogleRatingBadge rating={reviewData.rating} reviewCount={reviewData.reviewCount} />}
           </motion.div>
           <motion.h1
             initial={{ opacity: 0, y: -20 }}
@@ -190,24 +191,26 @@ export default function Kontakt() {
                   <p className="font-semibold text-gray-900 text-sm">{t("kontakt.reviewsTitle")}</p>
                 </div>
                 <div className="flex items-end gap-3 mb-1">
-                  <span className="text-5xl font-extrabold text-gray-900 leading-none">{GOOGLE_RATING.toFixed(1)}</span>
+                  {reviewData
+                    ? <span className="text-5xl font-extrabold text-gray-900 leading-none">{reviewData.rating.toFixed(1)}</span>
+                    : <span role="status" className="text-sm text-gray-600">{reviewsPending ? t("reviews.loading") : t("reviews.unavailable")}</span>}
                   <div className="pb-1">
-                    <div className="flex gap-0.5 mb-1">
+                    {reviewData && <div className="flex gap-0.5 mb-1">
                       {[...Array(5)].map((_, i) => (
-                        <svg key={i} className="w-5 h-5 fill-amber-400 text-amber-400" viewBox="0 0 20 20">
+                         <svg key={i} className={`w-5 h-5 ${i < Math.round(reviewData.rating) ? "fill-amber-400 text-amber-400" : "fill-gray-300 text-gray-300"}`} viewBox="0 0 20 20">
                           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                         </svg>
                       ))}
-                    </div>
-                    <p className="text-xs text-gray-500">{t("reviews.ratingsLabel")}</p>
+                    </div>}
+                    {reviewData && <p className="text-xs text-gray-500">{reviewData.reviewCount} {t("reviews.ratingsLabel")}</p>}
                   </div>
                 </div>
-                <p className="text-sm text-gray-600 mt-2">{t("kontakt.reviewsSubtitle")}</p>
+                {reviewData && <p className="text-sm text-gray-600 mt-2">{t("kontakt.reviewsSubtitle")}</p>}
               </div>
 
               {/* Review cards */}
               <div className="space-y-3">
-                {googleReviews.slice(0, 3).map((review, i) => (
+                {reviewData?.reviews.slice(0, 3).map((review, i) => (
                   <motion.div
                     key={i}
                     initial={{ opacity: 0, x: 20 }}
@@ -218,6 +221,7 @@ export default function Kontakt() {
                     <GoogleReviewCard review={review} compact />
                   </motion.div>
                 ))}
+                {reviewData && <a href={reviewData.mapsUrl} target="_blank" rel="noopener noreferrer" className="text-primary font-medium hover:underline text-sm">{t("reviews.openGoogle")}</a>}
               </div>
 
               {/* Service area */}

@@ -1,5 +1,5 @@
 import { Star } from "lucide-react";
-import type { GoogleReview } from "@/data/googleReviews";
+import type { GoogleReview } from "@workspace/api-client-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 function getInitials(name: string): string {
@@ -24,22 +24,28 @@ interface GoogleReviewCardProps {
 }
 
 export default function GoogleReviewCard({ review, compact = false }: GoogleReviewCardProps) {
+  const { lang } = useLanguage();
+  const date = review.date && !Number.isNaN(Date.parse(review.date))
+    ? new Date(review.date).toLocaleDateString(lang === "hu" ? "hu-HU" : "sk-SK", { year: "numeric", month: "long", day: "numeric" })
+    : "";
   return (
     <div className={`bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow ${compact ? "p-4" : "p-5"}`}>
       <div className="flex items-start justify-between mb-3">
         <div className="flex items-center gap-3">
           <div
             className={`${compact ? "h-9 w-9 text-sm" : "h-10 w-10 text-sm"} rounded-full flex items-center justify-center text-white font-semibold flex-shrink-0`}
-            style={{ backgroundColor: review.avatarColor }}
+            style={{ backgroundColor: "#4285F4" }}
           >
             {getInitials(review.name)}
           </div>
           <div>
-            <p className={`font-semibold text-gray-900 ${compact ? "text-sm" : "text-[15px]"} leading-tight`}>{review.name}</p>
-            <p className="text-xs text-gray-500">{review.date}</p>
+            <a href={review.authorUrl} target="_blank" rel="noopener noreferrer" className={`font-semibold text-gray-900 hover:underline ${compact ? "text-sm" : "text-[15px]"} leading-tight`}>{review.name}</a>
+            {date && <p className="text-xs text-gray-500">{date}</p>}
           </div>
         </div>
-        <GoogleLogo className={compact ? "h-4 w-4" : "h-5 w-5"} />
+        <a href={review.authorUrl} target="_blank" rel="noopener noreferrer" aria-label="Google">
+          <GoogleLogo className={compact ? "h-4 w-4" : "h-5 w-5"} />
+        </a>
       </div>
       <div className="flex gap-0.5 mb-2">
         {[...Array(review.rating)].map((_, j) => (
@@ -69,7 +75,7 @@ export function GoogleRatingBadge({ rating, reviewCount, size = "md" }: GoogleRa
       <span className={`font-bold text-gray-900 ${isSmall ? "text-sm" : isLarge ? "text-xl" : "text-base"}`}>{rating.toFixed(1)}</span>
       <div className={`flex ${isLarge ? "gap-1" : "gap-0.5"}`}>
         {[...Array(5)].map((_, i) => (
-          <Star key={i} className={`${isSmall ? "w-3 h-3" : isLarge ? "w-4 h-4" : "w-3.5 h-3.5"} fill-amber-400 text-amber-400`} />
+          <Star key={i} className={`${isSmall ? "w-3 h-3" : isLarge ? "w-4 h-4" : "w-3.5 h-3.5"} ${i < Math.round(rating) ? "fill-amber-400 text-amber-400" : "text-gray-300"}`} />
         ))}
       </div>
       <span className={`text-gray-500 ${isSmall ? "text-xs" : isLarge ? "text-sm" : "text-sm"}`}>· {t("reviews.ratingsLabel")}</span>

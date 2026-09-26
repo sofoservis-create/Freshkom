@@ -71,10 +71,14 @@ export const sk = {
   reviews: {
     title: "Čo o nás hovoria klienti",
     subtitle: "Skutočné recenzie od skutočných zákazníkov na Google.",
-    customersCount: "Viac ako 40 spokojných zákazníkov",
+    customersCount: "Hodnotenia zákazníkov",
     onGoogle: "na Google",
     ratingsLabel: "recenzie na Google",
     showReviews: "Zobraziť recenzie",
+    loading: "Načítavam hodnotenia z Google…",
+    unavailable: "Google recenzie momentálne nie sú dostupné.",
+    noText: "Textové recenzie zatiaľ nie sú dostupné.",
+    openGoogle: "Zobraziť všetky recenzie na Google",
   },
   contactSection: {
     title: "Získajte bezplatnú cenovú ponuku",

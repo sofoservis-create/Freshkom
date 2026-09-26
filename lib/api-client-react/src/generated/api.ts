@@ -18,6 +18,8 @@ import type {
 
 import type {
   ErrorResponse,
+  GetGoogleReviewsParams,
+  GoogleReviewsResponse,
   HealthStatus,
   LeadSubmission,
   LeadSubmissionResponse,
@@ -194,3 +196,100 @@ export const useSubmitLead = <
 > => {
   return useMutation(getSubmitLeadMutationOptions(options));
 };
+
+/**
+ * @summary Get current Google rating and public reviews
+ */
+export const getGetGoogleReviewsUrl = (params?: GetGoogleReviewsParams) => {
+  const normalizedParams = new URLSearchParams();
+
+  Object.entries(params || {}).forEach(([key, value]) => {
+    if (value !== undefined) {
+      normalizedParams.append(key, value === null ? "null" : value.toString());
+    }
+  });
+
+  const stringifiedParams = normalizedParams.toString();
+
+  return stringifiedParams.length > 0
+    ? `/api/reviews?${stringifiedParams}`
+    : `/api/reviews`;
+};
+
+export const getGoogleReviews = async (
+  params?: GetGoogleReviewsParams,
+  options?: RequestInit,
+): Promise<GoogleReviewsResponse> => {
+  return customFetch<GoogleReviewsResponse>(getGetGoogleReviewsUrl(params), {
+    ...options,
+    method: "GET",
+  });
+};
+
+export const getGetGoogleReviewsQueryKey = (
+  params?: GetGoogleReviewsParams,
+) => {
+  return [`/api/reviews`, ...(params ? [params] : [])] as const;
+};
+
+export const getGetGoogleReviewsQueryOptions = <
+  TData = Awaited<ReturnType<typeof getGoogleReviews>>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  params?: GetGoogleReviewsParams,
+  options?: {
+    query?: UseQueryOptions<
+      Awaited<ReturnType<typeof getGoogleReviews>>,
+      TError,
+      TData
+    >;
+    request?: SecondParameter<typeof customFetch>;
+  },
+) => {
+  const { query: queryOptions, request: requestOptions } = options ?? {};
+
+  const queryKey =
+    queryOptions?.queryKey ?? getGetGoogleReviewsQueryKey(params);
+
+  const queryFn: QueryFunction<
+    Awaited<ReturnType<typeof getGoogleReviews>>
+  > = ({ signal }) => getGoogleReviews(params, { signal, ...requestOptions });
+
+  return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
+    Awaited<ReturnType<typeof getGoogleReviews>>,
+    TError,
+    TData
+  > & { queryKey: QueryKey };
+};
+
+export type GetGoogleReviewsQueryResult = NonNullable<
+  Awaited<ReturnType<typeof getGoogleReviews>>
+>;
+export type GetGoogleReviewsQueryError = ErrorType<ErrorResponse>;
+
+/**
+ * @summary Get current Google rating and public reviews
+ */
+
+export function useGetGoogleReviews<
+  TData = Awaited<ReturnType<typeof getGoogleReviews>>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  params?: GetGoogleReviewsParams,
+  options?: {
+    query?: UseQueryOptions<
+      Awaited<ReturnType<typeof getGoogleReviews>>,
+      TError,
+      TData
+    >;
+    request?: SecondParameter<typeof customFetch>;
+  },
+): UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+  const queryOptions = getGetGoogleReviewsQueryOptions(params, options);
+
+  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
+    queryKey: QueryKey;
+  };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}

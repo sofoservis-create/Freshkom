@@ -105,6 +105,13 @@ React + Vite frontend for Freshkom — professional cleaning company in Komárno
 - Uses `@workspace/api-client-react` for form submission via `useLeadSubmission` hook
 - Routing: wouter with base path from `import.meta.env.BASE_URL`
 
+### Google reviews
+
+- `GET /api/reviews?lang=sk|hu` serves the current Google Places rating, total review count and up to five review texts. The API result is cached for 24 hours; it is not a realtime subscription.
+- Configure `GOOGLE_PLACES_API_KEY` and `GOOGLE_PLACE_ID` as **server-side secrets**, never as `VITE_` variables. Enable Places API (New) and billing on the Google Cloud project behind the key. Do not restrict this server key by browser referrer; use appropriate API restrictions.
+- The Replit development endpoint runs in `artifacts/api-server`. The Vercel production endpoint is `api/reviews.ts`; Vercel needs its own copies of these environment variables. Replit secrets are not automatically copied to Vercel.
+- No fabricated fallback ratings/reviews are shown if Google is unavailable. The LocalBusiness JSON-LD includes `aggregateRating` only when the API returns a valid live rating.
+
 ### `scripts` (`@workspace/scripts`)
 
 Utility scripts package. Each script is a `.ts` file in `src/` with a corresponding npm script in `package.json`. Run scripts via `pnpm --filter @workspace/scripts run <script>`. Scripts can import any workspace package (e.g., `@workspace/db`) by adding it as a dependency in `scripts/package.json`.

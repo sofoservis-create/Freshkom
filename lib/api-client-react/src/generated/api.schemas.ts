@@ -5,6 +5,21 @@
  * API specification
  * OpenAPI spec version: 0.1.0
  */
+export interface GoogleReview {
+  name: string;
+  text: string;
+  rating: number;
+  date: string;
+  authorUrl: string;
+}
+
+export interface GoogleReviewsResponse {
+  rating: number;
+  reviewCount: number;
+  mapsUrl: string;
+  reviews: GoogleReview[];
+}
+
 export interface HealthStatus {
   status: string;
 }
@@ -48,3 +63,15 @@ export interface LeadSubmissionResponse {
 export interface ErrorResponse {
   error: string;
 }
+
+export type GetGoogleReviewsParams = {
+  lang?: GetGoogleReviewsLang;
+};
+
+export type GetGoogleReviewsLang =
+  (typeof GetGoogleReviewsLang)[keyof typeof GetGoogleReviewsLang];
+
+export const GetGoogleReviewsLang = {
+  sk: "sk",
+  hu: "hu",
+} as const;

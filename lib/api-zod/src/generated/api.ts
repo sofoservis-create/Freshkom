@@ -37,3 +37,27 @@ export const SubmitLeadBody = zod.object({
     .describe("Type of service requested"),
   message: zod.string().optional().describe("Additional message or details"),
 });
+
+/**
+ * @summary Get current Google rating and public reviews
+ */
+export const getGoogleReviewsQueryLangDefault = `sk`;
+
+export const GetGoogleReviewsQueryParams = zod.object({
+  lang: zod.enum(["sk", "hu"]).default(getGoogleReviewsQueryLangDefault),
+});
+
+export const GetGoogleReviewsResponse = zod.object({
+  rating: zod.number(),
+  reviewCount: zod.number(),
+  mapsUrl: zod.string(),
+  reviews: zod.array(
+    zod.object({
+      name: zod.string(),
+      text: zod.string(),
+      rating: zod.number(),
+      date: zod.string(),
+      authorUrl: zod.string(),
+    }),
+  ),
+});

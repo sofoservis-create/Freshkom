@@ -73,10 +73,14 @@ export const hu: TranslationKeys = {
   reviews: {
     title: "Mit mondanak rólunk ügyfeleink",
     subtitle: "Valódi vélemények valódi ügyfelektől a Google-on.",
-    customersCount: "Több mint 40 elégedett ügyfél",
+    customersCount: "Ügyfélértékelések",
     onGoogle: "a Google-on",
     ratingsLabel: "Google-recenziók",
     showReviews: "Vélemények megtekintése",
+    loading: "Google-értékelések betöltése…",
+    unavailable: "A Google-vélemények jelenleg nem érhetők el.",
+    noText: "Szöveges vélemények jelenleg nem érhetők el.",
+    openGoogle: "Az összes vélemény megtekintése a Google-on",
   },
   contactSection: {
     title: "Kérjen ingyenes árajánlatot",
