@@ -1,1 +1,2 @@
 - [Google review identity](google-review-identity.md) — verify a Places result belongs to Freshkom before publishing its rating; a valid key and ID can still target another business.
+- [Published discovery files](published-discovery-files.md) — check live response bodies and content types before treating agent-discovery audit errors as malformed source files.
