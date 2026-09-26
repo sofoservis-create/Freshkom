@@ -9,6 +9,7 @@ interface PlaceReview {
 }
 
 interface PlaceDetails {
+  displayName?: { text?: string };
   rating?: number;
   userRatingCount?: number;
   googleMapsUri?: string;
@@ -29,6 +30,8 @@ export interface GoogleReviewsData {
 }
 
 const CACHE_MS = 24 * 60 * 60 * 1000;
+// Public Google Maps identifier for "Freshkom | Tepovanie | Umývanie okien" in Komárno.
+const FRESHKOM_PLACE_ID = "ChIJ56sh4e41zq0R5jcXUCvc6eQ";
 const cache = new Map<Language, { value: GoogleReviewsData; expiresAt: number }>();
 const pending = new Map<Language, Promise<GoogleReviewsData>>();
 
@@ -52,8 +55,8 @@ export async function getGoogleReviewsData(lang: Language): Promise<GoogleReview
 
 async function fetchPlace(lang: Language): Promise<GoogleReviewsData> {
   const apiKey = process.env.GOOGLE_PLACES_API_KEY;
-  const placeId = process.env.GOOGLE_PLACE_ID;
-  if (!apiKey || !placeId) throw new Error("Google Places is not configured");
+  const placeId = FRESHKOM_PLACE_ID;
+  if (!apiKey) throw new Error("Google Places is not configured");
 
   const url = new URL(`https://places.googleapis.com/v1/places/${encodeURIComponent(placeId)}`);
   url.searchParams.set("languageCode", lang);
@@ -61,13 +64,16 @@ async function fetchPlace(lang: Language): Promise<GoogleReviewsData> {
   const response = await fetch(url, {
     headers: {
       "X-Goog-Api-Key": apiKey,
-      "X-Goog-FieldMask": "rating,userRatingCount,googleMapsUri,reviews",
+      "X-Goog-FieldMask": "displayName,rating,userRatingCount,googleMapsUri,reviews",
     },
     signal: AbortSignal.timeout(10000),
   });
   if (!response.ok) throw new Error(`Google Places returned HTTP ${response.status}`);
 
   const place = (await response.json()) as PlaceDetails;
+  if (!place.displayName?.text?.toLocaleLowerCase().includes("freshkom")) {
+    throw new Error("Google Place ID does not belong to Freshkom");
+  }
   if (
     typeof place.rating !== "number" ||
     !Number.isFinite(place.rating) ||

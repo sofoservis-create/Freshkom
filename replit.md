@@ -108,8 +108,8 @@ React + Vite frontend for Freshkom — professional cleaning company in Komárno
 ### Google reviews
 
 - `GET /api/reviews?lang=sk|hu` serves the current Google Places rating, total review count and up to five review texts. The API result is cached for 24 hours; it is not a realtime subscription.
-- Configure `GOOGLE_PLACES_API_KEY` and `GOOGLE_PLACE_ID` as **server-side secrets**, never as `VITE_` variables. Enable Places API (New) and billing on the Google Cloud project behind the key. Do not restrict this server key by browser referrer; use appropriate API restrictions.
-- The Replit development endpoint runs in `artifacts/api-server`. The Vercel production endpoint is `api/reviews.ts`; Vercel needs its own copies of these environment variables. Replit secrets are not automatically copied to Vercel.
+- Configure `GOOGLE_PLACES_API_KEY` as a **server-side secret**, never as a `VITE_` variable. The verified public Freshkom Place ID is pinned in the server reviews module and the server rejects results whose display name does not include Freshkom. Enable Places API (New) and billing on the Google Cloud project behind the key. Do not restrict this server key by browser referrer; use appropriate API restrictions.
+- The Replit development endpoint runs in `artifacts/api-server`. The Vercel production endpoint is `api/reviews.ts`; Vercel needs its own copy of the API key. Replit secrets are not automatically copied to Vercel.
 - No fabricated fallback ratings/reviews are shown if Google is unavailable. The LocalBusiness JSON-LD includes `aggregateRating` only when the API returns a valid live rating.
 
 ### `scripts` (`@workspace/scripts`)
