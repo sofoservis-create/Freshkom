@@ -39,9 +39,13 @@ Pre cenovú ponuku alebo rezerváciu termínu:
 - Kontakt: https://freshkom.sk/kontakt
 - Instagram: https://www.instagram.com/freshkom.sk/
 
-## Recenzie
+## Google recenzie
 
-Aktuálne hodnotenie a verejné recenzie sú načítané priamo z Google na stránkach Freshkomu. Počet a priemer hodnotení sa môžu meniť.
+- Overený Google profil: Freshkom | Tepovanie | Umývanie okien, Komárno
+- Hodnotenie pri kontrole 26. septembra 2026: 5.0 z 5 na základe 25 hodnotení.
+- Profil a všetky recenzie: https://maps.google.com/?cid=16494957188806555622
+
+Hodnotenie a počet recenzií sa na stránkach Freshkomu načítavajú z Google Places API a môžu sa zmeniť. Údaje vyššie sú datovaný záznam, nie trvalo platné čísla; pred použitím aktuálnych hodnôt si overte Google profil alebo web Freshkomu.
 
 ## Jazyky
 
