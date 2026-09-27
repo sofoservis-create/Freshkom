@@ -410,6 +410,11 @@ export default function Landing() {
             <p className="text-base sm:text-lg text-gray-700">
               {t("reviews.subtitle")}
             </p>
+            {reviewData && (
+              <div className="mt-5 flex justify-center">
+                <GoogleRatingBadge rating={reviewData.rating} reviewCount={reviewData.reviewCount} size="lg" />
+              </div>
+            )}
           </div>
 
           {!reviewData && <p role="status" className="text-center text-gray-600">{reviewsPending ? t("reviews.loading") : t("reviews.unavailable")}</p>}
