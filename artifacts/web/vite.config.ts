@@ -8,60 +8,19 @@ import { pageSeo } from "./src/seo/pageMeta";
 import { siteUrl } from "./src/seo/siteUrl";
 import { pagePaths, localizePath, type PagePath } from "./src/seo/routes";
 import type { SeoLang } from "./src/seo/serviceMeta";
-import { translations } from "./src/i18n";
-import { getPricingSections } from "./src/data/pricing";
 
 const escape = (value: string) => value.replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;");
 
-function staticContent(pathname: PagePath, lang: SeoLang): string {
-  const t = (key: string) => {
-    const [section, item] = key.split(".");
-    return (translations[lang] as unknown as Record<string, Record<string, string>>)[section][item];
-  };
-  const isUpholstery = pathname === "/tepovanie-komarno";
-  const isWindows = pathname === "/cistenie-okien-komarno";
-  const service = isUpholstery || isWindows;
-  const data = pageSeo(pathname, lang, "");
-  const prices = service ? getPricingSections(t).filter(section =>
-    isUpholstery ? section.id !== "umyvanie-okien" : section.id === "umyvanie-okien") : [];
-  const location = lang === "sk" ? "Komárne (Slovensko) a Komárome (Maďarsko)" : "Komáromban (Magyarország) és Komárnóban (Szlovákia)";
-  const intro = lang === "sk"
-    ? `Služby poskytujeme v ${location}. Pre cenu dopravy a termín nás kontaktujte.`
-    : `Szolgáltatásaink ${location} érhetők el. A kiszállításról és az időpontról érdeklődjön nálunk.`;
-  const heading = service ? data.title : pathname === "/"
-    ? `${t("hero.titleLine1")} ${t("hero.titleLine2")}`
-    : t(pathname === "/cennik" ? "pricing.pageTitle" : "kontakt.pageTitle");
-  return `<div class="seo-shell${pathname === "/" ? " seo-shell--home" : ""}">
-    <div class="seo-shell__top"><a href="tel:+421909159609">+421 909 159 609</a><a href="mailto:info@freshkom.sk">info@freshkom.sk</a></div>
-    <header class="seo-shell__header">
-      <a class="seo-shell__logo" href="${localizePath("/", lang)}">
-        <img src="/images/optimized/logo-mascot.webp" width="64" height="64" alt="">
-        <img src="/images/optimized/logo-text.webp" width="192" height="33" alt="Freshkom">
-      </a>
-      <nav aria-label="${lang === "sk" ? "Hlavná navigácia" : "Fő navigáció"}">
-        <a href="${localizePath("/tepovanie-komarno", lang)}">${escape(t("nav.upholstery"))}</a>
-        <a href="${localizePath("/cistenie-okien-komarno", lang)}">${escape(t("nav.windows"))}</a>
-        <a href="${localizePath("/cennik", lang)}">${escape(t("nav.pricing"))}</a>
-        <a href="${localizePath("/kontakt", lang)}">${escape(t("nav.contact"))}</a>
-      </nav>
-      <a class="seo-shell__cta" href="${localizePath("/kontakt", lang)}">${escape(t("nav.getQuote"))}</a>
-    </header>
-    <main class="seo-shell__main">
-      ${pathname === "/" ? `<div class="seo-shell__image"><img src="/images/optimized/hero-1600.webp" srcset="/images/optimized/hero-800.webp 800w, /images/optimized/hero-1600.webp 1600w" sizes="100vw" width="1600" height="1200" alt=""></div>` : ""}
-      <div class="seo-shell__content">
-        <h1>${escape(heading)}</h1>
-        <p>${escape(data.description)}</p><p>${escape(intro)}</p>
-        ${prices.map(section => `<section><h2>${escape(section.title)}</h2><ul>${section.items.map(item => `<li>${escape(item.name)} — ${escape(item.price)}</li>`).join("")}</ul></section>`).join("")}
-        <p>${lang === "sk" ? "Orientačné ceny služieb nájdete" : "Tájékoztató árainkat megtalálja"} <a href="${localizePath("/cennik", lang)}">${lang === "sk" ? "v cenníku" : "az árlistában"}</a>.</p>
-        <p><a href="tel:+421909159609">+421 909 159 609</a> · <a href="mailto:info@freshkom.sk">info@freshkom.sk</a> · <a href="${localizePath("/kontakt", lang)}">${lang === "sk" ? "Kontakt" : "Kapcsolat"}</a></p>
-      </div>
-    </main>
-  </div>`;
-}
-
-function pageShell(html: string, pathname: PagePath, lang: SeoLang, base: string): string {
+function pageShell(html: string, pathname: PagePath, lang: SeoLang, base: string, rendered?: string): string {
   const data = pageSeo(pathname, lang, base);
+  const serviceImages = pathname === "/tepovanie-komarno" || pathname === "/cistenie-okien-komarno"
+    ? [
+        `<link rel="preload" as="image" href="/images/optimized/hero-800.webp" imagesrcset="/images/optimized/hero-800.webp 800w, /images/optimized/hero-1600.webp 1600w" imagesizes="100vw" media="(max-width: 1023px)" fetchpriority="high">`,
+        `<link rel="preload" as="image" href="/images/optimized/${pathname === "/tepovanie-komarno" ? "hero-real-2.webp" : "item-okno-2.webp"}" media="(min-width: 1024px)" fetchpriority="high">`,
+      ]
+    : [];
   const meta = [
+    ...serviceImages,
     `<link data-static-seo rel="canonical" href="${escape(data.url)}">`,
     `<link data-static-seo rel="alternate" hreflang="sk" href="${escape(data.skUrl)}">`,
     `<link data-static-seo rel="alternate" hreflang="hu" href="${escape(data.huUrl)}">`,
@@ -75,16 +34,18 @@ function pageShell(html: string, pathname: PagePath, lang: SeoLang, base: string
     `<meta data-static-seo name="twitter:card" content="summary_large_image">`,
     ...(data.schema ? [`<script data-static-seo type="application/ld+json">${JSON.stringify(data.schema).replaceAll("<", "\\u003c")}</script>`] : []),
   ].join("\n    ");
-  return html.replace(pathname === "/" ? /$^/ : /<link rel="preload" as="image"[^>]*\/>/, "")
-    .replace('<html lang="sk">', `<html lang="${lang}">`)
+  return html.replace('<html lang="sk">', `<html lang="${lang}">`)
     .replace(/<title>[^<]*<\/title>/, `<title>${escape(data.title)}</title>`)
     .replace(/<meta name="description" content="[^"]*" \/>/, `<meta data-static-seo name="description" content="${escape(data.description)}" />`)
     .replace("</head>", `    ${meta}\n  </head>`)
-    .replace('<div id="root"></div>', `<div id="root">${staticContent(pathname, lang)}</div>`);
+    .replace('<div id="root"></div>', rendered === undefined
+      ? '<div id="root"></div>'
+      : `<div id="root" data-prerendered="true">${rendered}</div>`);
 }
 
 function pageShellPlugin(): Plugin {
   const base = siteUrl(process.env.VITE_APP_URL);
+  let ssrBuild = false;
   const routes = pagePaths.flatMap((pathname) =>
     (["sk", "hu"] as const).map((lang) => ({
       lang,
@@ -95,6 +56,9 @@ function pageShellPlugin(): Plugin {
   );
   return {
     name: "freshkom-language-html-shells",
+    configResolved(config) {
+      ssrBuild = Boolean(config.build.ssr);
+    },
     configureServer(server) {
       server.middlewares.use(async (req, res, next) => {
         const url = new URL(req.url || "/", "http://localhost");
@@ -113,14 +77,16 @@ function pageShellPlugin(): Plugin {
         try {
           const source = fs.readFileSync(path.resolve(import.meta.dirname, "index.html"), "utf-8");
           const transformed = await server.transformIndexHtml(url.pathname, source);
+          const { renderPage } = await server.ssrLoadModule("/src/entry-server.tsx");
           res.setHeader("Content-Type", "text/html; charset=utf-8");
-          res.end(pageShell(transformed, route.pathname, route.lang, base));
+          res.end(pageShell(transformed, route.pathname, route.lang, base, renderPage(route.path)));
         } catch (error) {
           next(error);
         }
       });
     },
     closeBundle() {
+      if (ssrBuild) return;
       const outDir = path.resolve(import.meta.dirname, "dist");
       const indexPath = path.join(outDir, "index.html");
       if (!fs.existsSync(indexPath)) return;
@@ -189,6 +155,9 @@ export default defineConfig({
       "@assets": path.resolve(import.meta.dirname, "..", "..", "attached_assets"),
     },
     dedupe: ["react", "react-dom"],
+  },
+  ssr: {
+    noExternal: ["react-helmet-async"],
   },
   root: path.resolve(import.meta.dirname),
   build: {

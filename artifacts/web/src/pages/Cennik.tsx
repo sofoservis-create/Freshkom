@@ -49,14 +49,14 @@ export default function Cennik() {
       <section className="pt-12 pb-6 bg-gradient-to-b from-accent/40 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.h1
-            initial={{ opacity: 0, y: -20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             className="text-3xl md:text-4xl font-extrabold mb-3"
           >
             {t("pricing.pageTitle")}
           </motion.h1>
           <motion.p
-            initial={{ opacity: 0 }}
+            initial={false}
             animate={{ opacity: 1, transition: { delay: 0.2 } }}
             className="text-lg text-gray-700 max-w-2xl mx-auto"
           >

@@ -4,6 +4,12 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Keep below-the-fold HTML available for crawlers while skipping its initial paint. */
+.deferred-section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 700px;
+}
+
 @theme inline {
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));

@@ -259,6 +259,7 @@ export default function ServicePage({ kind }: { kind: Kind }) {
               srcSet={`${image("hero-800.webp")} 800w, ${image("hero-1600.webp")} 1600w`}
               sizes="100vw"
               alt=""
+              loading="lazy"
               width={1600}
               height={1200}
               className="h-full w-full object-cover scale-x-[-1]"
@@ -269,7 +270,7 @@ export default function ServicePage({ kind }: { kind: Kind }) {
         )}
         <div className="pointer-events-none absolute -right-20 -top-40 h-[460px] w-[460px] rounded-full border-[70px] border-primary/[0.035] md:h-[700px] md:w-[700px]" />
         <div className="relative mx-auto grid max-w-7xl gap-8 px-4 pb-10 pt-8 sm:px-6 sm:pt-12 lg:grid-cols-[minmax(0,1fr)_minmax(380px,.82fr)] lg:items-center lg:gap-16 lg:px-8 lg:pb-16 lg:pt-16">
-          <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }}>
+          <motion.div initial={false} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }}>
             <div className="mb-5 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.17em] text-primary sm:text-xs">
               <span className="h-[2px] w-7 rounded-full bg-primary" />
               {c.eyebrow}
@@ -289,7 +290,7 @@ export default function ServicePage({ kind }: { kind: Kind }) {
             {reviewData && <div className="mt-5 flex justify-start"><GoogleRatingBadge rating={reviewData.rating} reviewCount={reviewData.reviewCount} size="lg" /></div>}
             {highlightedItem && (
               <a href="#ceny" data-testid="link-service-price-preview" className="mt-7 flex max-w-md items-center gap-4 rounded-2xl border border-primary/15 bg-white/85 p-3 shadow-sm transition-transform hover:-translate-y-0.5 sm:mt-9">
-                <img src={image(highlightedItem.img)} alt="" width={64} height={64} className="h-14 w-14 shrink-0 object-contain" />
+                <img src={image(highlightedItem.img)} alt="" loading="lazy" width={64} height={64} className="h-14 w-14 shrink-0 object-contain" />
                 <span className="min-w-0 flex-1">
                   <span className="block text-[10px] font-bold uppercase tracking-[0.13em] text-primary">{c.priceLabel}</span>
                   <span className="mt-0.5 block truncate text-sm font-semibold text-foreground">{highlightedItem.name}</span>
@@ -299,10 +300,10 @@ export default function ServicePage({ kind }: { kind: Kind }) {
               </a>
             )}
           </motion.div>
-          <motion.div initial={{ opacity: 0, x: 18 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.12 }} className="relative hidden lg:block">
+          <motion.div initial={false} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.12 }} className="relative hidden lg:block">
             <div className="absolute -inset-5 rounded-[3rem] border border-primary/10" />
             <div className="relative aspect-[4/3] overflow-hidden rounded-[2.4rem] bg-white shadow-[0_25px_65px_-25px_rgba(16,80,80,.25)]">
-              <img src={image(isUpholstery ? "hero-real-2.webp" : "item-okno-2.webp")} alt={c.heroAlt} width={650} height={500} className={`h-full w-full ${isUpholstery ? "object-cover" : "object-contain p-10"}`} />
+              <img src={image(isUpholstery ? "hero-real-2.webp" : "item-okno-2.webp")} alt={c.heroAlt} loading="lazy" width={650} height={500} className={`h-full w-full ${isUpholstery ? "object-cover" : "object-contain p-10"}`} />
             </div>
             <div className="absolute -bottom-4 -left-6 flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-semibold text-white shadow-lg">
               <MapPin className="h-4 w-4 text-[#72ded0]" aria-hidden="true" />Komárno / Komárom
@@ -313,7 +314,7 @@ export default function ServicePage({ kind }: { kind: Kind }) {
 
       <ReviewsSection data={reviewData} isPending={reviewsPending} />
 
-      <section id="ceny" className="scroll-mt-24 bg-white py-12 sm:py-16">
+      <section id="ceny" className="deferred-section scroll-mt-24 bg-white py-12 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-7 flex flex-col gap-3 md:mb-9 md:flex-row md:items-end md:justify-between">
             <div>
@@ -377,7 +378,7 @@ export default function ServicePage({ kind }: { kind: Kind }) {
         </div>
       </section>
 
-      <section className="bg-[#f2f8f7] py-14 sm:py-20">
+      <section className="deferred-section bg-[#f2f8f7] py-14 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-10 lg:grid-cols-[.85fr_1.15fr] lg:gap-20">
             <div>
@@ -416,7 +417,7 @@ export default function ServicePage({ kind }: { kind: Kind }) {
         </div>
       </section>
 
-      <section className="bg-white py-14 sm:py-20">
+      <section className="deferred-section bg-white py-14 sm:py-20">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[.7fr_1.3fr] lg:gap-20 lg:px-8">
           <div>
             <span className="text-xs font-bold uppercase tracking-[0.16em] text-primary">03 / FAQ</span>
@@ -435,7 +436,7 @@ export default function ServicePage({ kind }: { kind: Kind }) {
         </div>
       </section>
 
-      <section id="kontakt" className="scroll-mt-20 bg-foreground py-14 text-white sm:py-20">
+      <section id="kontakt" className="deferred-section scroll-mt-20 bg-foreground py-14 text-white sm:py-20">
         <div className="mx-auto grid max-w-7xl gap-9 px-4 sm:px-6 lg:grid-cols-[.76fr_1.24fr] lg:gap-16 lg:px-8">
           <div className="lg:pt-8">
             <span className="text-xs font-bold uppercase tracking-[0.17em] text-[#8ce5d9]">04 / {c.contactEyebrow}</span>

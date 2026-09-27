@@ -9,50 +9,9 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="preload" as="image" href="/images/optimized/hero-1600.webp" imagesrcset="/images/optimized/hero-800.webp 800w, /images/optimized/hero-1600.webp 1600w" imagesizes="100vw" fetchpriority="high" type="image/webp" />
-    <!-- Critical styles for the crawlable HTML shown before React starts. -->
-    <style>
-      body { margin: 0; }
-      .seo-shell { color: #101827; background: #fff; font: 16px/1.6 system-ui, sans-serif; }
-      .seo-shell * { box-sizing: border-box; }
-      .seo-shell a { color: inherit; }
-      .seo-shell__top { min-height: 56px; display: flex; align-items: center; gap: 24px; padding: 0 max(24px, calc((100vw - 1280px)/2 + 32px)); background: #101827; color: #fff; font-size: 14px; }
-      .seo-shell__top a, .seo-shell__header a { text-decoration: none; }
-      .seo-shell__header { height: 80px; max-width: 1280px; margin: auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-      .seo-shell__logo { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
-      .seo-shell__logo img { object-fit: contain; }
-      .seo-shell__logo img:last-child { width: 192px; max-width: 100%; height: auto; }
-      .seo-shell__header nav { display: flex; align-items: center; justify-content: center; gap: 22px; font-size: 15px; }
-      .seo-shell__header nav a { white-space: nowrap; }
-      .seo-shell__cta { white-space: nowrap; border-radius: 999px; padding: 8px 20px; background: #199c94; color: #fff !important; font-size: 14px; }
-      .seo-shell__main { position: relative; min-height: 500px; }
-      .seo-shell__image { position: absolute; inset: 0; overflow: hidden; }
-      .seo-shell__image::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, #fffffff2, #ffffffcc 55%, transparent); }
-      .seo-shell__image img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 35% 0; transform: scaleX(-1); }
-      .seo-shell__content { position: relative; max-width: 1280px; margin: auto; padding: 72px 32px; }
-      .seo-shell__content h1 { max-width: 720px; margin: 0 0 24px; font-size: clamp(36px, 5vw, 68px); line-height: 1.12; letter-spacing: -.04em; }
-      .seo-shell__content p { max-width: 610px; margin: 0 0 18px; }
-      .seo-shell__content a { color: #087e79; }
-      .seo-shell__content section { max-width: 650px; margin: 32px 0; }
-      .seo-shell__content h2 { font-size: 23px; }
-      @media (max-width: 1100px) {
-        .seo-shell__header nav { display: none; }
-      }
-      @media (max-width: 600px) {
-        .seo-shell__top { min-height: 56px; padding: 0 16px; }
-        .seo-shell__top a + a { display: none; }
-        .seo-shell__header { padding: 0 16px; }
-        .seo-shell__logo img:first-child { width: 48px; height: 48px; }
-        .seo-shell__logo img:last-child { width: 136px; }
-        .seo-shell__cta { padding: 8px 12px; font-size: 12px; }
-        .seo-shell__content { padding: 80px 16px 48px; }
-        .seo-shell__content h1 { font-size: clamp(36px, 9vw, 50px); }
-        .seo-shell__image::after { background: linear-gradient(90deg, #fffffff0, #ffffffb8 70%, #ffffff30); }
-      }
-    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <!--app-start--><div id="root"></div><!--app-end-->
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

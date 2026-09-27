@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense, useEffect, type ComponentType } from "react";
 import { Switch, Route, Router as WouterRouter, useLocation } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HelmetProvider } from "react-helmet-async";
@@ -12,6 +12,13 @@ const Cennik = lazy(() => import("@/pages/Cennik"));
 const Kontakt = lazy(() => import("@/pages/Kontakt"));
 const ServicePage = lazy(() => import("@/pages/ServicePage"));
 const NotFound = lazy(() => import("@/pages/not-found"));
+
+export type ServerPages = {
+  Cennik: ComponentType;
+  Kontakt: ComponentType;
+  ServicePage: ComponentType<{ kind: "upholstery" | "windows" }>;
+  NotFound: ComponentType;
+};
 
 function ScrollToTop() {
   const [location] = useLocation();
@@ -30,7 +37,11 @@ const queryClient = new QueryClient({
   },
 });
 
-function Router() {
+function Router({ serverPages }: { serverPages?: ServerPages }) {
+  const PricingPage = serverPages?.Cennik ?? Cennik;
+  const ContactPage = serverPages?.Kontakt ?? Kontakt;
+  const Service = serverPages?.ServicePage ?? ServicePage;
+  const MissingPage = serverPages?.NotFound ?? NotFound;
   return (
     <Layout>
       <ScrollToTop />
@@ -38,29 +49,29 @@ function Router() {
         <Switch>
           <Route path="/" component={Landing} />
           <Route path="/hu" component={Landing} />
-          <Route path="/cennik" component={Cennik} />
-          <Route path="/hu/cennik" component={Cennik} />
-          <Route path="/kontakt" component={Kontakt} />
-          <Route path="/hu/kontakt" component={Kontakt} />
-          <Route path="/tepovanie-komarno">{() => <ServicePage kind="upholstery" />}</Route>
-          <Route path="/hu/tepovanie-komarno">{() => <ServicePage kind="upholstery" />}</Route>
-          <Route path="/cistenie-okien-komarno">{() => <ServicePage kind="windows" />}</Route>
-          <Route path="/hu/cistenie-okien-komarno">{() => <ServicePage kind="windows" />}</Route>
-          <Route component={NotFound} />
+          <Route path="/cennik" component={PricingPage} />
+          <Route path="/hu/cennik" component={PricingPage} />
+          <Route path="/kontakt" component={ContactPage} />
+          <Route path="/hu/kontakt" component={ContactPage} />
+          <Route path="/tepovanie-komarno">{() => <Service kind="upholstery" />}</Route>
+          <Route path="/hu/tepovanie-komarno">{() => <Service kind="upholstery" />}</Route>
+          <Route path="/cistenie-okien-komarno">{() => <Service kind="windows" />}</Route>
+          <Route path="/hu/cistenie-okien-komarno">{() => <Service kind="windows" />}</Route>
+          <Route component={MissingPage} />
         </Switch>
       </Suspense>
     </Layout>
   );
 }
 
-function App() {
+function App({ initialPath, serverPages }: { initialPath?: string; serverPages?: ServerPages } = {}) {
   return (
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
-          <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+          <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")} ssrPath={initialPath}>
             <LanguageProvider>
-              <Router />
+              <Router serverPages={serverPages} />
             </LanguageProvider>
           </WouterRouter>
           <Toaster />

@@ -83,14 +83,14 @@ export default function Kontakt() {
             {reviewData && <GoogleRatingBadge rating={reviewData.rating} reviewCount={reviewData.reviewCount} />}
           </motion.div>
           <motion.h1
-            initial={{ opacity: 0, y: -20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0, transition: { delay: 0.1 } }}
             className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-3 mt-4"
           >
             {t("kontakt.pageTitle")}
           </motion.h1>
           <motion.p
-            initial={{ opacity: 0 }}
+            initial={false}
             animate={{ opacity: 1, transition: { delay: 0.2 } }}
             className="text-lg text-gray-700 max-w-2xl mx-auto"
           >
@@ -213,8 +213,8 @@ export default function Kontakt() {
                 {reviewData?.reviews.slice(0, 3).map((review, i) => (
                   <motion.div
                     key={i}
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+                    initial={{ opacity: 0, y: 12 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.1 + i * 0.1 }}
                   >

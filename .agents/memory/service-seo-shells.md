@@ -1,16 +1,16 @@
 ---
-name: Service SEO shells
-description: Why service pages use language-specific build-time HTML shells alongside client-side routing
+name: Service page prerendering
+description: Why localized pages should render real React HTML before the browser hydrates them
 ---
 
-For localized service landing pages, generate route-specific HTML in the static build and route direct requests to the matching language shell. Client-side head updates alone do not satisfy sharing previews or crawlers that do not execute JavaScript. Build-time and client metadata should use one service definition.
+For localized pages, prepare the real React page as static HTML at build time and serve it for direct requests; hydrate that same tree in the browser. Keep route-specific head tags available before JavaScript and derive build-time and client metadata from the same definitions.
 
-**Why:** The default Vite SPA fallback sends the homepage HTML to every path before JavaScript. That makes direct links share the homepage title and description even when the browser eventually renders the right page.
+**Why:** The default SPA fallback sends homepage metadata to every path, while a separate simplified SEO shell visibly replaced itself during refresh. Prerendering the actual page addresses both without switching frameworks.
 
-**How to apply:** When adding another indexable URL or language, include a matching static response and keep the path-based language mapping consistent in the server rewrite and browser navigation. Verify raw HTML for each combination, not just the hydrated preview.
+**How to apply:** When adding a route or language, update the build-time prerender list and host rewrites together, and verify both raw HTML and hydrated output. Avoid build-time external-data requests for reviews so deploys stay deterministic.
 
-Keep crawlable HTML visually intentional before JavaScript takes over; it is also the first thing visitors see on a slow refresh. Do not trade the visible fallback for an empty page just to hide a flash.
+Keep above-the-fold elements visible in the prerendered HTML rather than giving them initial zero opacity via entrance animations; effects can animate later sections. Use route- and viewport-specific image preloads so desktop-only assets do not consume mobile bandwidth.
 
-**Why:** A plain, unstyled SEO fallback briefly appeared to visitors while the client bundle loaded.
+**Why:** Visible content before hydration and correct early resource priority matter more than a decorative entrance effect or an indiscriminate preload.
 
-**How to apply:** Check the pre-JavaScript response and initial paint as well as the final React page when changing build-time page shells. Keep their first-screen imagery, typography, and layout reasonably aligned.
+**How to apply:** Inspect initial server HTML, preload links, and first paint at mobile and desktop widths whenever hero or animation markup changes.

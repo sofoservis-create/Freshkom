@@ -136,7 +136,7 @@ export default function Landing() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
           <motion.div
-            initial="hidden"
+            initial={false}
             animate="visible"
             variants={staggerContainer}
             className="max-w-2xl"
@@ -222,7 +222,7 @@ export default function Landing() {
 
       <ReviewsSection data={reviewData} isPending={reviewsPending} />
 
-      <section className="bg-gray-50/50 py-12 sm:py-16 lg:py-20" id="sluzby">
+      <section className="deferred-section bg-gray-50/50 py-12 sm:py-16 lg:py-20" id="sluzby">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-10">
             <h2 className="text-3xl md:text-5xl font-bold mb-4">{t("services.title")}</h2>
@@ -292,7 +292,7 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="bg-white py-12 sm:py-16 lg:py-20">
+      <section className="deferred-section bg-white py-12 sm:py-16 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row gap-10 items-center">
             <motion.div
@@ -344,7 +344,7 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="bg-white pb-12 sm:pb-16 lg:pb-20">
+      <section className="deferred-section bg-white pb-12 sm:pb-16 lg:pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -419,7 +419,7 @@ export default function Landing() {
         </div>
       </section>
 
-      <section id="kontakt" className="relative overflow-hidden bg-foreground py-12 sm:py-16 lg:py-20 text-white">
+      <section id="kontakt" className="deferred-section relative overflow-hidden bg-foreground py-12 sm:py-16 lg:py-20 text-white">
         <div
           className="absolute inset-0 opacity-10"
           style={{
