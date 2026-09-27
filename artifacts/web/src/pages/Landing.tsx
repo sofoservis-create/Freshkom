@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import LeadForm from "@/components/LeadForm";
 import GoogleReviewCard, { GoogleRatingBadge } from "@/components/GoogleReviewCard";
 import { useGoogleReviews } from "@/hooks/use-google-reviews";
@@ -413,22 +414,34 @@ export default function Landing() {
 
           {!reviewData && <p role="status" className="text-center text-gray-600">{reviewsPending ? t("reviews.loading") : t("reviews.unavailable")}</p>}
           {reviewData && reviewData.reviews.length === 0 && <p className="text-center text-gray-600">{t("reviews.noText")}</p>}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {reviewData?.reviews.map((review, i) => (
-              <motion.div
-                key={i}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={{
-                  hidden: { opacity: 0, scale: 0.9 },
-                  visible: { opacity: 1, scale: 1, transition: { delay: i * 0.1 } },
-                }}
-              >
-                <GoogleReviewCard review={review} />
-              </motion.div>
-            ))}
-          </div>
+          {reviewData && reviewData.reviews.length > 0 && (
+            <Carousel
+              opts={{ align: "start", containScroll: "trimSnaps" }}
+              aria-label={t("reviews.title")}
+              tabIndex={reviewData.reviews.length > 1 ? 0 : undefined}
+              className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            >
+              {reviewData.reviews.length > 1 && (
+                <div className={`mb-4 flex justify-end gap-3 ${reviewData.reviews.length === 2 ? "md:hidden" : reviewData.reviews.length === 3 ? "lg:hidden" : ""}`}>
+                  <CarouselPrevious
+                    className="static h-11 w-11 translate-y-0 disabled:opacity-40"
+                    aria-label={t("reviews.previous")}
+                  />
+                  <CarouselNext
+                    className="static h-11 w-11 translate-y-0 disabled:opacity-40"
+                    aria-label={t("reviews.next")}
+                  />
+                </div>
+              )}
+              <CarouselContent className="items-stretch">
+                {reviewData.reviews.map((review, i) => (
+                  <CarouselItem key={i} className="basis-[85%] sm:basis-[65%] md:basis-1/2 lg:basis-1/3">
+                    <GoogleReviewCard review={review} />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
+          )}
           {reviewData && <a href={reviewData.mapsUrl} target="_blank" rel="noopener noreferrer" className="block text-center mt-6 text-primary font-medium hover:underline">{t("reviews.openGoogle")}</a>}
         </div>
       </section>

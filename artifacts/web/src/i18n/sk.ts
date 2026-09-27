@@ -82,6 +82,8 @@ export const sk = {
     unavailable: "Google recenzie momentálne nie sú dostupné.",
     noText: "Textové recenzie zatiaľ nie sú dostupné.",
     openGoogle: "Zobraziť všetky recenzie na Google",
+    previous: "Predchádzajúce recenzie",
+    next: "Ďalšie recenzie",
   },
   contactSection: {
     title: "Získajte bezplatnú cenovú ponuku",

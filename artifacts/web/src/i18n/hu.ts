@@ -84,6 +84,8 @@ export const hu: TranslationKeys = {
     unavailable: "A Google-vélemények jelenleg nem érhetők el.",
     noText: "Szöveges vélemények jelenleg nem érhetők el.",
     openGoogle: "Az összes vélemény megtekintése a Google-on",
+    previous: "Előző vélemények",
+    next: "Következő vélemények",
   },
   contactSection: {
     title: "Kérjen ingyenes árajánlatot",
