@@ -3,3 +3,4 @@
 - [Vercel function builds](vercel-function-builds.md) — Vercel can deploy functions despite TypeScript errors; guard builds with an explicit API typecheck.
 - [Localized prerendering](service-seo-shells.md) — serve real route/language React HTML before hydration; keep metadata consistent and above-fold content visible.
 - [Headless browser checks](headless-browser-checks.md) — Chrome's debugging targets include extension pages; select the actual page and wait for hydrated state after reload.
+- [Prerendered Vite CSS](vite-prerender-css.md) — server HTML needs parser-discovered CSS in dev as well as production; verify first paint with JavaScript disabled.
