@@ -1,0 +1,38 @@
+(node:4) Warning: Failed to load the ES module: /var/task/api/reviews.js. Make sure to set "type": "module" in the nearest package.json file or use the .mjs extension.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:4) Warning: Failed to load the ES module: /var/task/api/reviews.js. Make sure to set "type": "module" in the nearest package.json file or use the .mjs extension.
+/var/task/api/reviews.js:1
+import { getGoogleReviewsData } from "../artifacts/api-server/src/google-reviews";
+^^^^^^
+
+SyntaxError: Cannot use import statement outside a module
+    at wrapSafe (node:internal/modules/cjs/loader:1861:18)
+    at Module._compile (node:internal/modules/cjs/loader:1903:20)
+    at Object..js (node:internal/modules/cjs/loader:2060:10)
+    at Module.load (node:internal/modules/cjs/loader:1651:32)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1443:12)
+    at /opt/rust/nodejs.js:2:14482
+    at Module.Eo (/opt/rust/nodejs.js:2:14860)
+    at e.<computed>.ut._load (/opt/rust/nodejs.js:2:14452)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at loadCJSModuleWithModuleLoad (node:internal/modules/esm/translators:372:15)
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+(node:4) Warning: Failed to load the ES module: /var/task/api/reviews.js. Make sure to set "type": "module" in the nearest package.json file or use the .mjs extension.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:4) Warning: Failed to load the ES module: /var/task/api/reviews.js. Make sure to set "type": "module" in the nearest package.json file or use the .mjs extension.
+/var/task/api/reviews.js:1
+import { getGoogleReviewsData } from "../artifacts/api-server/src/google-reviews";
+^^^^^^
+
+SyntaxError: Cannot use import statement outside a module
+    at wrapSafe (node:internal/modules/cjs/loader:1861:18)
+    at Module._compile (node:internal/modules/cjs/loader:1903:20)
+    at Object..js (node:internal/modules/cjs/loader:2060:10)
+    at Module.load (node:internal/modules/cjs/loader:1651:32)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1443:12)
+    at /opt/rust/nodejs.js:2:14482
+    at Module.Eo (/opt/rust/nodejs.js:2:14860)
+    at e.<computed>.ut._load (/opt/rust/nodejs.js:2:14452)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at loadCJSModuleWithModuleLoad (node:internal/modules/esm/translators:372:15)
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
