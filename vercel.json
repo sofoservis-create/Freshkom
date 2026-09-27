@@ -1,5 +1,5 @@
 {
-  "buildCommand": "pnpm --filter @workspace/web build",
+  "buildCommand": "pnpm exec tsc -p api/tsconfig.json --noEmit && pnpm --filter @workspace/web build",
   "outputDirectory": "artifacts/web/dist",
   "framework": "vite",
   "rewrites": [
