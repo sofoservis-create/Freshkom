@@ -3,6 +3,10 @@
   "outputDirectory": "artifacts/web/dist",
   "framework": "vite",
   "rewrites": [
+    { "source": "/tepovanie-komarno", "has": [{ "type": "query", "key": "lang", "value": "hu" }], "destination": "/tepovanie-komarno-hu.html" },
+    { "source": "/cistenie-okien-komarno", "has": [{ "type": "query", "key": "lang", "value": "hu" }], "destination": "/cistenie-okien-komarno-hu.html" },
+    { "source": "/tepovanie-komarno", "destination": "/tepovanie-komarno.html" },
+    { "source": "/cistenie-okien-komarno", "destination": "/cistenie-okien-komarno.html" },
     { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]
 }

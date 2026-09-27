@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import SeoHead from "@/components/SeoHead";
@@ -26,7 +27,7 @@ const PHONE_NUMBER = "+421 909 159 609";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
 };
 
 const staggerContainer = {
@@ -39,7 +40,12 @@ const staggerContainer = {
 
 export default function Landing() {
   const { data: reviewData, isPending: reviewsPending } = useGoogleReviews();
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+  useEffect(() => {
+    if (window.location.hash !== "#sluzby") return;
+    const timer = window.setTimeout(() => document.getElementById("sluzby")?.scrollIntoView(), 100);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   const services = [
     {
@@ -263,6 +269,14 @@ export default function Landing() {
                 </Link>
               </motion.div>
             ))}
+          </div>
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <Link href={`/tepovanie-komarno${lang === "hu" ? "?lang=hu" : ""}`} className="w-full sm:w-auto text-center rounded-full bg-primary text-white font-semibold px-6 py-3.5 hover:bg-primary/90 transition-colors">
+              {t("nav.upholstery")}
+            </Link>
+            <Link href={`/cistenie-okien-komarno${lang === "hu" ? "?lang=hu" : ""}`} className="w-full sm:w-auto text-center rounded-full border border-primary text-primary font-semibold px-6 py-3.5 hover:bg-primary/5 transition-colors">
+              {t("nav.windows")}
+            </Link>
           </div>
 
           <div className="text-center mt-10">

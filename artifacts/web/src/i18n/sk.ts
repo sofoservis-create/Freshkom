@@ -1,6 +1,8 @@
 export const sk = {
   nav: {
     home: "Úvod",
+    upholstery: "Tepovanie Komárno",
+    windows: "Čistenie okien Komárno",
     pricing: "Cenník",
     contact: "Kontakt",
     getQuote: "Získať cenovú ponuku",

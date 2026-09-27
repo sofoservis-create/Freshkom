@@ -10,6 +10,7 @@ import Landing from "@/pages/Landing";
 
 const Cennik = lazy(() => import("@/pages/Cennik"));
 const Kontakt = lazy(() => import("@/pages/Kontakt"));
+const ServicePage = lazy(() => import("@/pages/ServicePage"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 
 function ScrollToTop() {
@@ -38,6 +39,8 @@ function Router() {
           <Route path="/" component={Landing} />
           <Route path="/cennik" component={Cennik} />
           <Route path="/kontakt" component={Kontakt} />
+          <Route path="/tepovanie-komarno">{() => <ServicePage kind="upholstery" />}</Route>
+          <Route path="/cistenie-okien-komarno">{() => <ServicePage kind="windows" />}</Route>
           <Route component={NotFound} />
         </Switch>
       </Suspense>

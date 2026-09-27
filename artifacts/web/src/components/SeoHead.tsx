@@ -1,7 +1,9 @@
+import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useGoogleReviews } from "@/hooks/use-google-reviews";
 import type { GoogleReviewsResponse } from "@workspace/api-client-react";
+import { serviceMeta, serviceSeo, type ServicePageKey } from "@/seo/serviceMeta";
 
 const PHONE = "+421909159609";
 const EMAIL = "info@freshkom.sk";
@@ -9,7 +11,7 @@ const FACEBOOK = "https://www.facebook.com/profile.php?id=61585033404394";
 const INSTAGRAM = "https://www.instagram.com/freshkom.sk/";
 
 interface SeoHeadProps {
-  page: "landing" | "cennik" | "kontakt";
+  page: "landing" | "cennik" | "kontakt" | ServicePageKey;
 }
 
 const seoData = {
@@ -209,18 +211,25 @@ const faqSchema = {
 export default function SeoHead({ page }: SeoHeadProps) {
   const { lang } = useLanguage();
   const { data: reviews } = useGoogleReviews();
-  const data = seoData[lang][page];
-  const path = paths[page];
   const base = getSiteUrl();
-  const canonicalUrl = `${base}${path}${lang !== "sk" ? `?lang=${lang}` : ""}`;
-  const skUrl = `${base}${path}`;
-  const huUrl = `${base}${path}?lang=hu`;
+  const isService = page === "tepovanie" || page === "okna";
+  const service = isService ? serviceSeo(page, lang, base) : null;
+  const data = service ?? seoData[lang][page as "landing" | "cennik" | "kontakt"];
+  const path = service ? serviceMeta[page as ServicePageKey].path : paths[page];
+  const canonicalUrl = service?.url ?? `${base}${path}${lang !== "sk" ? `?lang=${lang}` : ""}`;
+  const skUrl = service?.skUrl ?? `${base}${path}`;
+  const huUrl = service?.huUrl ?? `${base}${path}?lang=hu`;
   const ogImage = `${base}/opengraph.jpg`;
-  const localBusinessSchema = buildLocalBusinessSchema(base, reviews);
+  const localBusinessSchema = !isService ? buildLocalBusinessSchema(base, reviews) : null;
+
+  // Static Vercel shells supply metadata before JS. Helmet takes over after hydration.
+  useEffect(() => {
+    document.querySelectorAll("[data-static-seo]").forEach((element) => element.remove());
+  }, []);
 
   const breadcrumbNames: Record<string, Record<string, string>> = {
-    sk: { cennik: "Cenník", kontakt: "Kontakt" },
-    hu: { cennik: "Árlista", kontakt: "Kapcsolat" },
+    sk: { cennik: "Cenník", kontakt: "Kontakt", tepovanie: "Tepovanie Komárno", okna: "Čistenie okien Komárno" },
+    hu: { cennik: "Árlista", kontakt: "Kapcsolat", tepovanie: "Kárpittisztítás Komárom", okna: "Ablaktisztítás Komárom" },
   };
 
   const breadcrumbSchema =
@@ -230,7 +239,7 @@ export default function SeoHead({ page }: SeoHeadProps) {
           "@type": "BreadcrumbList",
           itemListElement: [
             { "@type": "ListItem", position: 1, name: lang === "sk" ? "Úvod" : "Kezdőlap", item: `${base}/` },
-            { "@type": "ListItem", position: 2, name: breadcrumbNames[lang][page] },
+             { "@type": "ListItem", position: 2, name: breadcrumbNames[lang][page], item: canonicalUrl },
           ],
         }
       : null;
@@ -267,7 +276,8 @@ export default function SeoHead({ page }: SeoHeadProps) {
       <meta name="geo.position" content="47.7643;18.128" />
       <meta name="ICBM" content="47.7643, 18.128" />
 
-      <script type="application/ld+json">{JSON.stringify(localBusinessSchema)}</script>
+       {localBusinessSchema && <script type="application/ld+json">{JSON.stringify(localBusinessSchema)}</script>}
+       {service && <script type="application/ld+json">{JSON.stringify(service.schema)}</script>}
       {page === "landing" && (
         <script type="application/ld+json">{JSON.stringify(faqSchema[lang])}</script>
       )}

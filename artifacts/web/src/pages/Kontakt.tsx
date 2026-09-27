@@ -12,7 +12,7 @@ const EMAIL = "info@freshkom.sk";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
 };
 
 export default function Kontakt() {
@@ -181,7 +181,7 @@ export default function Kontakt() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              variants={{ ...fadeInUp, visible: { ...fadeInUp.visible, transition: { duration: 0.5, delay: 0.15, ease: "easeOut" } } }}
+              variants={{ ...fadeInUp, visible: { ...fadeInUp.visible, transition: { duration: 0.5, delay: 0.15, ease: "easeOut" as const } } }}
               className="space-y-5 lg:sticky lg:top-6"
             >
               {/* Google rating summary */}

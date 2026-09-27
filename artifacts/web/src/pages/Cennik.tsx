@@ -10,22 +10,9 @@ import GoogleReviewCard from "@/components/GoogleReviewCard";
 import LeadForm from "@/components/LeadForm";
 import { useGoogleReviews } from "@/hooks/use-google-reviews";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { getPricingSections, transportPrices } from "@/data/pricing";
 
 const PHONE_NUMBER = "+421 909 159 609";
-
-interface PricingItem {
-  name: string;
-  price: string;
-  img: string;
-  badge?: string;
-}
-
-interface PricingSection {
-  id: string;
-  title: string;
-  titleKey: string;
-  items: PricingItem[];
-}
 
 function getGridClasses(count: number): string {
   if (count <= 2) return "grid-cols-2 max-w-lg mx-auto";
@@ -37,12 +24,12 @@ function getGridClasses(count: number): string {
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
 };
 
 export default function Cennik() {
   const { data: reviewData, isPending: reviewsPending } = useGoogleReviews();
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   useEffect(() => {
     const hash = window.location.hash.slice(1);
@@ -53,59 +40,7 @@ export default function Cennik() {
     }
   }, []);
 
-  const pricingSections: PricingSection[] = [
-    {
-      id: "tepovanie-gaucov",
-      title: t("pricing.sectionCouches"),
-      titleKey: "sectionCouches",
-      items: [
-        { name: t("pricing.armchair"), price: "20 €", img: "item-kreslo.webp" },
-        { name: t("pricing.couch2"), price: "30 €", img: "item-sedacka-2m.webp" },
-        { name: t("pricing.couch3"), price: "40 €", img: "item-sedacka-3m.webp", badge: t("pricing.badgeMostPopular") },
-        { name: t("pricing.couchL"), price: "50 €", img: "item-sedacka-l.webp" },
-        { name: t("pricing.couchU"), price: "60 €", img: "item-sedacka-u.webp" },
-        { name: t("pricing.chair"), price: "5 €", img: "item-stolicka.webp" },
-      ],
-    },
-    {
-      id: "tepovanie-kobercov",
-      title: t("pricing.sectionCarpets"),
-      titleKey: "sectionCarpets",
-      items: [
-        { name: t("pricing.carpetShort"), price: "3 € / m²", img: "item-koberec-kratky.webp" },
-        { name: t("pricing.carpetLong"), price: "4,50 € / m²", img: "item-koberec-dlhy.webp" },
-      ],
-    },
-    {
-      id: "tepovanie-matracov",
-      title: t("pricing.sectionMattresses"),
-      titleKey: "sectionMattresses",
-      items: [
-        { name: t("pricing.mattressSingle"), price: "11 €", img: "item-matrac-1.webp" },
-        { name: t("pricing.mattressDouble"), price: "22 €", img: "item-matrac-2.webp" },
-      ],
-    },
-    {
-      id: "tepovanie-aut",
-      title: t("pricing.sectionCars"),
-      titleKey: "sectionCars",
-      items: [
-        { name: t("pricing.carSeats"), price: "55 €", img: "item-auto-sedacky.webp" },
-        { name: t("pricing.carInterior"), price: "80 €", img: "item-auto-interier.webp" },
-      ],
-    },
-    {
-      id: "umyvanie-okien",
-      title: t("pricing.sectionWindows"),
-      titleKey: "sectionWindows",
-      items: [
-        { name: t("pricing.windowSmall"), price: "6 €", img: "item-okno-male.png" },
-        { name: t("pricing.window1"), price: "10 €", img: "item-okno-1.webp" },
-        { name: t("pricing.windowBalcony"), price: "12 €", img: "item-okno-balkon.png" },
-        { name: t("pricing.shopWindow"), price: t("pricing.byAgreement"), img: "item-vyklad.webp" },
-      ],
-    },
-  ];
+  const pricingSections = getPricingSections(t);
 
   return (
     <>
@@ -143,8 +78,15 @@ export default function Cennik() {
               >
                 {section.title}
               </motion.h2>
+               {(section.id === "tepovanie-gaucov" || section.id === "umyvanie-okien") && (
+                 <p className="text-center -mt-3 mb-6">
+                   <Link href={`${section.id === "umyvanie-okien" ? "/cistenie-okien-komarno" : "/tepovanie-komarno"}${lang === "hu" ? "?lang=hu" : ""}`} className="text-primary font-semibold hover:underline">
+                     {section.id === "umyvanie-okien" ? t("nav.windows") : t("nav.upholstery")} →
+                   </Link>
+                 </p>
+               )}
 
-              <div className={`grid gap-4 md:gap-6 ${section.titleKey === "sectionWindows" ? "grid-cols-2 sm:grid-cols-4 max-w-5xl mx-auto" : getGridClasses(section.items.length)}`}>
+               <div className={`grid gap-4 md:gap-6 ${section.id === "umyvanie-okien" ? "grid-cols-2 sm:grid-cols-4 max-w-5xl mx-auto" : getGridClasses(section.items.length)}`}>
                 {section.items.map((item, iIdx) => (
                   <motion.div
                     key={iIdx}
@@ -170,7 +112,7 @@ export default function Cennik() {
                       )}
                       <div className="aspect-square overflow-hidden bg-white p-3">
                         <img
-                          src={`${import.meta.env.BASE_URL}images/optimized/${item.img.replace(/\.png$/, ".webp")}`}
+                           src={`${import.meta.env.BASE_URL}images/optimized/${item.img}`}
                           alt={item.name}
                           loading="lazy"
                           width={300}
@@ -221,8 +163,8 @@ export default function Cennik() {
 
           <div className="grid grid-cols-2 gap-4 max-w-xs mx-auto">
             {[
-              { icon: Truck, name: t("pricing.transportKomarno"), price: "5 €" },
-              { icon: MapPin, name: t("pricing.transportOutside"), price: "+ 0,30 € / km" },
+               { icon: Truck, name: t("pricing.transportKomarno"), price: transportPrices.komarno },
+               { icon: MapPin, name: t("pricing.transportOutside"), price: transportPrices.outside },
             ].map((item, iIdx) => (
               <motion.div
                 key={iIdx}

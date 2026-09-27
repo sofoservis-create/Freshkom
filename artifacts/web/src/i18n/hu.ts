@@ -3,6 +3,8 @@ import type { TranslationKeys } from "./sk";
 export const hu: TranslationKeys = {
   nav: {
     home: "Kezdőlap",
+    upholstery: "Kárpittisztítás Komárom",
+    windows: "Ablaktisztítás Komárom",
     pricing: "Árlista",
     contact: "Kapcsolat",
     getQuote: "Árajánlatot kérek",

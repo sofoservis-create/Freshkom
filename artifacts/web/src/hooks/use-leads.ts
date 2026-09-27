@@ -15,10 +15,10 @@ export function useLeadSubmission() {
           variant: "default",
         });
       },
-      onError: (error) => {
+      onError: () => {
         toast({
           title: t("leadForm.toastErrorTitle"),
-          description: error.error?.error || t("leadForm.toastErrorDesc"),
+          description: t("leadForm.toastErrorDesc"),
           variant: "destructive",
         });
       }

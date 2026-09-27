@@ -39,6 +39,7 @@ function getInitialLang(): Lang {
     const params = new URLSearchParams(window.location.search);
     const urlLang = params.get("lang");
     if (urlLang === "sk" || urlLang === "hu") return urlLang;
+    if (["/tepovanie-komarno", "/cistenie-okien-komarno"].includes(window.location.pathname)) return "sk";
   }
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
@@ -52,6 +53,12 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   const setLang = useCallback((newLang: Lang) => {
     setLangState(newLang);
+    if (typeof window !== "undefined") {
+      const url = new URL(window.location.href);
+      if (newLang === "hu") url.searchParams.set("lang", "hu");
+      else url.searchParams.delete("lang");
+      window.history.replaceState(window.history.state, "", url.pathname + url.search + url.hash);
+    }
     try {
       localStorage.setItem(STORAGE_KEY, newLang);
     } catch {}
