@@ -3,6 +3,9 @@ import { Link } from "wouter";
 import { ArrowDown, ArrowRight, Check, ChevronDown, MapPin, Phone } from "lucide-react";
 import SeoHead from "@/components/SeoHead";
 import LeadForm from "@/components/LeadForm";
+import ReviewsSection from "@/components/ReviewsSection";
+import { GoogleRatingBadge } from "@/components/GoogleReviewCard";
+import { useGoogleReviews } from "@/hooks/use-google-reviews";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { getPricingSections, transportPrices } from "@/data/pricing";
 
@@ -228,6 +231,7 @@ const PHONE_HREF = "tel:+421909159609";
 const image = (name: string) => `${import.meta.env.BASE_URL}images/optimized/${name.replace(/\.png$/, ".webp")}`;
 
 export default function ServicePage({ kind }: { kind: Kind }) {
+  const { data: reviewData, isPending: reviewsPending } = useGoogleReviews();
   const { lang, t } = useLanguage();
   const c = copy[lang][kind];
   const isUpholstery = kind === "upholstery";
@@ -247,6 +251,21 @@ export default function ServicePage({ kind }: { kind: Kind }) {
       <SeoHead page={isUpholstery ? "tepovanie" : "okna"} />
 
       <section className="relative overflow-hidden bg-gradient-to-br from-accent/70 via-[#f5fbf9] to-[#e8f5f3]">
+        {isUpholstery && (
+          <div className="absolute inset-0 lg:hidden">
+            <img
+              src={image("hero-800.webp")}
+              srcSet={`${image("hero-800.webp")} 800w, ${image("hero-1600.webp")} 1600w`}
+              sizes="100vw"
+              alt=""
+              width={1600}
+              height={1200}
+              className="h-full w-full object-cover scale-x-[-1]"
+              style={{ objectPosition: "35% 0%" }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/70" />
+          </div>
+        )}
         <div className="pointer-events-none absolute -right-20 -top-40 h-[460px] w-[460px] rounded-full border-[70px] border-primary/[0.035] md:h-[700px] md:w-[700px]" />
         <div className="relative mx-auto grid max-w-7xl gap-8 px-4 pb-10 pt-8 sm:px-6 sm:pt-12 lg:grid-cols-[minmax(0,1fr)_minmax(380px,.82fr)] lg:items-center lg:gap-16 lg:px-8 lg:pb-16 lg:pt-16">
           <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }}>
@@ -254,7 +273,7 @@ export default function ServicePage({ kind }: { kind: Kind }) {
               <span className="h-[2px] w-7 rounded-full bg-primary" />
               {c.eyebrow}
             </div>
-            <h1 className="max-w-[710px] font-display text-[clamp(2.55rem,7vw,5.3rem)] font-extrabold leading-[1.06] tracking-[-0.045em] text-foreground">
+            <h1 className="max-w-[710px] break-words font-display text-[clamp(2.55rem,7vw,5.3rem)] font-extrabold leading-[1.06] tracking-[-0.045em] text-foreground">
               {c.title}
             </h1>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-foreground/75 sm:text-lg">{c.intro}</p>
@@ -266,6 +285,7 @@ export default function ServicePage({ kind }: { kind: Kind }) {
                 <Phone className="h-4 w-4 text-primary" aria-hidden="true" />{c.call}
               </a>
             </div>
+            {reviewData && <div className="mt-5 flex justify-start"><GoogleRatingBadge rating={reviewData.rating} reviewCount={reviewData.reviewCount} size="lg" /></div>}
             {highlightedItem && (
               <a href="#ceny" data-testid="link-service-price-preview" className="mt-7 flex max-w-md items-center gap-4 rounded-2xl border border-primary/15 bg-white/85 p-3 shadow-sm transition-transform hover:-translate-y-0.5 sm:mt-9">
                 <img src={image(highlightedItem.img)} alt="" width={64} height={64} className="h-14 w-14 shrink-0 object-contain" />
@@ -289,6 +309,8 @@ export default function ServicePage({ kind }: { kind: Kind }) {
           </motion.div>
         </div>
       </section>
+
+      <ReviewsSection data={reviewData} isPending={reviewsPending} />
 
       <section id="ceny" className="scroll-mt-24 bg-white py-12 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
