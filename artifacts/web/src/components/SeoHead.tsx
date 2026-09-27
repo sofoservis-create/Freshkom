@@ -4,6 +4,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { useGoogleReviews } from "@/hooks/use-google-reviews";
 import type { GoogleReviewsResponse } from "@workspace/api-client-react";
 import { pageSeo } from "@/seo/pageMeta";
+import { siteUrl } from "@/seo/siteUrl";
 import type { PagePath } from "@/seo/routes";
 import type { ServicePageKey } from "@/seo/serviceMeta";
 
@@ -25,10 +26,7 @@ const paths: Record<SeoHeadProps["page"], PagePath> = {
 };
 
 function getSiteUrl(): string {
-  if (import.meta.env.VITE_APP_URL) {
-    return import.meta.env.VITE_APP_URL.replace(/\/$/, "");
-  }
-  return "https://freshkom.sk";
+  return siteUrl(import.meta.env.VITE_APP_URL);
 }
 
 function buildLocalBusinessSchema(base: string, reviews?: GoogleReviewsResponse) {

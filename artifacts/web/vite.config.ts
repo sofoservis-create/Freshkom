@@ -5,6 +5,7 @@ import path from "path";
 import fs from "fs";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 import { pageSeo } from "./src/seo/pageMeta";
+import { siteUrl } from "./src/seo/siteUrl";
 import { pagePaths, localizePath, type PagePath } from "./src/seo/routes";
 import type { SeoLang } from "./src/seo/serviceMeta";
 import { translations } from "./src/i18n";
@@ -27,13 +28,35 @@ function staticContent(pathname: PagePath, lang: SeoLang): string {
   const intro = lang === "sk"
     ? `Služby poskytujeme v ${location}. Pre cenu dopravy a termín nás kontaktujte.`
     : `Szolgáltatásaink ${location} érhetők el. A kiszállításról és az időpontról érdeklődjön nálunk.`;
-  return `<main style="max-width:960px;margin:3rem auto;padding:1rem;font:16px/1.6 system-ui,sans-serif;color:#163c3e">
-    <h1>${escape(service ? (data as ReturnType<typeof pageSeo>).title : pathname === "/" ? t("hero.titleLine1") + " " + t("hero.titleLine2") : t(pathname === "/cennik" ? "pricing.pageTitle" : "kontakt.pageTitle"))}</h1>
-    <p>${escape(data.description)}</p><p>${escape(intro)}</p>
-    ${prices.map(section => `<section><h2>${escape(section.title)}</h2><ul>${section.items.map(item => `<li>${escape(item.name)} — ${escape(item.price)}</li>`).join("")}</ul></section>`).join("")}
-    <p>${lang === "sk" ? "Orientačné ceny služieb nájdete" : "Tájékoztató árainkat megtalálja"} <a href="${localizePath("/cennik", lang)}">${lang === "sk" ? "v cenníku" : "az árlistában"}</a>.</p>
-    <p><a href="tel:+421909159609">+421 909 159 609</a> · <a href="mailto:info@freshkom.sk">info@freshkom.sk</a> · <a href="${localizePath("/kontakt", lang)}">${lang === "sk" ? "Kontakt" : "Kapcsolat"}</a></p>
-  </main>`;
+  const heading = service ? data.title : pathname === "/"
+    ? `${t("hero.titleLine1")} ${t("hero.titleLine2")}`
+    : t(pathname === "/cennik" ? "pricing.pageTitle" : "kontakt.pageTitle");
+  return `<div class="seo-shell${pathname === "/" ? " seo-shell--home" : ""}">
+    <div class="seo-shell__top"><a href="tel:+421909159609">+421 909 159 609</a><a href="mailto:info@freshkom.sk">info@freshkom.sk</a></div>
+    <header class="seo-shell__header">
+      <a class="seo-shell__logo" href="${localizePath("/", lang)}">
+        <img src="/images/optimized/logo-mascot.webp" width="64" height="64" alt="">
+        <img src="/images/optimized/logo-text.webp" width="192" height="33" alt="Freshkom">
+      </a>
+      <nav aria-label="${lang === "sk" ? "Hlavná navigácia" : "Fő navigáció"}">
+        <a href="${localizePath("/tepovanie-komarno", lang)}">${escape(t("nav.upholstery"))}</a>
+        <a href="${localizePath("/cistenie-okien-komarno", lang)}">${escape(t("nav.windows"))}</a>
+        <a href="${localizePath("/cennik", lang)}">${escape(t("nav.pricing"))}</a>
+        <a href="${localizePath("/kontakt", lang)}">${escape(t("nav.contact"))}</a>
+      </nav>
+      <a class="seo-shell__cta" href="${localizePath("/kontakt", lang)}">${escape(t("nav.getQuote"))}</a>
+    </header>
+    <main class="seo-shell__main">
+      ${pathname === "/" ? `<div class="seo-shell__image"><img src="/images/optimized/hero-1600.webp" srcset="/images/optimized/hero-800.webp 800w, /images/optimized/hero-1600.webp 1600w" sizes="100vw" width="1600" height="1200" alt=""></div>` : ""}
+      <div class="seo-shell__content">
+        <h1>${escape(heading)}</h1>
+        <p>${escape(data.description)}</p><p>${escape(intro)}</p>
+        ${prices.map(section => `<section><h2>${escape(section.title)}</h2><ul>${section.items.map(item => `<li>${escape(item.name)} — ${escape(item.price)}</li>`).join("")}</ul></section>`).join("")}
+        <p>${lang === "sk" ? "Orientačné ceny služieb nájdete" : "Tájékoztató árainkat megtalálja"} <a href="${localizePath("/cennik", lang)}">${lang === "sk" ? "v cenníku" : "az árlistában"}</a>.</p>
+        <p><a href="tel:+421909159609">+421 909 159 609</a> · <a href="mailto:info@freshkom.sk">info@freshkom.sk</a> · <a href="${localizePath("/kontakt", lang)}">${lang === "sk" ? "Kontakt" : "Kapcsolat"}</a></p>
+      </div>
+    </main>
+  </div>`;
 }
 
 function pageShell(html: string, pathname: PagePath, lang: SeoLang, base: string): string {
@@ -61,7 +84,7 @@ function pageShell(html: string, pathname: PagePath, lang: SeoLang, base: string
 }
 
 function pageShellPlugin(): Plugin {
-  const base = (process.env.VITE_APP_URL || "https://freshkom.sk").replace(/\/$/, "");
+  const base = siteUrl(process.env.VITE_APP_URL);
   const routes = pagePaths.flatMap((pathname) =>
     (["sk", "hu"] as const).map((lang) => ({
       lang,
@@ -116,14 +139,13 @@ function seoCanonicalPlugin(): Plugin {
   return {
     name: "seo-canonical-domain",
     closeBundle() {
-      const siteUrl = (process.env.VITE_APP_URL || PLACEHOLDER_DOMAIN).replace(/\/$/, "");
-      if (siteUrl === PLACEHOLDER_DOMAIN) return;
+      const base = siteUrl(process.env.VITE_APP_URL);
       const outDir = path.resolve(import.meta.dirname, "dist");
       for (const file of ["sitemap.xml", "robots.txt"]) {
         const filePath = path.join(outDir, file);
         if (fs.existsSync(filePath)) {
           const content = fs.readFileSync(filePath, "utf-8");
-          fs.writeFileSync(filePath, content.replaceAll(PLACEHOLDER_DOMAIN, siteUrl));
+          fs.writeFileSync(filePath, content.replaceAll(PLACEHOLDER_DOMAIN, base));
         }
       }
     },
