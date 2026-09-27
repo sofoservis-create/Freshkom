@@ -118,7 +118,7 @@ export default function Landing() {
   return (
     <>
       <SeoHead page="landing" />
-      <section className="relative pt-16 pb-24 lg:pt-24 lg:pb-32 overflow-hidden">
+      <section className="relative pt-16 pb-24 sm:pb-28 lg:pt-24 lg:pb-32 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-transparent z-10" />
           <img
@@ -199,8 +199,8 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="py-12 bg-white relative z-20 -mt-10 mx-4 sm:mx-8 rounded-3xl shadow-xl shadow-black/5 border border-border/50 max-w-7xl lg:mx-auto">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 px-6 sm:px-8">
+      <section className="relative z-20 -mt-10 sm:-mt-12 mx-4 sm:mx-8 lg:mx-auto max-w-7xl rounded-3xl border border-border/50 bg-white py-8 sm:py-10 lg:py-12 shadow-xl shadow-black/5">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-5 sm:gap-6 px-4 sm:px-8">
           {features.map((feature, i) => (
             <motion.div
               key={i}
@@ -220,7 +220,77 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="py-14 bg-gray-50/50" id="sluzby">
+      <section id="recenzie" className="bg-accent/30 py-12 sm:py-16 lg:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8 sm:mb-10">
+            <h2 className="text-3xl md:text-5xl font-bold mb-3">{t("reviews.title")}</h2>
+            <p className="text-base sm:text-lg text-gray-700">
+              {t("reviews.subtitle")}
+            </p>
+            {reviewData && (
+              <div className="mt-5 flex justify-center">
+                <GoogleRatingBadge rating={reviewData.rating} reviewCount={reviewData.reviewCount} size="lg" />
+              </div>
+            )}
+          </div>
+
+          {!reviewData && <p role="status" className="text-center text-gray-600">{reviewsPending ? t("reviews.loading") : t("reviews.unavailable")}</p>}
+          {reviewData && reviewData.reviews.length === 0 && <p className="text-center text-gray-600">{t("reviews.noText")}</p>}
+          {reviewData && reviewData.reviews.length > 0 && (
+            <Carousel
+              opts={{ align: "start", containScroll: "trimSnaps" }}
+              aria-label={t("reviews.title")}
+              tabIndex={reviewData.reviews.length > 1 ? 0 : undefined}
+              className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            >
+              {reviewData.reviews.length > 1 && (
+                <div className={`mb-4 flex justify-end gap-3 ${reviewData.reviews.length === 2 ? "md:hidden" : reviewData.reviews.length === 3 ? "lg:hidden" : ""}`}>
+                  <CarouselPrevious
+                    className="static h-11 w-11 translate-y-0 disabled:opacity-40"
+                    aria-label={t("reviews.previous")}
+                  />
+                  <CarouselNext
+                    className="static h-11 w-11 translate-y-0 disabled:opacity-40"
+                    aria-label={t("reviews.next")}
+                  />
+                </div>
+              )}
+              <CarouselContent className="items-stretch">
+                {reviewData.reviews.map((review, i) => (
+                  <CarouselItem key={i} className="basis-[85%] sm:basis-[65%] md:basis-1/2 lg:basis-1/3">
+                    <GoogleReviewCard review={review} />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
+          )}
+          {reviewData && <a href={reviewData.mapsUrl} target="_blank" rel="noopener noreferrer" className="block text-center mt-6 text-primary font-medium hover:underline">{t("reviews.openGoogle")}</a>}
+        </div>
+      </section>
+
+      {reviewData && <section className="py-3 bg-gray-50 border-y border-gray-200">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-gray-600">
+            <span className="font-medium">{reviewData.reviewCount} {t("reviews.ratingsLabel")}</span>
+            <span className="hidden sm:inline text-gray-300">·</span>
+            <span className="flex items-center gap-1">
+              {reviewData.rating.toFixed(1)}
+              <span className="flex gap-0.5">
+                {[...Array(5)].map((_, i) => (
+                   <Star key={i} className={`w-3.5 h-3.5 ${i < Math.round(reviewData.rating) ? "fill-amber-400 text-amber-400" : "text-gray-300"}`} />
+                ))}
+              </span>
+              {t("reviews.onGoogle")}
+            </span>
+            <span className="hidden sm:inline text-gray-300">·</span>
+            <button type="button" className="text-primary font-medium cursor-pointer hover:underline bg-transparent border-none p-0" onClick={() => document.getElementById('recenzie')?.scrollIntoView({ behavior: 'smooth' })}>
+              {t("reviews.showReviews")}
+            </button>
+          </div>
+        </div>
+      </section>}
+
+      <section className="bg-gray-50/50 py-12 sm:py-16 lg:py-20" id="sluzby">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-10">
             <h2 className="text-3xl md:text-5xl font-bold mb-4">{t("services.title")}</h2>
@@ -290,7 +360,7 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="py-16 bg-white">
+      <section className="bg-white py-12 sm:py-16 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row gap-10 items-center">
             <motion.div
@@ -342,7 +412,7 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="py-16 bg-white">
+      <section className="bg-white pb-12 sm:pb-16 lg:pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -417,77 +487,7 @@ export default function Landing() {
         </div>
       </section>
 
-      <section id="recenzie" className="py-16 bg-accent/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-5xl font-bold mb-3">{t("reviews.title")}</h2>
-            <p className="text-base sm:text-lg text-gray-700">
-              {t("reviews.subtitle")}
-            </p>
-            {reviewData && (
-              <div className="mt-5 flex justify-center">
-                <GoogleRatingBadge rating={reviewData.rating} reviewCount={reviewData.reviewCount} size="lg" />
-              </div>
-            )}
-          </div>
-
-          {!reviewData && <p role="status" className="text-center text-gray-600">{reviewsPending ? t("reviews.loading") : t("reviews.unavailable")}</p>}
-          {reviewData && reviewData.reviews.length === 0 && <p className="text-center text-gray-600">{t("reviews.noText")}</p>}
-          {reviewData && reviewData.reviews.length > 0 && (
-            <Carousel
-              opts={{ align: "start", containScroll: "trimSnaps" }}
-              aria-label={t("reviews.title")}
-              tabIndex={reviewData.reviews.length > 1 ? 0 : undefined}
-              className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-            >
-              {reviewData.reviews.length > 1 && (
-                <div className={`mb-4 flex justify-end gap-3 ${reviewData.reviews.length === 2 ? "md:hidden" : reviewData.reviews.length === 3 ? "lg:hidden" : ""}`}>
-                  <CarouselPrevious
-                    className="static h-11 w-11 translate-y-0 disabled:opacity-40"
-                    aria-label={t("reviews.previous")}
-                  />
-                  <CarouselNext
-                    className="static h-11 w-11 translate-y-0 disabled:opacity-40"
-                    aria-label={t("reviews.next")}
-                  />
-                </div>
-              )}
-              <CarouselContent className="items-stretch">
-                {reviewData.reviews.map((review, i) => (
-                  <CarouselItem key={i} className="basis-[85%] sm:basis-[65%] md:basis-1/2 lg:basis-1/3">
-                    <GoogleReviewCard review={review} />
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-            </Carousel>
-          )}
-          {reviewData && <a href={reviewData.mapsUrl} target="_blank" rel="noopener noreferrer" className="block text-center mt-6 text-primary font-medium hover:underline">{t("reviews.openGoogle")}</a>}
-        </div>
-      </section>
-
-      {reviewData && <section className="py-3 bg-gray-50 border-y border-gray-200">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-gray-600">
-            <span className="font-medium">{reviewData.reviewCount} {t("reviews.ratingsLabel")}</span>
-            <span className="text-gray-300">·</span>
-            <span className="flex items-center gap-1">
-              {reviewData.rating.toFixed(1)}
-              <span className="flex gap-0.5">
-                {[...Array(5)].map((_, i) => (
-                   <Star key={i} className={`w-3.5 h-3.5 ${i < Math.round(reviewData.rating) ? "fill-amber-400 text-amber-400" : "text-gray-300"}`} />
-                ))}
-              </span>
-              {t("reviews.onGoogle")}
-            </span>
-            <span className="text-gray-300">·</span>
-            <button type="button" className="text-primary font-medium cursor-pointer hover:underline bg-transparent border-none p-0" onClick={() => document.getElementById('recenzie')?.scrollIntoView({ behavior: 'smooth' })}>
-              {t("reviews.showReviews")}
-            </button>
-          </div>
-        </div>
-      </section>}
-
-      <section id="kontakt" className="py-16 relative bg-foreground text-white overflow-hidden">
+      <section id="kontakt" className="relative overflow-hidden bg-foreground py-12 sm:py-16 lg:py-20 text-white">
         <div
           className="absolute inset-0 opacity-10"
           style={{
