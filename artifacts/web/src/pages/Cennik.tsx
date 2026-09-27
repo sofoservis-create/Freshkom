@@ -10,6 +10,7 @@ import GoogleReviewCard from "@/components/GoogleReviewCard";
 import LeadForm from "@/components/LeadForm";
 import { useGoogleReviews } from "@/hooks/use-google-reviews";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { localizePath } from "@/seo/routes";
 import { getPricingSections, transportPrices } from "@/data/pricing";
 
 const PHONE_NUMBER = "+421 909 159 609";
@@ -80,7 +81,7 @@ export default function Cennik() {
               </motion.h2>
                {(section.id === "tepovanie-gaucov" || section.id === "umyvanie-okien") && (
                  <p className="text-center -mt-3 mb-6">
-                   <Link href={`${section.id === "umyvanie-okien" ? "/cistenie-okien-komarno" : "/tepovanie-komarno"}${lang === "hu" ? "?lang=hu" : ""}`} className="text-primary font-semibold hover:underline">
+                    <Link href={localizePath(section.id === "umyvanie-okien" ? "/cistenie-okien-komarno" : "/tepovanie-komarno", lang)} className="text-primary font-semibold hover:underline">
                      {section.id === "umyvanie-okien" ? t("nav.windows") : t("nav.upholstery")} →
                    </Link>
                  </p>
@@ -149,7 +150,7 @@ export default function Cennik() {
         </div>
       </section>
 
-      <section className="py-8 bg-white">
+       {lang === "sk" && <section className="py-8 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2
             initial="hidden"
@@ -210,7 +211,7 @@ export default function Cennik() {
             </a>
           </div>
         </div>
-      </section>
+       </section>}
 
       <section className="py-10 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -320,7 +321,7 @@ export default function Cennik() {
               {t("pricing.ctaSubtitle")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/kontakt" className="w-full sm:w-auto">
+              <Link href={localizePath("/kontakt", lang)} className="w-full sm:w-auto">
                 <Button
                   size="xl"
                   className="w-full text-lg px-10 py-7 rounded-full shadow-xl shadow-primary/30 hover:scale-105 transition-transform"

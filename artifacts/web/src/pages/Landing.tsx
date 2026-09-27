@@ -21,6 +21,7 @@ import { GoogleRatingBadge } from "@/components/GoogleReviewCard";
 import ReviewsSection from "@/components/ReviewsSection";
 import { useGoogleReviews } from "@/hooks/use-google-reviews";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { localizePath } from "@/seo/routes";
 
 const PHONE_NUMBER = "+421 909 159 609";
 
@@ -49,7 +50,7 @@ export default function Landing() {
   const services = [
     {
       id: "tepovanie-gaucov",
-      cennikHref: "/cennik#tepovanie-gaucov",
+      cennikHref: localizePath("/cennik#tepovanie-gaucov", lang),
       title: t("services.couchTitle"),
       icon: Sofa,
       desc: t("services.couchDesc"),
@@ -57,7 +58,7 @@ export default function Landing() {
     },
     {
       id: "tepovanie-kobercov",
-      cennikHref: "/cennik#tepovanie-kobercov",
+      cennikHref: localizePath("/cennik#tepovanie-kobercov", lang),
       title: t("services.carpetTitle"),
       icon: Sparkles,
       desc: t("services.carpetDesc"),
@@ -65,7 +66,7 @@ export default function Landing() {
     },
     {
       id: "tepovanie-matracov",
-      cennikHref: "/cennik#tepovanie-matracov",
+      cennikHref: localizePath("/cennik#tepovanie-matracov", lang),
       title: t("services.mattressTitle"),
       icon: ShieldCheck,
       desc: t("services.mattressDesc"),
@@ -73,7 +74,7 @@ export default function Landing() {
     },
     {
       id: "tepovanie-aut",
-      cennikHref: "/cennik#tepovanie-aut",
+      cennikHref: localizePath("/cennik#tepovanie-aut", lang),
       title: t("services.carTitle"),
       icon: Car,
       desc: t("services.carDesc"),
@@ -81,7 +82,7 @@ export default function Landing() {
     },
     {
       id: "umyvanie-okien",
-      cennikHref: "/cennik#umyvanie-okien",
+      cennikHref: localizePath("/cennik#umyvanie-okien", lang),
       title: t("services.windowTitle"),
       icon: Droplets,
       desc: t("services.windowDesc"),
@@ -89,7 +90,7 @@ export default function Landing() {
     },
     {
       id: "hlbkove-cistenie",
-      cennikHref: "/cennik",
+      cennikHref: localizePath("/cennik", lang),
       title: t("services.deepCleanTitle"),
       icon: Sparkles,
       desc: t("services.deepCleanDesc"),
@@ -272,16 +273,16 @@ export default function Landing() {
             ))}
           </div>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Link href={`/tepovanie-komarno${lang === "hu" ? "?lang=hu" : ""}`} className="w-full sm:w-auto text-center rounded-full bg-primary text-white font-semibold px-6 py-3.5 hover:bg-primary/90 transition-colors">
+            <Link href={localizePath("/tepovanie-komarno", lang)} className="w-full sm:w-auto text-center rounded-full bg-primary text-white font-semibold px-6 py-3.5 hover:bg-primary/90 transition-colors">
               {t("nav.upholstery")}
             </Link>
-            <Link href={`/cistenie-okien-komarno${lang === "hu" ? "?lang=hu" : ""}`} className="w-full sm:w-auto text-center rounded-full border border-primary text-primary font-semibold px-6 py-3.5 hover:bg-primary/5 transition-colors">
+            <Link href={localizePath("/cistenie-okien-komarno", lang)} className="w-full sm:w-auto text-center rounded-full border border-primary text-primary font-semibold px-6 py-3.5 hover:bg-primary/5 transition-colors">
               {t("nav.windows")}
             </Link>
           </div>
 
           <div className="text-center mt-10">
-            <Link href="/cennik">
+            <Link href={localizePath("/cennik", lang)}>
               <Button size="lg" variant="outline" className="rounded-full text-base sm:text-lg px-8 group">
                 {t("services.viewPricing")}
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />

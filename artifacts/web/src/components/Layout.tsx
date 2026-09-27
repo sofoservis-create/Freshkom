@@ -3,6 +3,7 @@ import { Link, useLocation } from "wouter";
 import { Phone, Mail, Clock, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { localizePath } from "@/seo/routes";
 
 const PHONE_NUMBER = "+421 909 159 609";
 const EMAIL = "info@freshkom.sk";
@@ -31,13 +32,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     { href: "/cennik", label: t("nav.pricing") },
     { href: "/kontakt", label: t("nav.contact") },
   ];
-  const localized = (href: string) => lang === "hu" ? `${href}?lang=hu` : href;
+  const localized = (href: string) => localizePath(href, lang);
 
   const scrollToContact = () => {
-    if (location === "/") {
+    if (location === localized("/")) {
       document.getElementById("kontakt")?.scrollIntoView({ behavior: "smooth" });
     } else {
-      setLocation("/kontakt");
+      setLocation(localized("/kontakt"));
     }
     setMobileMenuOpen(false);
   };
@@ -89,14 +90,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
       <nav ref={navRef} className="sticky top-0 z-50 glass-effect">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2" onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}>
+          <Link href={localized("/")} className="flex items-center gap-2" onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}>
              <img src={`${import.meta.env.BASE_URL}images/optimized/logo-mascot.webp`} alt="Freshkom" width={160} height={160} className="h-12 w-12 sm:h-16 sm:w-16 object-contain" />
              <img src={`${import.meta.env.BASE_URL}images/optimized/logo-text.webp`} alt="Freshkom" width={400} height={68} className="h-7 max-w-[128px] sm:h-9 sm:max-w-none w-auto object-contain" />
           </Link>
 
            <div className="hidden lg:flex items-center gap-3 xl:gap-6">
             {navLinks.map(link => (
-               <Link key={link.href} href={localized(link.href)} className={`text-sm xl:text-base font-medium transition-colors hover:text-primary ${location === link.href ? 'text-primary' : 'text-foreground'}`}>
+                <Link key={link.href} href={localized(link.href)} className={`text-sm xl:text-base font-medium transition-colors hover:text-primary ${location === localized(link.href) ? 'text-primary' : 'text-foreground'}`}>
                 {link.label}
               </Link>
             ))}
@@ -127,7 +128,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         {mobileMenuOpen && (
            <div className="lg:hidden absolute top-20 left-0 w-full bg-white border-b shadow-lg py-4 px-4 flex flex-col gap-2 max-h-[calc(100dvh-5rem)] overflow-y-auto">
             {navLinks.map(link => (
-               <Link key={link.href} href={localized(link.href)} onClick={() => setMobileMenuOpen(false)} className={`text-lg font-medium p-3 rounded-xl transition-colors ${location === link.href ? 'bg-primary/10 text-primary' : 'hover:bg-gray-50'}`}>
+                <Link key={link.href} href={localized(link.href)} onClick={() => setMobileMenuOpen(false)} className={`text-lg font-medium p-3 rounded-xl transition-colors ${location === localized(link.href) ? 'bg-primary/10 text-primary' : 'hover:bg-gray-50'}`}>
                 {link.label}
               </Link>
             ))}
@@ -167,7 +168,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
             <div>
-              <Link href="/" className="flex items-center gap-3 mb-6">
+              <Link href={localized("/")} className="flex items-center gap-3 mb-6">
                 <img src={`${import.meta.env.BASE_URL}images/optimized/logo-mascot.webp`} alt="Freshkom" width={160} height={160} loading="lazy" className="h-12 w-12 object-contain" />
                 <img src={`${import.meta.env.BASE_URL}images/optimized/logo-text.webp`} alt="Freshkom" width={400} height={68} loading="lazy" className="h-10 w-auto max-w-[160px] object-contain brightness-0 invert" />
               </Link>
@@ -188,12 +189,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <ul className="space-y-3 text-gray-400">
                 <li><Link href={localized("/tepovanie-komarno")} className="hover:text-white transition-colors">{t("nav.upholstery")}</Link></li>
                 <li><Link href={localized("/cistenie-okien-komarno")} className="hover:text-white transition-colors">{t("nav.windows")}</Link></li>
-                <li><Link href="/cennik#tepovanie-gaucov" className="hover:text-white transition-colors">{t("footer.serviceCouchUpholstery")}</Link></li>
-                <li><Link href="/cennik#tepovanie-kobercov" className="hover:text-white transition-colors">{t("footer.serviceCarpets")}</Link></li>
-                <li><Link href="/cennik#tepovanie-matracov" className="hover:text-white transition-colors">{t("footer.serviceMattresses")}</Link></li>
-                <li><Link href="/cennik#tepovanie-aut" className="hover:text-white transition-colors">{t("footer.serviceCars")}</Link></li>
-                <li><Link href="/cennik#umyvanie-okien" className="hover:text-white transition-colors">{t("footer.serviceWindows")}</Link></li>
-                <li><Link href="/cennik" className="hover:text-white transition-colors">{t("footer.serviceDeepCleaning")}</Link></li>
+                <li><Link href={localized("/cennik#tepovanie-gaucov")} className="hover:text-white transition-colors">{t("footer.serviceCouchUpholstery")}</Link></li>
+                <li><Link href={localized("/cennik#tepovanie-kobercov")} className="hover:text-white transition-colors">{t("footer.serviceCarpets")}</Link></li>
+                <li><Link href={localized("/cennik#tepovanie-matracov")} className="hover:text-white transition-colors">{t("footer.serviceMattresses")}</Link></li>
+                <li><Link href={localized("/cennik#tepovanie-aut")} className="hover:text-white transition-colors">{t("footer.serviceCars")}</Link></li>
+                <li><Link href={localized("/cennik#umyvanie-okien")} className="hover:text-white transition-colors">{t("footer.serviceWindows")}</Link></li>
+                <li><Link href={localized("/cennik")} className="hover:text-white transition-colors">{t("footer.serviceDeepCleaning")}</Link></li>
               </ul>
             </div>
             <div>
@@ -220,7 +221,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </div>
       </footer>
 
-       {!["/tepovanie-komarno", "/cistenie-okien-komarno"].includes(location) && <a
+       {!["/tepovanie-komarno", "/cistenie-okien-komarno"].some(path => location === localized(path)) && <a
         href="https://wa.me/421909159609"
         target="_blank"
         rel="noopener noreferrer"

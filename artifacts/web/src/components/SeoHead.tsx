@@ -3,7 +3,9 @@ import { Helmet } from "react-helmet-async";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useGoogleReviews } from "@/hooks/use-google-reviews";
 import type { GoogleReviewsResponse } from "@workspace/api-client-react";
-import { serviceMeta, serviceSeo, type ServicePageKey } from "@/seo/serviceMeta";
+import { pageSeo } from "@/seo/pageMeta";
+import type { PagePath } from "@/seo/routes";
+import type { ServicePageKey } from "@/seo/serviceMeta";
 
 const PHONE = "+421909159609";
 const EMAIL = "info@freshkom.sk";
@@ -14,51 +16,19 @@ interface SeoHeadProps {
   page: "landing" | "cennik" | "kontakt" | ServicePageKey;
 }
 
-const seoData = {
-  sk: {
-    landing: {
-      title: "Tepovanie a Čistenie Komárno | Freshkom",
-      description: "Profesionálne tepovanie sedačiek, kobercov a áut v Komárne. Rýchle schnutie, ekologické prostriedky, recenzie na Google. Zavolajte: +421 909 159 609.",
-    },
-    cennik: {
-      title: "Cenník Tepovacích Služieb Komárno | Freshkom",
-      description: "Transparentný cenník tepovacích a čistiacich služieb Freshkom Komárno. Tepovanie sedačky od 30 €, koberec od 3 €/m². Ceny vrátane dopravy.",
-    },
-    kontakt: {
-      title: "Kontakt — Tepovanie Komárno | Freshkom",
-      description: "Kontaktujte Freshkom Komárno — tepovanie a čistenie. Tel: +421 909 159 609, email: info@freshkom.sk. Pracujeme PO–SOB 7:00–21:00.",
-    },
-  },
-  hu: {
-    landing: {
-      title: "Kárpittisztítás és Ablaktisztítás Komárom | Freshkom",
-      description: "Professzionális kárpittisztítás Komáromban. Kanapé, szőnyeg, matrac, autó tisztítás. Google értékelések. Hívjon: +421 909 159 609.",
-    },
-    cennik: {
-      title: "Takarítási Árlista Komárom | Freshkom",
-      description: "Freshkom Komárom takarítási árlista. Kanapétisztítás 30 €-tól, szőnyegtisztítás 3 €/m²-től. Átlátható árak, szállítás beleértve.",
-    },
-    kontakt: {
-      title: "Kapcsolat — Kárpittisztítás Komárom | Freshkom",
-      description: "Lépjen kapcsolatba a Freshkom Komárom kárpittisztítóval. Tel: +421 909 159 609, email: info@freshkom.sk. Hétfőtől szombatig 7:00–21:00.",
-    },
-  },
-};
-
-const paths: Record<string, string> = {
+const paths: Record<SeoHeadProps["page"], PagePath> = {
   landing: "/",
   cennik: "/cennik",
   kontakt: "/kontakt",
+  tepovanie: "/tepovanie-komarno",
+  okna: "/cistenie-okien-komarno",
 };
 
 function getSiteUrl(): string {
   if (import.meta.env.VITE_APP_URL) {
     return import.meta.env.VITE_APP_URL.replace(/\/$/, "");
   }
-  if (typeof window !== "undefined") {
-    return window.location.origin;
-  }
-  return "";
+  return "https://freshkom.sk";
 }
 
 function buildLocalBusinessSchema(base: string, reviews?: GoogleReviewsResponse) {
@@ -67,7 +37,7 @@ function buildLocalBusinessSchema(base: string, reviews?: GoogleReviewsResponse)
   "@type": ["LocalBusiness", "CleaningService"],
   name: "Freshkom",
   url: base || undefined,
-  description: "Profesionálna firma na tepovanie sedačiek, kobercov, matracov a umývanie okien v Komárne a okolí do 30 km.",
+  description: "Tepovanie a čistenie okien v Komárne (SK) a Komárome (HU).",
   telephone: `+421909159609`,
   email: EMAIL,
   image: `${base}/images/hero-real.webp`,
@@ -83,15 +53,10 @@ function buildLocalBusinessSchema(base: string, reviews?: GoogleReviewsResponse)
     latitude: 47.7643,
     longitude: 18.128,
   },
-  areaServed: {
-    "@type": "GeoCircle",
-    geoMidpoint: {
-      "@type": "GeoCoordinates",
-      latitude: 47.7643,
-      longitude: 18.128,
-    },
-    geoRadius: "30000",
-  },
+  areaServed: [
+    { "@type": "Place", name: "Komárno", address: { "@type": "PostalAddress", addressCountry: "SK" } },
+    { "@type": "Place", name: "Komárom", address: { "@type": "PostalAddress", addressCountry: "HU" } },
+  ],
   openingHoursSpecification: [
     {
       "@type": "OpeningHoursSpecification",
@@ -151,7 +116,7 @@ const faqSchema = {
       {
         "@type": "Question",
         name: "Koľko stojí tepovanie sedačky v Komárne?",
-        acceptedAnswer: { "@type": "Answer", text: "Dvojmiestna sedačka od 30 €, trojmiestna od 40 €. Cena zahŕňa dopravu v Komárne." },
+        acceptedAnswer: { "@type": "Answer", text: "Dvojmiestna sedačka od 30 €, trojmiestna od 40 €. Dopravu si overte pri dopyte." },
       },
       {
         "@type": "Question",
@@ -161,7 +126,7 @@ const faqSchema = {
       {
         "@type": "Question",
         name: "Dochádzate aj mimo Komárno?",
-        acceptedAnswer: { "@type": "Answer", text: "Áno, pôsobíme v okruhu 30 km vrátane Nových Zámkov, Hurbanova, Kolárova a Štúrova. Príplatok za dopravu je individuálny." },
+        acceptedAnswer: { "@type": "Answer", text: "Pôsobíme v Komárne na Slovensku aj v Komárome v Maďarsku. Pri dopyte nám povedzte miesto realizácie." },
       },
       {
         "@type": "Question",
@@ -182,7 +147,7 @@ const faqSchema = {
       {
         "@type": "Question",
         name: "Mennyibe kerül a kanapétisztítás Komáromban?",
-        acceptedAnswer: { "@type": "Answer", text: "2 személyes kanapé 30 €-tól, 3 személyes kanapé 40 €-tól. Az ár tartalmazza a komáromi kiszállítást." },
+        acceptedAnswer: { "@type": "Answer", text: "2 személyes kanapé 30 €-tól, 3 személyes kanapé 40 €-tól. A kiszállítás részleteiről érdeklődjön." },
       },
       {
         "@type": "Question",
@@ -192,7 +157,7 @@ const faqSchema = {
       {
         "@type": "Question",
         name: "Komáromon kívülre is kiszállnak?",
-        acceptedAnswer: { "@type": "Answer", text: "Igen, 30 km-es körzetben dolgozunk, beleértve Érsekújvárt, Ógyallát, Gútát és Párkányt. A kiszállási díj egyéni." },
+        acceptedAnswer: { "@type": "Answer", text: "Komáromban (Magyarország) és Komárnóban (Szlovákia) is dolgozunk. Kérjük, ajánlatkéréskor adja meg a helyszínt." },
       },
       {
         "@type": "Question",
@@ -213,12 +178,12 @@ export default function SeoHead({ page }: SeoHeadProps) {
   const { data: reviews } = useGoogleReviews();
   const base = getSiteUrl();
   const isService = page === "tepovanie" || page === "okna";
-  const service = isService ? serviceSeo(page, lang, base) : null;
-  const data = service ?? seoData[lang][page as "landing" | "cennik" | "kontakt"];
-  const path = service ? serviceMeta[page as ServicePageKey].path : paths[page];
-  const canonicalUrl = service?.url ?? `${base}${path}${lang !== "sk" ? `?lang=${lang}` : ""}`;
-  const skUrl = service?.skUrl ?? `${base}${path}`;
-  const huUrl = service?.huUrl ?? `${base}${path}?lang=hu`;
+  const path = paths[page];
+  const data = pageSeo(path, lang, base);
+  const service = isService ? data : null;
+  const canonicalUrl = data.url;
+  const skUrl = data.skUrl;
+  const huUrl = data.huUrl;
   const ogImage = `${base}/opengraph.jpg`;
   const localBusinessSchema = !isService ? buildLocalBusinessSchema(base, reviews) : null;
 
@@ -238,7 +203,7 @@ export default function SeoHead({ page }: SeoHeadProps) {
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: lang === "sk" ? "Úvod" : "Kezdőlap", item: `${base}/` },
+             { "@type": "ListItem", position: 1, name: lang === "sk" ? "Úvod" : "Kezdőlap", item: lang === "sk" ? `${base}/` : `${base}/hu` },
              { "@type": "ListItem", position: 2, name: breadcrumbNames[lang][page], item: canonicalUrl },
           ],
         }

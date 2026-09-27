@@ -2,12 +2,13 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "wouter";
 import { ArrowLeft, Phone } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { localizePath } from "@/seo/routes";
 
 const PHONE_NUMBER = "+421 909 159 609";
 const PHONE_HREF = "tel:+421909159609";
 
 export default function NotFound() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   return (
     <>
@@ -32,7 +33,7 @@ export default function NotFound() {
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link
-              href="/"
+              href={localizePath("/", lang)}
               className="inline-flex items-center gap-2 bg-primary text-white font-semibold px-6 py-3 rounded-xl shadow-md hover:bg-primary/90 active:scale-95 transition-all"
             >
               <ArrowLeft className="w-4 h-4" />

@@ -2,11 +2,24 @@
   "buildCommand": "pnpm exec tsc -p api/tsconfig.json --noEmit && pnpm --filter @workspace/web build",
   "outputDirectory": "artifacts/web/dist",
   "framework": "vite",
+  "redirects": [
+    { "source": "/", "has": [{ "type": "query", "key": "lang", "value": "hu" }], "destination": "/hu", "permanent": true },
+    { "source": "/cennik", "has": [{ "type": "query", "key": "lang", "value": "hu" }], "destination": "/hu/cennik", "permanent": true },
+    { "source": "/kontakt", "has": [{ "type": "query", "key": "lang", "value": "hu" }], "destination": "/hu/kontakt", "permanent": true },
+    { "source": "/tepovanie-komarno", "has": [{ "type": "query", "key": "lang", "value": "hu" }], "destination": "/hu/tepovanie-komarno", "permanent": true },
+    { "source": "/cistenie-okien-komarno", "has": [{ "type": "query", "key": "lang", "value": "hu" }], "destination": "/hu/cistenie-okien-komarno", "permanent": true }
+  ],
   "rewrites": [
-    { "source": "/tepovanie-komarno", "has": [{ "type": "query", "key": "lang", "value": "hu" }], "destination": "/tepovanie-komarno-hu.html" },
-    { "source": "/cistenie-okien-komarno", "has": [{ "type": "query", "key": "lang", "value": "hu" }], "destination": "/cistenie-okien-komarno-hu.html" },
-    { "source": "/tepovanie-komarno", "destination": "/tepovanie-komarno.html" },
-    { "source": "/cistenie-okien-komarno", "destination": "/cistenie-okien-komarno.html" },
+    { "source": "/hu", "destination": "/hu.html" },
+    { "source": "/hu/cennik", "destination": "/hu-cennik.html" },
+    { "source": "/hu/kontakt", "destination": "/hu-kontakt.html" },
+    { "source": "/hu/tepovanie-komarno", "destination": "/hu-tepovanie-komarno.html" },
+    { "source": "/hu/cistenie-okien-komarno", "destination": "/hu-cistenie-okien-komarno.html" },
+    { "source": "/", "destination": "/sk.html" },
+    { "source": "/cennik", "destination": "/sk-cennik.html" },
+    { "source": "/kontakt", "destination": "/sk-kontakt.html" },
+    { "source": "/tepovanie-komarno", "destination": "/sk-tepovanie-komarno.html" },
+    { "source": "/cistenie-okien-komarno", "destination": "/sk-cistenie-okien-komarno.html" },
     { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]
 }

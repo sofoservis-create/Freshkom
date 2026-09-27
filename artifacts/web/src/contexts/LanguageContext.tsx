@@ -1,5 +1,7 @@
-import { createContext, useContext, useState, useCallback, type ReactNode } from "react";
+import { createContext, useContext, useCallback, type ReactNode } from "react";
+import { useLocation } from "wouter";
 import { translations, type Lang, type TranslationKeys } from "@/i18n";
+import { languageOfPath, localizePath } from "@/seo/routes";
 
 type NestedKeyOf<T> = T extends string
   ? ""
@@ -19,8 +21,6 @@ interface LanguageContextValue {
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
-const STORAGE_KEY = "freshkom-lang";
-
 function getNestedValue(obj: Record<string, unknown>, path: string): string {
   const keys = path.split(".");
   let current: unknown = obj;
@@ -34,35 +34,13 @@ function getNestedValue(obj: Record<string, unknown>, path: string): string {
   return typeof current === "string" ? current : path;
 }
 
-function getInitialLang(): Lang {
-  if (typeof window !== "undefined") {
-    const params = new URLSearchParams(window.location.search);
-    const urlLang = params.get("lang");
-    if (urlLang === "sk" || urlLang === "hu") return urlLang;
-    if (["/tepovanie-komarno", "/cistenie-okien-komarno"].includes(window.location.pathname)) return "sk";
-  }
-  try {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored === "sk" || stored === "hu") return stored;
-  } catch {}
-  return "sk";
-}
-
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Lang>(getInitialLang);
+  const [location, navigate] = useLocation();
+  const lang = languageOfPath(location);
 
   const setLang = useCallback((newLang: Lang) => {
-    setLangState(newLang);
-    if (typeof window !== "undefined") {
-      const url = new URL(window.location.href);
-      if (newLang === "hu") url.searchParams.set("lang", "hu");
-      else url.searchParams.delete("lang");
-      window.history.replaceState(window.history.state, "", url.pathname + url.search + url.hash);
-    }
-    try {
-      localStorage.setItem(STORAGE_KEY, newLang);
-    } catch {}
-  }, []);
+    if (newLang !== lang) navigate(localizePath(location, newLang) + window.location.hash);
+  }, [lang, location, navigate]);
 
   const t = useCallback(
     (key: TranslationKey): string => {

@@ -37,10 +37,15 @@ function Router() {
       <Suspense fallback={<div className="min-h-screen" />}>
         <Switch>
           <Route path="/" component={Landing} />
+          <Route path="/hu" component={Landing} />
           <Route path="/cennik" component={Cennik} />
+          <Route path="/hu/cennik" component={Cennik} />
           <Route path="/kontakt" component={Kontakt} />
+          <Route path="/hu/kontakt" component={Kontakt} />
           <Route path="/tepovanie-komarno">{() => <ServicePage kind="upholstery" />}</Route>
+          <Route path="/hu/tepovanie-komarno">{() => <ServicePage kind="upholstery" />}</Route>
           <Route path="/cistenie-okien-komarno">{() => <ServicePage kind="windows" />}</Route>
+          <Route path="/hu/cistenie-okien-komarno">{() => <ServicePage kind="windows" />}</Route>
           <Route component={NotFound} />
         </Switch>
       </Suspense>
@@ -53,12 +58,12 @@ function App() {
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
-          <LanguageProvider>
-            <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+          <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+            <LanguageProvider>
               <Router />
-            </WouterRouter>
-            <Toaster />
-          </LanguageProvider>
+            </LanguageProvider>
+          </WouterRouter>
+          <Toaster />
         </TooltipProvider>
       </QueryClientProvider>
     </HelmetProvider>

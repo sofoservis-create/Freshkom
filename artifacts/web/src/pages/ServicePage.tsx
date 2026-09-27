@@ -7,6 +7,7 @@ import ReviewsSection from "@/components/ReviewsSection";
 import { GoogleRatingBadge } from "@/components/GoogleReviewCard";
 import { useGoogleReviews } from "@/hooks/use-google-reviews";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { localizePath } from "@/seo/routes";
 import { getPricingSections, transportPrices } from "@/data/pricing";
 
 type Kind = "upholstery" | "windows";
@@ -46,7 +47,7 @@ type PageCopy = {
 const copy: Record<"sk" | "hu", Record<Kind, PageCopy>> = {
   sk: {
     upholstery: {
-      eyebrow: "Freshkom / služby v Komárne",
+      eyebrow: "Freshkom / Komárno (SK) a Komárom (HU)",
       title: "Tepovanie v Komárne",
       intro: "Sedačka, kreslo, matrac či koberec? Napíšte nám, čo potrebujete vytepovať. Cenu si môžete pozrieť hneď nižšie a termín dohodneme spoločne.",
       heroAlt: "Tepovanie čalúneného nábytku – Freshkom Komárno",
@@ -70,7 +71,7 @@ const copy: Record<"sk" | "hu", Record<Kind, PageCopy>> = {
       steps: [
         { title: "Poviete nám, čo potrebujete", text: "Vyberte položku v cenníku alebo nám pošlite krátky opis a počet kusov." },
         { title: "Dohodneme si podrobnosti", text: "Telefonicky alebo cez formulár spolu prejdeme rozsah práce a termín." },
-        { title: "Prídeme za vami", text: "Tepovanie riešime priamo u vás v Komárne a okolí." },
+        { title: "Prídeme za vami", text: "Tepovanie riešime v Komárne na Slovensku aj v Komárome v Maďarsku." },
       ],
       faqTitle: "Často sa pýtate",
       faq: [
@@ -90,7 +91,7 @@ const copy: Record<"sk" | "hu", Record<Kind, PageCopy>> = {
       contactPage: "Kontakt",
     },
     windows: {
-      eyebrow: "Freshkom / služby v Komárne",
+      eyebrow: "Freshkom / Komárno (SK) a Komárom (HU)",
       title: "Čistenie okien v Komárne",
       intro: "Malé okno, bežné okno, balkónové dvere alebo výklad? Pozrite si ceny podľa typu a ozvite sa nám s počtom okien. Dohodneme rozsah aj termín.",
       heroAlt: "Umývanie okien – Freshkom Komárno",
@@ -114,7 +115,7 @@ const copy: Record<"sk" | "hu", Record<Kind, PageCopy>> = {
       steps: [
         { title: "Spočítate okná", text: "Napíšte nám typ a približný počet okien, prípadne ďalšie dôležité podrobnosti." },
         { title: "Prejdeme rozsah", text: "Telefonicky alebo cez formulár si potvrdíme, čo potrebujete umyť a kedy vám to vyhovuje." },
-        { title: "Prídeme za vami", text: "Umývanie okien riešime priamo u vás v Komárne a okolí." },
+        { title: "Prídeme za vami", text: "Umývanie okien riešime v Komárne na Slovensku aj v Komárome v Maďarsku." },
       ],
       faqTitle: "Často sa pýtate",
       faq: [
@@ -136,7 +137,7 @@ const copy: Record<"sk" | "hu", Record<Kind, PageCopy>> = {
   },
   hu: {
     upholstery: {
-      eyebrow: "Freshkom / szolgáltatások Komáromban",
+      eyebrow: "Freshkom / Komárom (HU) és Komárno (SK)",
       title: "Kárpittisztítás Komáromban",
       intro: "Kanapé, fotel, matrac vagy szőnyeg? Írja meg, mit szeretne kitisztíttatni. Az árakat lent rögtön megnézheti, az időpontot pedig közösen egyeztetjük.",
       heroAlt: "Kárpitozott bútor tisztítása – Freshkom Komárom",
@@ -148,7 +149,7 @@ const copy: Record<"sk" | "hu", Record<Kind, PageCopy>> = {
       pricingIntro: "Válassza ki, mit szeretne kitisztíttatni. Az alábbi árak az aktuális árlistánkból származnak.",
       allPrices: "Teljes kárpittisztítási árlista",
       otherPrices: "További tisztítási lehetőségek",
-      transportNote: "A kiszállítás díja az árlista szerint alakul. Ha nem biztos benne, melyik tétel illik Önre, írja le nekünk az ajánlatkérésben.",
+       transportNote: "A kiszállítás részleteit a helyszín alapján egyeztetjük. Kérjük, ajánlatkéréskor adja meg a címet.",
       whatTitle: "Mit tisztíttathat nálunk?",
       whatIntro: "Otthon és az autóban is vannak felületek, amelyekhez nem elég egy gyors áttörlés. Válassza ki, mire van szüksége.",
       features: [
@@ -160,7 +161,7 @@ const copy: Record<"sk" | "hu", Record<Kind, PageCopy>> = {
       steps: [
         { title: "Elmondja, mit szeretne", text: "Válasszon tételt az árlistából, vagy írjon rövid leírást és darabszámot." },
         { title: "Pontosítjuk a részleteket", text: "Telefonon vagy az űrlapon egyeztetjük a munka terjedelmét és az időpontot." },
-        { title: "Önhöz megyünk", text: "Komáromban és környékén a helyszínen végezzük a tisztítást." },
+        { title: "Önhöz megyünk", text: "Komáromban (Magyarország) és Komárnóban (Szlovákia) is dolgozunk." },
       ],
       faqTitle: "Gyakori kérdések",
       faq: [
@@ -180,7 +181,7 @@ const copy: Record<"sk" | "hu", Record<Kind, PageCopy>> = {
       contactPage: "Kapcsolat",
     },
     windows: {
-      eyebrow: "Freshkom / szolgáltatások Komáromban",
+      eyebrow: "Freshkom / Komárom (HU) és Komárno (SK)",
       title: "Ablakmosás Komáromban",
       intro: "Kis ablak, normál ablak, erkélyajtó vagy kirakat? Nézze meg az árakat típus szerint, és írja meg, hány ablakról van szó. Egyeztetjük a részleteket és az időpontot.",
       heroAlt: "Ablakmosás – Freshkom Komárom",
@@ -192,7 +193,7 @@ const copy: Record<"sk" | "hu", Record<Kind, PageCopy>> = {
       pricingIntro: "A különböző ablaktípusokat és áraikat egy helyen találja.",
       allPrices: "Teljes ablakmosási árlista",
       otherPrices: "További tételek",
-      transportNote: "A kiszállítás díja az árlista szerint alakul. Több vagy nem szokványos ablak esetén írja meg a részleteket.",
+       transportNote: "A kiszállítás részleteit a helyszín alapján egyeztetjük. Több vagy nem szokványos ablak esetén írja meg a részleteket.",
       whatTitle: "Ablakok otthon és az üzletben",
       whatIntro: "Minden helyen másmilyen ablakok vannak. Az ajánlatkérésnél elég megadni a típusukat és a számukat.",
       features: [
@@ -204,7 +205,7 @@ const copy: Record<"sk" | "hu", Record<Kind, PageCopy>> = {
       steps: [
         { title: "Összeszámolja az ablakokat", text: "Írja meg a típusukat, hozzávetőleges számukat és a fontos részleteket." },
         { title: "Pontosítjuk a munkát", text: "Telefonon vagy az űrlapon egyeztetjük, mit kell megtisztítani és mikor alkalmas Önnek." },
-        { title: "Önhöz megyünk", text: "Komáromban és környékén a helyszínen végezzük az ablakmosást." },
+        { title: "Önhöz megyünk", text: "Komáromban (Magyarország) és Komárnóban (Szlovákia) is dolgozunk." },
       ],
       faqTitle: "Gyakori kérdések",
       faq: [
@@ -243,7 +244,7 @@ export default function ServicePage({ kind }: { kind: Kind }) {
   const mainSection = sections.find((section) => section.id === pricingId);
   const highlightedItem = mainSection?.items[isUpholstery ? 2 : 1] ?? mainSection?.items[0];
   const otherHref = isUpholstery ? "/cistenie-okien-komarno" : "/tepovanie-komarno";
-  const route = (path: string, hash = "") => `${path}${lang === "hu" ? "?lang=hu" : ""}${hash}`;
+  const route = (path: string, hash = "") => localizePath(`${path}${hash}`, lang);
   const priceHref = route("/cennik", `#${pricingId}`);
 
   return (
@@ -367,7 +368,7 @@ export default function ServicePage({ kind }: { kind: Kind }) {
           )}
           <div className="mt-7 flex flex-col gap-4 rounded-2xl border border-primary/15 bg-accent/40 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
             <p className="max-w-2xl text-sm leading-relaxed text-foreground/75">
-              {c.transportNote} {t("pricing.transportKomarno")}: {transportPrices.komarno}; {t("pricing.transportOutside")}: {transportPrices.outside}.
+               {c.transportNote} {lang === "sk" && `${t("pricing.transportKomarno")}: ${transportPrices.komarno}; ${t("pricing.transportOutside")}: ${transportPrices.outside}.`}
             </p>
             <a href="#kontakt" data-testid="link-price-to-form" className="inline-flex min-h-11 shrink-0 items-center gap-2 font-bold text-primary hover:underline">
               {c.enquire}<ArrowRight className="h-4 w-4" aria-hidden="true" />
