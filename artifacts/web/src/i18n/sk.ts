@@ -14,6 +14,7 @@ export const sk = {
   },
   footer: {
     description: "Tepovanie a umývanie okien v Komárne na Slovensku aj v Komárome v Maďarsku.",
+    language: "Jazyk stránky",
     ourServices: "Naše služby",
     serviceCouchUpholstery: "Tepovanie gaučov a sedačiek",
     serviceCarpets: "Tepovanie kobercov",

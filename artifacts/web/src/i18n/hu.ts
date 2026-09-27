@@ -16,6 +16,7 @@ export const hu: TranslationKeys = {
   },
   footer: {
     description: "Kárpittisztítás és ablaktisztítás Komáromban (Magyarország) és Komárnóban (Szlovákia).",
+    language: "Az oldal nyelve",
     ourServices: "Szolgáltatásaink",
     serviceCouchUpholstery: "Kanapék és ülőgarnitúrák tisztítása",
     serviceCarpets: "Szőnyegtisztítás",
