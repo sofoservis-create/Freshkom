@@ -26,7 +26,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { href: "/", label: t("nav.home") },
     { href: "/tepovanie-komarno", label: t("nav.upholstery") },
     { href: "/cistenie-okien-komarno", label: t("nav.windows") },
     { href: "/cennik", label: t("nav.pricing") },
@@ -89,24 +88,24 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </div>
 
       <nav ref={navRef} className="sticky top-0 z-50 glass-effect">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between lg:grid lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]">
           <Link href={localized("/")} className="flex items-center gap-2" onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}>
-             <img src={`${import.meta.env.BASE_URL}images/optimized/logo-mascot.webp`} alt="Freshkom" width={160} height={160} className="h-12 w-12 sm:h-16 sm:w-16 object-contain" />
-             <img src={`${import.meta.env.BASE_URL}images/optimized/logo-text.webp`} alt="Freshkom" width={400} height={68} className="h-7 max-w-[128px] sm:h-9 sm:max-w-none w-auto object-contain" />
+              <img src={`${import.meta.env.BASE_URL}images/optimized/logo-mascot.webp`} alt="Freshkom" width={160} height={160} className="h-12 w-12 sm:h-16 sm:w-16 lg:h-14 lg:w-14 xl:h-16 xl:w-16 object-contain" />
+              <img src={`${import.meta.env.BASE_URL}images/optimized/logo-text.webp`} alt="Freshkom" width={400} height={68} className="h-7 max-w-[128px] sm:h-9 sm:max-w-none lg:max-w-[150px] xl:max-w-none w-auto object-contain" />
           </Link>
 
-           <div className="hidden lg:flex items-center gap-3 xl:gap-6">
+           <div className="hidden lg:flex items-center justify-center gap-3 xl:gap-6">
             {navLinks.map(link => (
-                <Link key={link.href} href={localized(link.href)} className={`text-sm xl:text-base font-medium transition-colors hover:text-primary ${location === localized(link.href) ? 'text-primary' : 'text-foreground'}`}>
+                <Link key={link.href} href={localized(link.href)} className={`whitespace-nowrap text-sm xl:text-base font-medium transition-colors hover:text-primary ${location === localized(link.href) ? 'text-primary' : 'text-foreground'}`}>
                 {link.label}
               </Link>
             ))}
-            <Button size="lg" onClick={scrollToContact} className="rounded-full shadow-lg shadow-primary/25 font-semibold">
-              {t("nav.getQuote")}
-            </Button>
           </div>
+           <Button size="lg" onClick={scrollToContact} className="hidden lg:inline-flex lg:justify-self-end rounded-full shadow-lg shadow-primary/25 font-semibold">
+             {t("nav.getQuote")}
+           </Button>
 
-          <div className="lg:hidden flex items-center gap-1">
+           <div className="lg:hidden flex items-center gap-1">
        <a
               href={`tel:${PHONE_NUMBER.replace(/\s/g, '')}`}
               className="p-2.5 rounded-full text-primary hover:bg-primary/10 transition-colors"
@@ -126,7 +125,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </div>
 
         {mobileMenuOpen && (
-           <div className="lg:hidden absolute top-20 left-0 w-full bg-white border-b shadow-lg py-4 px-4 flex flex-col gap-2 max-h-[calc(100dvh-5rem)] overflow-y-auto">
+            <div className="lg:hidden absolute top-20 left-0 w-full bg-white border-b shadow-lg py-4 px-4 flex flex-col gap-2 max-h-[calc(100dvh-5rem)] overflow-y-auto">
             {navLinks.map(link => (
                 <Link key={link.href} href={localized(link.href)} onClick={() => setMobileMenuOpen(false)} className={`text-lg font-medium p-3 rounded-xl transition-colors ${location === localized(link.href) ? 'bg-primary/10 text-primary' : 'hover:bg-gray-50'}`}>
                 {link.label}
