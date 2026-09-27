@@ -1,8 +1,8 @@
 # Freshkom
 
-> Freshkom poskytuje profesionálne tepovanie a čistenie domácností, kancelárií a áut v Komárne a okolí.
+> Freshkom poskytuje profesionálne tepovanie a čistenie v Komárne (Slovensko), Komárome (Maďarsko) a okolí.
 
-Freshkom je lokálna čistiaca služba pre domácnosti aj firmy. Zameriava sa na dôkladné čistenie čalúnenia, kobercov, matracov, automobilových interiérov a okien. Služby sú dostupné v slovenskom aj maďarskom jazyku.
+Freshkom je lokálna čistiaca služba pre domácnosti aj firmy. Zameriava sa na dôkladné čistenie čalúnenia, kobercov, matracov, automobilových interiérov a okien. Web má samostatné slovenské a maďarské stránky služieb.
 
 ## Služby
 
@@ -15,13 +15,21 @@ Freshkom je lokálna čistiaca služba pre domácnosti aj firmy. Zameriava sa na
 
 ## Lokalita
 
-Freshkom pôsobí v Komárne a v okolí. Dostupnosť a cena dopravy závisia od konkrétnej lokality a rozsahu objednávky.
+Freshkom pôsobí v Komárne (Slovensko), Komárome (Maďarsko) a okolí. Dostupnosť a cena dopravy závisia od konkrétnej lokality a rozsahu objednávky.
+
+## Stránky služieb
+
+- [Tepovanie v Komárne (SK)](https://freshkom.sk/tepovanie-komarno)
+- [Čistenie okien v Komárne (SK)](https://freshkom.sk/cistenie-okien-komarno)
+- [Kárpittisztítás Komáromban (HU)](https://freshkom.sk/hu/tepovanie-komarno)
+- [Ablakmosás Komáromban (HU)](https://freshkom.sk/hu/cistenie-okien-komarno)
 
 ## Cenník
 
 Aktuálne orientačné ceny a ponuka služieb sú uvedené na stránke:
 
-- [Aktuálny cenník](https://www.freshkom.sk/cennik)
+- [Aktuálny cenník (SK)](https://freshkom.sk/cennik)
+- [Árlista (HU)](https://freshkom.sk/hu/cennik)
 
 ## Kontakt a objednávka
 
@@ -30,13 +38,13 @@ Pre cenovú ponuku alebo rezerváciu termínu:
 - Telefón: +421 909 159 609
 - E-mail: info@freshkom.sk
 - WhatsApp: [Napísať cez WhatsApp](https://wa.me/421909159609)
-- Kontaktný formulár: [Kontaktovať Freshkom](https://www.freshkom.sk/kontakt)
+- Kontaktný formulár: [Kontaktovať Freshkom (SK)](https://freshkom.sk/kontakt) · [Kapcsolat (HU)](https://freshkom.sk/hu/kontakt)
 
 ## Dôležité stránky
 
-- [Úvodná stránka Freshkom](https://www.freshkom.sk/)
-- [Cenník](https://www.freshkom.sk/cennik)
-- [Kontakt](https://www.freshkom.sk/kontakt)
+- [Úvodná stránka Freshkom (SK)](https://freshkom.sk/)
+- [Kezdőlap (HU)](https://freshkom.sk/hu)
+- [Sitemap všetkých verejných stránok](https://freshkom.sk/sitemap.xml)
 - [Instagram Freshkom](https://www.instagram.com/freshkom.sk/)
 
 ## Google recenzie
@@ -49,4 +57,4 @@ Hodnotenie a počet recenzií sa na stránkach Freshkomu načítavajú z Google 
 
 ## Jazyky
 
-Web a komunikácia sú dostupné v slovenčine a maďarčine.
+Slovenské stránky sú na základných adresách; maďarské verzie sú pod `/hu`. Web a komunikácia sú dostupné v oboch jazykoch.
