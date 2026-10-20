@@ -68,6 +68,13 @@ export function getPricingSections(t: Translate): PricingSection[] {
         { name: t("pricing.insectScreen"), price: t("pricing.byAgreement"), img: "item-sietka.webp" },
       ],
     },
+    {
+      id: "radiatory",
+      title: t("pricing.sectionRadiators"),
+      items: [
+        { name: t("pricing.radiatorInterior"), price: "30€/1m", img: "item-radiator.webp" },
+      ],
+    },
   ];
 }
 

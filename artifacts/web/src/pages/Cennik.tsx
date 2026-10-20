@@ -11,11 +11,12 @@ import LeadForm from "@/components/LeadForm";
 import { useGoogleReviews } from "@/hooks/use-google-reviews";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { localizePath } from "@/seo/routes";
-import { getPricingSections, transportPrices } from "@/data/pricing";
+import { getPricingSections, transportPrices, type PricingSection } from "@/data/pricing";
 
 const PHONE_NUMBER = "+421 909 159 609";
 
 function getGridClasses(count: number): string {
+  if (count === 1) return "grid-cols-1 max-w-sm mx-auto";
   if (count <= 2) return "grid-cols-2 max-w-lg mx-auto";
   if (count === 3) return "grid-cols-2 sm:grid-cols-3 max-w-3xl mx-auto";
   if (count === 4) return "grid-cols-2 sm:grid-cols-4 max-w-5xl mx-auto";
@@ -42,6 +43,86 @@ export default function Cennik() {
   }, []);
 
   const pricingSections = getPricingSections(t);
+  const renderPricingSection = (section: PricingSection, sIdx: number) => (
+    <div key={section.id} id={section.id} className="scroll-mt-24">
+      {sIdx > 0 && <div className="mt-8" />}
+      <motion.h2
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-30px" }}
+        variants={fadeInUp}
+        className="text-xl md:text-2xl font-bold text-center mb-6 text-foreground"
+      >
+        {section.title}
+      </motion.h2>
+      {(section.id === "tepovanie-gaucov" || section.id === "umyvanie-okien") && (
+        <p className="text-center -mt-3 mb-6">
+          <Link href={localizePath(section.id === "umyvanie-okien" ? "/cistenie-okien-komarno" : "/tepovanie-komarno", lang)} className="text-primary font-semibold hover:underline">
+            {section.id === "umyvanie-okien" ? t("nav.windows") : t("nav.upholstery")} →
+          </Link>
+        </p>
+      )}
+
+      <div className={`grid gap-4 md:gap-6 ${section.id === "umyvanie-okien" ? "grid-cols-2 sm:grid-cols-4 max-w-5xl mx-auto" : getGridClasses(section.items.length)}`}>
+        {section.items.map((item, iIdx) => (
+          <motion.div
+            key={iIdx}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-20px" }}
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: { delay: iIdx * 0.06, duration: 0.4 },
+              },
+            }}
+            className="group"
+          >
+            <div className="bg-gray-50 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative">
+              {item.badge && (
+                <div className="absolute top-2 right-2 z-10 flex items-center gap-1 bg-primary text-white text-xs font-bold px-2.5 py-1 rounded-full shadow-lg">
+                  <Award className="h-3 w-3" />
+                  {item.badge}
+                </div>
+              )}
+              <div className="aspect-square overflow-hidden bg-white p-3">
+                <img
+                  src={`${import.meta.env.BASE_URL}images/optimized/${item.img}`}
+                  alt={item.name}
+                  loading="lazy"
+                  width={300}
+                  height={300}
+                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="p-3 text-center border-t border-gray-100">
+                <p className="text-sm md:text-base font-medium text-gray-800 mb-0.5 leading-tight">
+                  {item.name}
+                </p>
+                <p className="text-lg md:text-xl font-bold text-primary">
+                  {item.price}
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
+      <div className="mt-4 flex items-center justify-center gap-3 py-3 px-4 bg-primary/5 rounded-xl max-w-lg mx-auto">
+        <span className="text-sm text-gray-700 font-medium">{t("pricing.interestedInCleaning")}</span>
+        <a
+          href={`tel:${PHONE_NUMBER.replace(/\s/g, "")}`}
+          className="text-sm font-bold text-primary hover:underline flex items-center gap-1"
+        >
+          <Phone className="h-3.5 w-3.5" />
+          {t("pricing.callUs")}
+          <ArrowRight className="h-3.5 w-3.5" />
+        </a>
+      </div>
+    </div>
+  );
 
   return (
     <>
@@ -67,86 +148,9 @@ export default function Cennik() {
 
       <section className="py-8 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {pricingSections.map((section, sIdx) => (
-            <div key={sIdx} id={section.id} className="scroll-mt-24">
-              {sIdx > 0 && <div className="mt-8" />}
-              <motion.h2
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-30px" }}
-                variants={fadeInUp}
-                className="text-xl md:text-2xl font-bold text-center mb-6 text-foreground"
-              >
-                {section.title}
-              </motion.h2>
-               {(section.id === "tepovanie-gaucov" || section.id === "umyvanie-okien") && (
-                 <p className="text-center -mt-3 mb-6">
-                    <Link href={localizePath(section.id === "umyvanie-okien" ? "/cistenie-okien-komarno" : "/tepovanie-komarno", lang)} className="text-primary font-semibold hover:underline">
-                     {section.id === "umyvanie-okien" ? t("nav.windows") : t("nav.upholstery")} →
-                   </Link>
-                 </p>
-               )}
-
-               <div className={`grid gap-4 md:gap-6 ${section.id === "umyvanie-okien" ? "grid-cols-2 sm:grid-cols-4 max-w-5xl mx-auto" : getGridClasses(section.items.length)}`}>
-                {section.items.map((item, iIdx) => (
-                  <motion.div
-                    key={iIdx}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, margin: "-20px" }}
-                    variants={{
-                      hidden: { opacity: 0, y: 20 },
-                      visible: {
-                        opacity: 1,
-                        y: 0,
-                        transition: { delay: iIdx * 0.06, duration: 0.4 },
-                      },
-                    }}
-                    className="group"
-                  >
-                    <div className="bg-gray-50 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative">
-                      {item.badge && (
-                        <div className="absolute top-2 right-2 z-10 flex items-center gap-1 bg-primary text-white text-xs font-bold px-2.5 py-1 rounded-full shadow-lg">
-                          <Award className="h-3 w-3" />
-                          {item.badge}
-                        </div>
-                      )}
-                      <div className="aspect-square overflow-hidden bg-white p-3">
-                        <img
-                           src={`${import.meta.env.BASE_URL}images/optimized/${item.img}`}
-                          alt={item.name}
-                          loading="lazy"
-                          width={300}
-                          height={300}
-                          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
-                        />
-                      </div>
-                      <div className="p-3 text-center border-t border-gray-100">
-                        <p className="text-sm md:text-base font-medium text-gray-800 mb-0.5 leading-tight">
-                          {item.name}
-                        </p>
-                        <p className="text-lg md:text-xl font-bold text-primary">
-                          {item.price}
-                        </p>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-
-              <div className="mt-4 flex items-center justify-center gap-3 py-3 px-4 bg-primary/5 rounded-xl max-w-lg mx-auto">
-                <span className="text-sm text-gray-700 font-medium">{t("pricing.interestedInCleaning")}</span>
-                <a
-                  href={`tel:${PHONE_NUMBER.replace(/\s/g, "")}`}
-                  className="text-sm font-bold text-primary hover:underline flex items-center gap-1"
-                >
-                  <Phone className="h-3.5 w-3.5" />
-                  {t("pricing.callUs")}
-                  <ArrowRight className="h-3.5 w-3.5" />
-                </a>
-              </div>
-            </div>
-          ))}
+          {pricingSections
+            .filter((section) => section.id !== "radiatory")
+            .map((section, sIdx) => renderPricingSection(section, sIdx))}
         </div>
       </section>
 
@@ -212,6 +216,14 @@ export default function Cennik() {
           </div>
         </div>
        </section>}
+
+      <section className="py-8 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {pricingSections
+            .filter((section) => section.id === "radiatory")
+            .map((section) => renderPricingSection(section, 1))}
+        </div>
+      </section>
 
       <section className="py-10 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
