@@ -30,8 +30,9 @@ const serviceIds = [
   "tepovanie-matracov",
   "tepovanie-aut",
   "cistenie-caluneneho-nabytku",
+  "cistenie-koze",
   "umyvanie-okien",
-  "hlbkove-cistenie",
+  "cistenie-radiatorov",
   "ine"
 ] as const;
 
@@ -63,8 +64,9 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
     { id: "tepovanie-matracov", title: t("leadForm.serviceMattresses") },
     { id: "tepovanie-aut", title: t("leadForm.serviceCars") },
     { id: "cistenie-caluneneho-nabytku", title: t("leadForm.serviceUpholstery") },
+    { id: "cistenie-koze", title: t("leadForm.serviceLeather") },
     { id: "umyvanie-okien", title: t("leadForm.serviceWindows") },
-    { id: "hlbkove-cistenie", title: t("leadForm.serviceDeepClean") },
+    { id: "cistenie-radiatorov", title: t("leadForm.serviceRadiators") },
   ];
 
   const form = useForm<LeadFormValues>({

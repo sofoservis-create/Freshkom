@@ -18,7 +18,9 @@ export const LeadSubmissionService = {
   "tepovanie-matracov": "tepovanie-matracov",
   "tepovanie-aut": "tepovanie-aut",
   "cistenie-caluneneho-nabytku": "cistenie-caluneneho-nabytku",
+  "cistenie-koze": "cistenie-koze",
   "umyvanie-okien": "umyvanie-okien",
   "hlbkove-cistenie": "hlbkove-cistenie",
+  "cistenie-radiatorov": "cistenie-radiatorov",
   ine: "ine",
 } as const;

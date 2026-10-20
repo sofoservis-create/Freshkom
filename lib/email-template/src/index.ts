@@ -12,7 +12,9 @@ export const serviceLabels: Record<string, string> = {
   "tepovanie-matracov": "Tepovanie matracov",
   "tepovanie-aut": "Tepovanie áut",
   "cistenie-caluneneho-nabytku": "Čistenie čalúneného nábytku",
+  "cistenie-koze": "Čistenie kože",
   "umyvanie-okien": "Umývanie okien a výkladov",
+  "cistenie-radiatorov": "Čistenie radiátorov",
   "hlbkove-cistenie": "Hĺbkové čistenie",
   ine: "Iné / Zmiešané",
 };

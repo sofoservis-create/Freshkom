@@ -30,8 +30,10 @@ export const SubmitLeadBody = zod.object({
       "tepovanie-matracov",
       "tepovanie-aut",
       "cistenie-caluneneho-nabytku",
+      "cistenie-koze",
       "umyvanie-okien",
       "hlbkove-cistenie",
+      "cistenie-radiatorov",
       "ine",
     ])
     .describe("Type of service requested"),
