@@ -143,7 +143,7 @@ export default function Landing() {
           >
             <motion.span
               variants={fadeInUp}
-              className="inline-block py-1 px-3 rounded-full bg-primary/10 text-primary font-semibold text-sm mb-4 border border-primary/20"
+              className="inline-block max-w-full whitespace-normal break-words py-1 px-3 rounded-full bg-primary/10 text-primary font-semibold text-sm mb-4 border border-primary/20"
             >
               {t("hero.badge")}
             </motion.span>

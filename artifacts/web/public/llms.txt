@@ -17,12 +17,14 @@ Freshkom je lokálna čistiaca služba pre domácnosti aj firmy. Zameriava sa na
 
 Freshkom pôsobí v Komárne (Slovensko) a v okolí do 40 km vrátane Nových Zámkov, Hurbanova, Kolárova a Veľkého Medera. Dostupnosť a cena dopravy závisia od konkrétnej lokality a rozsahu objednávky.
 
+V maďarských textoch označuje názov Komárom (SK) slovenské mesto Komárno. Služby sa poskytujú v tejto lokalite a v jej okolí do 40 km, nie v maďarskom meste Komárom.
+
 ## Stránky služieb
 
 - [Tepovanie v Komárne (SK)](https://www.freshkom.sk/tepovanie-komarno)
 - [Čistenie okien v Komárne (SK)](https://www.freshkom.sk/cistenie-okien-komarno)
-- [Kárpittisztítás Komáromban (HU)](https://www.freshkom.sk/hu/tepovanie-komarno)
-- [Ablakmosás Komáromban (HU)](https://www.freshkom.sk/hu/cistenie-okien-komarno)
+- [Kárpittisztítás Komáromban (SK) és környékén](https://www.freshkom.sk/hu/tepovanie-komarno)
+- [Ablaktisztítás Komáromban (SK) és környékén](https://www.freshkom.sk/hu/cistenie-okien-komarno)
 
 ## Cenník
 

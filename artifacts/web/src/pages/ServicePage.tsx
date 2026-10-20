@@ -47,7 +47,7 @@ type PageCopy = {
 const copy: Record<"sk" | "hu", Record<Kind, PageCopy>> = {
   sk: {
     upholstery: {
-      eyebrow: "Freshkom / Komárno (SK) a Komárom (HU)",
+      eyebrow: "Freshkom / Komárno (SK) a okolie do 40 km",
       title: "Tepovanie v Komárne",
       intro: "Sedačka, kreslo, matrac či koberec? Napíšte nám, čo potrebujete vytepovať. Cenu si môžete pozrieť hneď nižšie a termín dohodneme spoločne.",
       heroAlt: "Tepovanie čalúneného nábytku – Freshkom Komárno",
@@ -71,7 +71,7 @@ const copy: Record<"sk" | "hu", Record<Kind, PageCopy>> = {
       steps: [
         { title: "Poviete nám, čo potrebujete", text: "Vyberte položku v cenníku alebo nám pošlite krátky opis a počet kusov." },
         { title: "Dohodneme si podrobnosti", text: "Telefonicky alebo cez formulár spolu prejdeme rozsah práce a termín." },
-        { title: "Prídeme za vami", text: "Tepovanie riešime v Komárne na Slovensku aj v Komárome v Maďarsku." },
+        { title: "Prídeme za vami", text: "Tepujeme v Komárne a okolitých mestách a obciach do 40 km." },
       ],
       faqTitle: "Často sa pýtate",
       faq: [
@@ -91,7 +91,7 @@ const copy: Record<"sk" | "hu", Record<Kind, PageCopy>> = {
       contactPage: "Kontakt",
     },
     windows: {
-      eyebrow: "Freshkom / Komárno (SK) a Komárom (HU)",
+      eyebrow: "Freshkom / Komárno (SK) a okolie do 40 km",
       title: "Čistenie okien v Komárne",
       intro: "Malé okno, bežné okno, balkónové dvere alebo výklad? Pozrite si ceny podľa typu a ozvite sa nám s počtom okien. Dohodneme rozsah aj termín.",
       heroAlt: "Umývanie okien – Freshkom Komárno",
@@ -115,7 +115,7 @@ const copy: Record<"sk" | "hu", Record<Kind, PageCopy>> = {
       steps: [
         { title: "Spočítate okná", text: "Napíšte nám typ a približný počet okien, prípadne ďalšie dôležité podrobnosti." },
         { title: "Prejdeme rozsah", text: "Telefonicky alebo cez formulár si potvrdíme, čo potrebujete umyť a kedy vám to vyhovuje." },
-        { title: "Prídeme za vami", text: "Umývanie okien riešime v Komárne na Slovensku aj v Komárome v Maďarsku." },
+        { title: "Prídeme za vami", text: "Okná umývame v Komárne a okolitých mestách a obciach do 40 km." },
       ],
       faqTitle: "Často sa pýtate",
       faq: [
@@ -137,10 +137,10 @@ const copy: Record<"sk" | "hu", Record<Kind, PageCopy>> = {
   },
   hu: {
     upholstery: {
-      eyebrow: "Freshkom / Komárom (HU) és Komárno (SK)",
-      title: "Kárpittisztítás Komáromban",
+      eyebrow: "Freshkom / Komárom (SK) és 40 km-es körzete",
+      title: "Kárpittisztítás Komáromban (SK)",
       intro: "Kanapé, fotel, matrac vagy szőnyeg? Írja meg, mit szeretne kitisztíttatni. Az árakat lent rögtön megnézheti, az időpontot pedig közösen egyeztetjük.",
-      heroAlt: "Kárpitozott bútor tisztítása – Freshkom Komárom",
+      heroAlt: "Kárpitozott bútor tisztítása – Freshkom, Komárom (SK)",
       call: "Hívja a Freshkomot",
       enquire: "Ajánlatkérés írásban",
       priceLabel: "Gyors betekintés az árlistába",
@@ -161,7 +161,7 @@ const copy: Record<"sk" | "hu", Record<Kind, PageCopy>> = {
       steps: [
         { title: "Elmondja, mit szeretne", text: "Válasszon tételt az árlistából, vagy írjon rövid leírást és darabszámot." },
         { title: "Pontosítjuk a részleteket", text: "Telefonon vagy az űrlapon egyeztetjük a munka terjedelmét és az időpontot." },
-        { title: "Önhöz megyünk", text: "Komáromban (Magyarország) és Komárnóban (Szlovákia) is dolgozunk." },
+        { title: "Önhöz megyünk", text: "Komáromban (SK) és a környező településeken, 40 km-es körzetben dolgozunk." },
       ],
       faqTitle: "Gyakori kérdések",
       faq: [
@@ -176,15 +176,15 @@ const copy: Record<"sk" | "hu", Record<Kind, PageCopy>> = {
       contactAlternative: "Inkább telefonálna?",
       moreTitle: "Ablakmosásra is szüksége van?",
       moreText: "Nézze meg másik komáromi szolgáltatásunkat és az ablakok árait.",
-      otherService: "Ablakmosás Komáromban",
+      otherService: "Ablakmosás Komáromban (SK)",
       allServices: "Összes szolgáltatás",
       contactPage: "Kapcsolat",
     },
     windows: {
-      eyebrow: "Freshkom / Komárom (HU) és Komárno (SK)",
-      title: "Ablakmosás Komáromban",
+      eyebrow: "Freshkom / Komárom (SK) és 40 km-es körzete",
+      title: "Ablakmosás Komáromban (SK)",
       intro: "Kis ablak, normál ablak, erkélyajtó vagy kirakat? Nézze meg az árakat típus szerint, és írja meg, hány ablakról van szó. Egyeztetjük a részleteket és az időpontot.",
-      heroAlt: "Ablakmosás – Freshkom Komárom",
+      heroAlt: "Ablakmosás – Freshkom, Komárom (SK)",
       call: "Hívja a Freshkomot",
       enquire: "Ajánlatkérés írásban",
       priceLabel: "Gyors betekintés az árlistába",
@@ -205,7 +205,7 @@ const copy: Record<"sk" | "hu", Record<Kind, PageCopy>> = {
       steps: [
         { title: "Összeszámolja az ablakokat", text: "Írja meg a típusukat, hozzávetőleges számukat és a fontos részleteket." },
         { title: "Pontosítjuk a munkát", text: "Telefonon vagy az űrlapon egyeztetjük, mit kell megtisztítani és mikor alkalmas Önnek." },
-        { title: "Önhöz megyünk", text: "Komáromban (Magyarország) és Komárnóban (Szlovákia) is dolgozunk." },
+        { title: "Önhöz megyünk", text: "Komáromban (SK) és a környező településeken, 40 km-es körzetben dolgozunk." },
       ],
       faqTitle: "Gyakori kérdések",
       faq: [
@@ -220,7 +220,7 @@ const copy: Record<"sk" | "hu", Record<Kind, PageCopy>> = {
       contactAlternative: "Inkább telefonálna?",
       moreTitle: "A kanapét is kitisztíttatná?",
       moreText: "Nézze meg komáromi kárpittisztítási szolgáltatásunkat és a kanapék, szőnyegek, matracok árait.",
-      otherService: "Kárpittisztítás Komáromban",
+      otherService: "Kárpittisztítás Komáromban (SK)",
       allServices: "Összes szolgáltatás",
       contactPage: "Kapcsolat",
     },

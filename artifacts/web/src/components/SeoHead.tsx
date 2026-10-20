@@ -61,8 +61,7 @@ function buildLocalBusinessSchema(base: string, reviews?: GoogleReviewsResponse)
     longitude: 18.128,
   },
   areaServed: [
-    { "@type": "Place", name: "Komárno", address: { "@type": "PostalAddress", addressCountry: "SK" } },
-    { "@type": "Place", name: "Komárom", address: { "@type": "PostalAddress", addressCountry: "HU" } },
+    { "@type": "Place", name: "Komárno (SK)", address: { "@type": "PostalAddress", addressCountry: "SK" } },
     {
       "@type": "GeoCircle",
       geoMidpoint: { "@type": "GeoCoordinates", latitude: 47.7643, longitude: 18.128 },

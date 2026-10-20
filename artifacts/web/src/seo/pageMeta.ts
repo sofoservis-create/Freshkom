@@ -4,12 +4,12 @@ import { legalDocuments, type LegalKind } from "../content/legalDocuments";
 
 export const pageMeta = {
   "/": {
-    sk: { title: "Tepovanie a čistenie okien Komárno (SK) | Freshkom", description: "Tepovanie sedačiek, kobercov a okien v Komárne (SK) a okolí do 40 km. Kontaktujte Freshkom: +421 909 159 609." },
-    hu: { title: "Kárpittisztítás és ablaktisztítás Komárom (SK) | Freshkom", description: "Kanapé-, szőnyeg- és ablaktisztítás Komáromban (SK), a várostól számított 40 km-es körzetben. Freshkom: +421 909 159 609." },
+    sk: { title: "Tepovanie a čistenie okien Komárno (SK) | Freshkom", description: "Tepovanie sedačiek, kobercov a umývanie okien Komárne a okolitých obciach a mestách. Komárno a okolie do 40 km. Kontakt: +421 909 159 609." },
+    hu: { title: "Kárpittisztítás és ablaktisztítás Komárom (SK) | Freshkom", description: "Kanapé-, szőnyeg- és ablaktisztítás Komáromban (SK) és a környező falvakban és városokban, 40 km-es körzetben. Freshkom: +421 909 159 609." },
   },
   "/cennik": {
-    sk: { title: "Cenník tepovania a čistenia | Freshkom", description: "Orientačný cenník tepovania a umývania okien v Komárne (SK) a Komárome (HU). Ceny sú bez DPH (23 %); dopravu si overte pri dopyte." },
-    hu: { title: "Kárpittisztítás és ablaktisztítás árlista | Freshkom", description: "Tájékoztató árlista Komáromban (HU) és Komárnóban (SK). Az árak 23% ÁFA nélkül értendők; a kiszállításról érdeklődjön." },
+    sk: { title: "Cenník tepovania a čistenia | Freshkom", description: "Orientačný cenník tepovania a umývania okien v Komárne a okolí do 40 km. Ceny sú bez DPH (23 %); dopravu si overte pri dopyte." },
+    hu: { title: "Kárpittisztítás és ablaktisztítás árlista | Freshkom", description: "Tájékoztató árlista Komáromban (SK) és 40 km-es körzetében. Az árak 23% ÁFA nélkül értendők; a kiszállításról érdeklődjön." },
   },
   "/kontakt": {
     sk: { title: "Kontakt — tepovanie a čistenie | Freshkom", description: "Tepovanie v Komárne a do 40 km od mesta: Nové Zámky, Hurbanovo, Kolárovo, Veľký Meder. Kontakt: +421 909 159 609." },
