@@ -48,6 +48,11 @@ export function serviceSeo(key: ServicePageKey, lang: SeoLang, base: string) {
     areaServed: [
       { "@type": "Place", name: "Komárno", address: { "@type": "PostalAddress", addressCountry: "SK" } },
       { "@type": "Place", name: "Komárom", address: { "@type": "PostalAddress", addressCountry: "HU" } },
+      {
+        "@type": "GeoCircle",
+        geoMidpoint: { "@type": "GeoCoordinates", latitude: 47.7643, longitude: 18.128 },
+        geoRadius: 40000,
+      },
     ],
   };
   return { ...data, url, skUrl: `${base}${service.path}`, huUrl: `${base}/hu${service.path}`, schema };

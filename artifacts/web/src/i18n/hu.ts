@@ -147,7 +147,7 @@ export const hu: TranslationKeys = {
     workingHoursValue: "HÉ–SZO 7:00–21:00",
     workingHoursLabel: "Minden nap, vasárnap kivételével",
     area: "Működési terület",
-    areaValue: "Komárom (HU) és Komárno (SK)",
+    areaValue: "Komárom (SK) és környéke 40 km-es körzetben",
     areaLabel: "A helyszínt és az időpontot egyeztetjük",
     formTitle: "Kötelezettségmentes megkeresés",
     formSubtitle: "Töltse ki az űrlapot, és 24 órán belül jelentkezünk árajánlattal.",

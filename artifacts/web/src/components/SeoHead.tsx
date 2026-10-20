@@ -39,7 +39,7 @@ function buildLocalBusinessSchema(base: string, reviews?: GoogleReviewsResponse)
   "@type": ["LocalBusiness", "CleaningService"],
   name: "Freshkom",
   url: base || undefined,
-  description: "Tepovanie a čistenie okien v Komárne (SK) a Komárome (HU).",
+  description: "Tepovanie a čistenie okien v Komárne (SK), v okolí do 40 km a v Komárome (HU).",
   telephone: `+421909159609`,
   email: EMAIL,
   image: `${base}/images/hero-real.webp`,
@@ -58,6 +58,11 @@ function buildLocalBusinessSchema(base: string, reviews?: GoogleReviewsResponse)
   areaServed: [
     { "@type": "Place", name: "Komárno", address: { "@type": "PostalAddress", addressCountry: "SK" } },
     { "@type": "Place", name: "Komárom", address: { "@type": "PostalAddress", addressCountry: "HU" } },
+    {
+      "@type": "GeoCircle",
+      geoMidpoint: { "@type": "GeoCoordinates", latitude: 47.7643, longitude: 18.128 },
+      geoRadius: 40000,
+    },
   ],
   openingHoursSpecification: [
     {
@@ -128,7 +133,7 @@ const faqSchema = {
       {
         "@type": "Question",
         name: "Dochádzate aj mimo Komárno?",
-        acceptedAnswer: { "@type": "Answer", text: "Pôsobíme v Komárne na Slovensku aj v Komárome v Maďarsku. Pri dopyte nám povedzte miesto realizácie." },
+        acceptedAnswer: { "@type": "Answer", text: "Pôsobíme v Komárne, v okolí do 40 km a v Komárome. Pri dopyte nám povedzte miesto realizácie." },
       },
       {
         "@type": "Question",
@@ -158,8 +163,8 @@ const faqSchema = {
       },
       {
         "@type": "Question",
-        name: "Komáromon kívülre is kiszállnak?",
-        acceptedAnswer: { "@type": "Answer", text: "Komáromban (Magyarország) és Komárnóban (Szlovákia) is dolgozunk. Kérjük, ajánlatkéréskor adja meg a helyszínt." },
+        name: "A Komárom (Szlovákia) körüli településekre is kiszállnak?",
+        acceptedAnswer: { "@type": "Answer", text: "Komáromban (Szlovákia), vagyis Komárnóban és a környező 40 km-es körzetben dolgozunk. Kérjük, ajánlatkéréskor adja meg a helyszínt." },
       },
       {
         "@type": "Question",

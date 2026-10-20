@@ -145,7 +145,7 @@ export const sk = {
     workingHoursValue: "PO–SOB 7:00–21:00",
     workingHoursLabel: "Každý deň okrem nedele",
     area: "Oblasť pôsobenia",
-    areaValue: "Komárno (SK) a Komárom (HU)",
+    areaValue: "Komárno (SK) a okolie do 40 km",
     areaLabel: "Miesto a termín dohodneme pri dopyte",
     formTitle: "Nezáväzný dopyt",
     formSubtitle: "Vyplňte formulár a ozveme sa vám do 24 hodín s cenovou ponukou.",
