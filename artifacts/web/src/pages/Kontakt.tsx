@@ -231,10 +231,10 @@ export default function Kontakt() {
                     <div className="h-9 w-9 rounded-xl bg-violet-100 flex items-center justify-center flex-shrink-0">
                       <MapPin className="h-4 w-4 text-violet-600" />
                     </div>
-                    <div>
+                    <div className="min-w-0 flex-1">
                       <p className="font-semibold text-sm text-gray-900">{t("kontakt.whereToFind")}</p>
-                      <p className="text-xs text-gray-600 mt-0.5">{t("kontakt.mapDesc1")}</p>
-                      <p className="text-xs text-gray-500">{t("kontakt.mapDesc2")}</p>
+                      <p className="text-xs text-gray-600 mt-0.5 leading-relaxed break-words">{t("kontakt.mapDesc1")}</p>
+                      <p className="text-xs text-gray-500 leading-relaxed">{t("kontakt.mapDesc2")}</p>
                     </div>
                   </div>
                 </CardContent>

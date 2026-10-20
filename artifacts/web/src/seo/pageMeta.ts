@@ -12,8 +12,8 @@ export const pageMeta = {
     hu: { title: "Kárpittisztítás és ablaktisztítás árlista | Freshkom", description: "Tájékoztató árlista Komáromban (HU) és Komárnóban (SK). Az árak 23% ÁFA nélkül értendők; a kiszállításról érdeklődjön." },
   },
   "/kontakt": {
-    sk: { title: "Kontakt — tepovanie a čistenie | Freshkom", description: "Kontaktujte Freshkom pre tepovanie a čistenie v Komárne (SK), v okolí do 40 km a v Komárome (HU). Telefón: +421 909 159 609." },
-    hu: { title: "Kapcsolat — kárpittisztítás és ablaktisztítás | Freshkom", description: "Lépjen kapcsolatba a Freshkommal Komáromban (SK) és a város 40 km-es körzetében. Telefon: +421 909 159 609." },
+    sk: { title: "Kontakt — tepovanie a čistenie | Freshkom", description: "Tepovanie v Komárne a do 40 km od mesta: Nové Zámky, Hurbanovo, Kolárovo, Veľký Meder. Kontakt: +421 909 159 609." },
+    hu: { title: "Kapcsolat — kárpittisztítás és ablaktisztítás | Freshkom", description: "Kárpittisztítás Komáromban (SK) és 40 km-es körzetében: Érsekújvár, Ógyalla, Gúta, Nagymegyer. Telefon: +421 909 159 609." },
   },
 } as const;
 
