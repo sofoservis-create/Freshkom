@@ -40,7 +40,7 @@ function buildLocalBusinessSchema(base: string, reviews?: GoogleReviewsResponse)
   name: "Freshkom",
   legalName: "Comorno s. r. o.",
   url: base || undefined,
-  description: "Tepovanie a čistenie okien v Komárne (SK), v okolí do 40 km a v Komárome (HU).",
+  description: "Tepovanie a čistenie okien v Komárne (SK) a okolí do 40 km.",
   telephone: `+421909159609`,
   email: EMAIL,
   image: `${base}/images/hero-real.webp`,

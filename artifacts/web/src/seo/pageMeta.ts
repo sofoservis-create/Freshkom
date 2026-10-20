@@ -4,8 +4,8 @@ import { legalDocuments, type LegalKind } from "../content/legalDocuments";
 
 export const pageMeta = {
   "/": {
-    sk: { title: "Tepovanie a čistenie Komárno a Komárom | Freshkom", description: "Tepovanie sedačiek, kobercov a čistenie okien v Komárne (SK) aj Komárome (HU). Pozrite si ceny a kontaktujte Freshkom: +421 909 159 609." },
-    hu: { title: "Kárpittisztítás és ablaktisztítás Komárom és Komárno | Freshkom", description: "Kanapé-, szőnyeg- és ablaktisztítás Komáromban (HU) és Komárnóban (SK). Nézze meg árainkat, és hívja a Freshkomot: +421 909 159 609." },
+    sk: { title: "Tepovanie a čistenie okien Komárno (SK) | Freshkom", description: "Tepovanie sedačiek, kobercov a okien v Komárne (SK) a okolí do 40 km. Kontaktujte Freshkom: +421 909 159 609." },
+    hu: { title: "Kárpittisztítás és ablaktisztítás Komárom (SK) | Freshkom", description: "Kanapé-, szőnyeg- és ablaktisztítás Komáromban (SK), a várostól számított 40 km-es körzetben. Freshkom: +421 909 159 609." },
   },
   "/cennik": {
     sk: { title: "Cenník tepovania a čistenia | Freshkom", description: "Orientačný cenník tepovania a umývania okien v Komárne (SK) a Komárome (HU). Ceny sú bez DPH (23 %); dopravu si overte pri dopyte." },

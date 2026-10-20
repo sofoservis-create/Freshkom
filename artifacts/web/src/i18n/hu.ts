@@ -15,7 +15,7 @@ export const hu: TranslationKeys = {
     hours: "HÉ–SZO 7:00–21:00",
   },
   footer: {
-    description: "Kárpittisztítás és ablaktisztítás Komáromban (Magyarország) és Komárnóban (Szlovákia).",
+    description: "Kárpittisztítás és ablaktisztítás Komáromban (SK), a várostól számított 40 km-es körzetben.",
     language: "Az oldal nyelve",
     ourServices: "Szolgáltatásaink",
     serviceCouchUpholstery: "Kanapék és ülőgarnitúrák tisztítása",

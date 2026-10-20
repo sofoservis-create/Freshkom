@@ -13,7 +13,7 @@ export const sk = {
     hours: "PO–SOB 7:00–21:00",
   },
   footer: {
-    description: "Tepovanie a umývanie okien v Komárne na Slovensku aj v Komárome v Maďarsku.",
+    description: "Tepovanie a umývanie okien v Komárne (SK) a okolí do 40 km.",
     language: "Jazyk stránky",
     ourServices: "Naše služby",
     serviceCouchUpholstery: "Tepovanie gaučov a sedačiek",
