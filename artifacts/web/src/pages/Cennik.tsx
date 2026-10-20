@@ -154,7 +154,15 @@ export default function Cennik() {
         </div>
       </section>
 
-       {lang === "sk" && <section className="py-8 bg-white">
+      <section className="py-8 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {pricingSections
+            .filter((section) => section.id === "radiatory")
+            .map((section) => renderPricingSection(section, 1))}
+        </div>
+      </section>
+
+      <section className="py-8 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2
             initial="hidden"
@@ -214,14 +222,6 @@ export default function Cennik() {
               <ArrowRight className="h-3.5 w-3.5" />
             </a>
           </div>
-        </div>
-       </section>}
-
-      <section className="py-8 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {pricingSections
-            .filter((section) => section.id === "radiatory")
-            .map((section) => renderPricingSection(section, 1))}
         </div>
       </section>
 
