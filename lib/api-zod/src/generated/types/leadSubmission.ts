@@ -5,6 +5,7 @@
  * API specification
  * OpenAPI spec version: 0.1.0
  */
+import type { LeadSubmissionConsentLanguage } from "./leadSubmissionConsentLanguage";
 import type { LeadSubmissionService } from "./leadSubmissionService";
 
 export interface LeadSubmission {
@@ -18,4 +19,10 @@ export interface LeadSubmission {
   service: LeadSubmissionService;
   /** Additional message or details */
   message?: string;
+  /** Required acknowledgement of the privacy policy */
+  privacyAcknowledged: boolean;
+  /** Explicit optional opt-in to email and SMS marketing, false unless checked */
+  marketingConsent: boolean;
+  /** Language of the consent notice shown to the visitor */
+  consentLanguage: LeadSubmissionConsentLanguage;
 }

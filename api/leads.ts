@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import nodemailer from "nodemailer";
-import { buildLeadEmailHtml, serviceLabels } from "@workspace/email-template";
+import { buildLeadEmailHtml, recordLeadConsent, serviceLabels } from "@workspace/email-template";
 
 const NOTIFY_EMAIL = "freshkomsluzby@gmail.com";
 
@@ -10,6 +10,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   const { name, phone, email, service, message } = req.body ?? {};
+  const consent = recordLeadConsent(req.body ?? {});
+  if (!consent.success) {
+    return res.status(400).json({ error: "Privacy acknowledgement and valid consent choices are required." });
+  }
 
   if (!name || typeof name !== "string" || name.trim().length < 2) {
     return res.status(400).json({ error: "Invalid name" });
@@ -27,6 +31,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     email: email ? String(email).trim() : null,
     service: String(service).trim(),
     message: message ? String(message).trim() : null,
+    ...consent.data,
   };
 
   const gmailUser = process.env.GMAIL_USER;
@@ -48,9 +53,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       });
     } catch (err) {
       console.error("[leads] email send failed:", err);
+      return res.status(502).json({ error: "Your inquiry could not be delivered. Please try again." });
     }
   } else {
     console.warn("[leads] GMAIL_USER or GMAIL_APP_PASSWORD not set — skipping email");
+    return res.status(503).json({ error: "Inquiry delivery is temporarily unavailable. Please contact us by phone or email." });
   }
 
   return res.status(201).json({ success: true, message: "Lead received", id: Date.now() });

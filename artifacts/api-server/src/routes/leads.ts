@@ -1,20 +1,33 @@
 import { Router, type IRouter } from "express";
-import { db, leadsTable, insertLeadSchema } from "@workspace/db";
+import { db, leadsTable } from "@workspace/db";
+import { SubmitLeadBody } from "@workspace/api-zod";
+import { recordLeadConsent } from "@workspace/email-template";
 import { sendLeadNotification } from "../email.js";
+import { logger } from "../lib/logger.js";
 
 const router: IRouter = Router();
 
 router.post("/leads", async (req, res) => {
-  const parsed = insertLeadSchema.safeParse(req.body);
+  const parsed = SubmitLeadBody.safeParse(req.body);
   if (!parsed.success) {
     res.status(400).json({ error: "Invalid input: " + parsed.error.message });
     return;
   }
 
-  const [lead] = await db.insert(leadsTable).values(parsed.data).returning({ id: leadsTable.id });
+  const consent = recordLeadConsent(parsed.data);
+  if (!consent.success) {
+    res.status(400).json({ error: "Privacy acknowledgement and valid consent choices are required." });
+    return;
+  }
+  const data = {
+    ...parsed.data,
+    ...consent.data,
+    consentRecordedAt: new Date(consent.data.consentRecordedAt),
+  };
+  const [lead] = await db.insert(leadsTable).values(data).returning({ id: leadsTable.id });
 
-  sendLeadNotification(parsed.data).catch((err) => {
-    console.error("[email] Failed to send lead notification:", err.message);
+  sendLeadNotification(data).catch((err) => {
+    logger.error({ err }, "Failed to send lead notification");
   });
 
   res.status(201).json({

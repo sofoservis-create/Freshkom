@@ -13,5 +13,6 @@ export * from "./googleReview";
 export * from "./googleReviewsResponse";
 export * from "./healthStatus";
 export * from "./leadSubmission";
+export * from "./leadSubmissionConsentLanguage";
 export * from "./leadSubmissionResponse";
 export * from "./leadSubmissionService";

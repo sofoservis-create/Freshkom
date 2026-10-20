@@ -7,3 +7,4 @@
 - [GitHub publishing checks](github-publishing.md) — cached remote refs are not proof of a live push; confirm authenticated live branches before fixing tracking.
 - [Legal document fidelity](legal-document-fidelity.md) — preserve supplied legal wording and original downloads; do not silently translate or amend legal clauses.
 - [Freshkom service area](freshkom-service-area.md) — keep the advertised 40 km operating radius around Komárno consistent across localized copy and geographic metadata.
+- [Contact consent policy](contact-consent-policy.md) — distinguish required privacy acknowledgement, optional marketing opt-in, and the separate one-year customer-offer notice.

@@ -38,6 +38,17 @@ export const SubmitLeadBody = zod.object({
     ])
     .describe("Type of service requested"),
   message: zod.string().optional().describe("Additional message or details"),
+  privacyAcknowledged: zod
+    .literal(true)
+    .describe("Required acknowledgement of the privacy policy"),
+  marketingConsent: zod
+    .boolean()
+    .describe(
+      "Explicit optional opt-in to email and SMS marketing, false unless checked",
+    ),
+  consentLanguage: zod
+    .enum(["sk", "hu"])
+    .describe("Language of the consent notice shown to the visitor"),
 });
 
 /**

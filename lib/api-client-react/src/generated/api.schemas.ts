@@ -43,6 +43,17 @@ export const LeadSubmissionService = {
   ine: "ine",
 } as const;
 
+/**
+ * Language of the consent notice shown to the visitor
+ */
+export type LeadSubmissionConsentLanguage =
+  (typeof LeadSubmissionConsentLanguage)[keyof typeof LeadSubmissionConsentLanguage];
+
+export const LeadSubmissionConsentLanguage = {
+  sk: "sk",
+  hu: "hu",
+} as const;
+
 export interface LeadSubmission {
   /** Full name of the customer */
   name: string;
@@ -54,6 +65,12 @@ export interface LeadSubmission {
   service: LeadSubmissionService;
   /** Additional message or details */
   message?: string;
+  /** Required acknowledgement of the privacy policy */
+  privacyAcknowledged: boolean;
+  /** Explicit optional opt-in to email and SMS marketing, false unless checked */
+  marketingConsent: boolean;
+  /** Language of the consent notice shown to the visitor */
+  consentLanguage: LeadSubmissionConsentLanguage;
 }
 
 export interface LeadSubmissionResponse {

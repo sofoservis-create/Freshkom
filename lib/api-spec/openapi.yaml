@@ -135,9 +135,23 @@ components:
         message:
           type: string
           description: Additional message or details
+        privacyAcknowledged:
+          type: boolean
+          enum: [true]
+          description: Required acknowledgement of the privacy policy
+        marketingConsent:
+          type: boolean
+          description: Explicit optional opt-in to email and SMS marketing, false unless checked
+        consentLanguage:
+          type: string
+          enum: [sk, hu]
+          description: Language of the consent notice shown to the visitor
       required:
         - name
         - phone
+        - privacyAcknowledged
+        - marketingConsent
+        - consentLanguage
         - service
     LeadSubmissionResponse:
       type: object

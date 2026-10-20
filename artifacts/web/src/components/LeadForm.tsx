@@ -7,6 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -14,6 +15,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Checkbox } from "@/components/ui/checkbox";
+import { localizePath } from "@/seo/routes";
 import {
   Select,
   SelectContent,
@@ -42,11 +45,13 @@ type LeadFormValues = {
   email: string;
   service: (typeof serviceIds)[number];
   message?: string;
+  privacyAcknowledged: boolean;
+  marketingConsent: boolean;
 };
 
 export default function LeadForm({ defaultService }: { defaultService?: string }) {
   const { mutate: submitLead, isPending } = useLeadSubmission();
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   const leadSchema = z.object({
     name: z.string().min(2, t("leadForm.validationName")),
@@ -56,6 +61,8 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
       required_error: t("leadForm.validationService"),
     }),
     message: z.string().optional(),
+    privacyAcknowledged: z.boolean().refine((value) => value, t("leadForm.validationPrivacy")),
+    marketingConsent: z.boolean(),
   });
 
   const services = [
@@ -77,11 +84,14 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
       email: "",
       service: defaultService as LeadFormValues["service"] | undefined,
       message: "",
+      privacyAcknowledged: false,
+      marketingConsent: false,
     },
   });
 
   const onSubmit = (data: LeadFormValues) => {
-    submitLead({ data }, {
+    if (!data.privacyAcknowledged) return;
+    submitLead({ data: { ...data, privacyAcknowledged: true, consentLanguage: lang } }, {
       onSuccess: () => {
         form.reset();
       }
@@ -141,7 +151,7 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="text-base">{t("leadForm.serviceType")} <span className="text-destructive">*</span></FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <Select onValueChange={field.onChange} value={field.value ?? ""}>
                       <FormControl>
                         <SelectTrigger className="h-12 rounded-xl bg-gray-50 border-gray-200 focus:bg-white">
                           <SelectValue placeholder={t("leadForm.selectService")} />
@@ -176,6 +186,58 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
                 </FormItem>
               )}
             />
+            <div className="space-y-4 border-t border-gray-100 pt-4">
+              <FormField
+                control={form.control}
+                name="privacyAcknowledged"
+                render={({ field }) => (
+                  <FormItem className="space-y-1">
+                    <div className="flex items-start gap-3">
+                      <FormControl>
+                        <Checkbox checked={field.value} onCheckedChange={(checked) => field.onChange(checked === true)} aria-required="true" className="mt-1 shrink-0" />
+                      </FormControl>
+                      <div className="min-w-0">
+                        <FormLabel className="block cursor-pointer text-sm font-normal leading-relaxed text-gray-700">
+                          {t("leadForm.privacyPrefix")}
+                          <a href={localizePath("/ochrana-osobnych-udajov", lang)} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-primary focus-visible:outline focus-visible:outline-2">
+                            {t("leadForm.privacyPolicy")}
+                          </a>
+                          {t("leadForm.privacySuffix")}
+                        </FormLabel>
+                        <FormDescription className="mt-1 text-xs leading-relaxed text-gray-600">{t("leadForm.privacyHint")}</FormDescription>
+                      </div>
+                    </div>
+                    <FormMessage className="pl-7 text-xs" />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="marketingConsent"
+                render={({ field }) => (
+                  <FormItem className="space-y-1">
+                    <div className="flex items-start gap-3">
+                      <FormControl>
+                        <Checkbox checked={field.value} onCheckedChange={(checked) => field.onChange(checked === true)} className="mt-1 shrink-0" />
+                      </FormControl>
+                      <div className="min-w-0">
+                        <FormLabel className="block cursor-pointer text-sm font-normal leading-relaxed text-gray-700">
+                          {t("leadForm.marketingBeforeEmail")}
+                          <a href="mailto:info@freshkom.sk" className="underline underline-offset-2 hover:text-primary">info@freshkom.sk</a>
+                          {t("leadForm.marketingAfterEmail")}
+                        </FormLabel>
+                        <FormDescription className="mt-1 text-xs leading-relaxed text-gray-600">{t("leadForm.marketingHint")}</FormDescription>
+                      </div>
+                    </div>
+                  </FormItem>
+                )}
+              />
+              <p className="text-xs leading-relaxed text-gray-600">
+                {t("leadForm.customerMarketingBeforeEmail")}
+                <a href="mailto:info@freshkom.sk" className="underline underline-offset-2 hover:text-primary">info@freshkom.sk</a>
+                {t("leadForm.customerMarketingAfterEmail")}
+              </p>
+            </div>
             <Button
               type="submit"
               size="xl"

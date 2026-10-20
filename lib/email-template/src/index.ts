@@ -1,9 +1,16 @@
+export { recordLeadConsent, LEAD_CONSENT_VERSION } from "./consent.js";
+
 export type LeadEmailData = {
   name: string;
   phone: string;
   email?: string | null;
   service: string;
   message?: string | null;
+  privacyAcknowledged?: boolean | null;
+  marketingConsent?: boolean | null;
+  consentLanguage?: string | null;
+  consentVersion?: string | null;
+  consentRecordedAt?: string | Date | null;
 };
 
 export const serviceLabels: Record<string, string> = {
@@ -54,6 +61,18 @@ export function buildLeadEmailHtml(lead: LeadEmailData): string {
         <td style="padding:10px 0;color:#6b7280;font-size:14px;vertical-align:top">Správa</td>
         <td style="padding:10px 0;font-size:15px;white-space:pre-wrap">${lead.message}</td>
       </tr>` : ""}
+      <tr>
+        <td style="padding:10px 0;color:#6b7280;font-size:14px">Ochrana údajov — potvrdenie</td>
+        <td style="padding:10px 0;font-size:14px">${lead.privacyAcknowledged === true ? "Áno" : lead.privacyAcknowledged === false ? "Nie" : "Nezaznamenané"}</td>
+      </tr>
+      <tr>
+        <td style="padding:10px 0;color:#6b7280;font-size:14px">Marketingový súhlas</td>
+        <td style="padding:10px 0;font-size:14px">${lead.marketingConsent === true ? "Áno — e-mail a/alebo SMS" : lead.marketingConsent === false ? "Nie — bez dobrovoľného súhlasu" : "Nezaznamenané"}</td>
+      </tr>
+      <tr>
+        <td style="padding:10px 0;color:#6b7280;font-size:14px">Záznam súhlasu</td>
+        <td style="padding:10px 0;font-size:12px">${lead.consentRecordedAt ? new Date(lead.consentRecordedAt).toISOString() : "Nezaznamenané"}<br/>${lead.consentVersion ?? ""} / ${lead.consentLanguage ?? ""}</td>
+      </tr>
     </table>
     <table style="margin-top:24px;border-collapse:collapse;margin-left:auto;margin-right:auto">
       <tr>
