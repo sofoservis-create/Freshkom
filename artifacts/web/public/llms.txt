@@ -19,17 +19,17 @@ Freshkom pôsobí v Komárne (Slovensko), Komárome (Maďarsko) a okolí. Dostup
 
 ## Stránky služieb
 
-- [Tepovanie v Komárne (SK)](https://freshkom.sk/tepovanie-komarno)
-- [Čistenie okien v Komárne (SK)](https://freshkom.sk/cistenie-okien-komarno)
-- [Kárpittisztítás Komáromban (HU)](https://freshkom.sk/hu/tepovanie-komarno)
-- [Ablakmosás Komáromban (HU)](https://freshkom.sk/hu/cistenie-okien-komarno)
+- [Tepovanie v Komárne (SK)](https://www.freshkom.sk/tepovanie-komarno)
+- [Čistenie okien v Komárne (SK)](https://www.freshkom.sk/cistenie-okien-komarno)
+- [Kárpittisztítás Komáromban (HU)](https://www.freshkom.sk/hu/tepovanie-komarno)
+- [Ablakmosás Komáromban (HU)](https://www.freshkom.sk/hu/cistenie-okien-komarno)
 
 ## Cenník
 
 Aktuálne orientačné ceny a ponuka služieb sú uvedené na stránke:
 
-- [Aktuálny cenník (SK)](https://freshkom.sk/cennik)
-- [Árlista (HU)](https://freshkom.sk/hu/cennik)
+- [Aktuálny cenník (SK)](https://www.freshkom.sk/cennik)
+- [Árlista (HU)](https://www.freshkom.sk/hu/cennik)
 
 ## Kontakt a objednávka
 
@@ -38,13 +38,13 @@ Pre cenovú ponuku alebo rezerváciu termínu:
 - Telefón: +421 909 159 609
 - E-mail: info@freshkom.sk
 - WhatsApp: [Napísať cez WhatsApp](https://wa.me/421909159609)
-- Kontaktný formulár: [Kontaktovať Freshkom (SK)](https://freshkom.sk/kontakt) · [Kapcsolat (HU)](https://freshkom.sk/hu/kontakt)
+- Kontaktný formulár: [Kontaktovať Freshkom (SK)](https://www.freshkom.sk/kontakt) · [Kapcsolat (HU)](https://www.freshkom.sk/hu/kontakt)
 
 ## Dôležité stránky
 
-- [Úvodná stránka Freshkom (SK)](https://freshkom.sk/)
-- [Kezdőlap (HU)](https://freshkom.sk/hu)
-- [Sitemap všetkých verejných stránok](https://freshkom.sk/sitemap.xml)
+- [Úvodná stránka Freshkom (SK)](https://www.freshkom.sk/)
+- [Kezdőlap (HU)](https://www.freshkom.sk/hu)
+- [Sitemap všetkých verejných stránok](https://www.freshkom.sk/sitemap.xml)
 - [Instagram Freshkom](https://www.instagram.com/freshkom.sk/)
 
 ## Google recenzie
@@ -58,3 +58,17 @@ Hodnotenie a počet recenzií sa na stránkach Freshkomu načítavajú z Google 
 ## Jazyky
 
 Slovenské stránky sú na základných adresách; maďarské verzie sú pod `/hu`. Web a komunikácia sú dostupné v oboch jazykoch.
+
+## Právne dokumenty / Jogi dokumentumok
+
+Poskytovateľ služieb pod značkou Freshkom: Comorno s. r. o., Komárno, Slovenská republika. Úplné znenia nižšie obsahujú aj prílohy a odkaz na stiahnutie pôvodného dokumentu DOCX.
+
+- [Obchodné podmienky (SK)](https://www.freshkom.sk/vseobecne-obchodne-podmienky) — objednávky, platby, odstúpenie od zmluvy a práva zákazníkov; účinné od 6. 10. 2026.
+- [Zásady ochrany osobných údajov (SK)](https://www.freshkom.sk/ochrana-osobnych-udajov) — spracúvanie osobných údajov, cookies a práva dotknutých osôb; účinné od 6. 10. 2026.
+- [Reklamačný poriadok (SK)](https://www.freshkom.sk/reklamacny-poriadok) — uplatnenie a vybavenie reklamácií vrátane vzorového formulára; účinný od 8. 10. 2026.
+- [Általános szerződési feltételek (HU)](https://www.freshkom.sk/hu/vseobecne-obchodne-podmienky)
+- [Adatvédelmi tájékoztató (HU)](https://www.freshkom.sk/hu/ochrana-osobnych-udajov)
+- [Reklamációs szabályzat (HU)](https://www.freshkom.sk/hu/reklamacny-poriadok)
+
+Maďarské právne dokumenty sú informatívne preklady. Pri rozdieloch, výkladových nejasnostiach alebo spore je rozhodujúce právne záväzné slovenské znenie.
+A magyar jogi dokumentumok tájékoztató jellegű fordítások; eltérés vagy jogvita esetén a szlovák változat az irányadó.

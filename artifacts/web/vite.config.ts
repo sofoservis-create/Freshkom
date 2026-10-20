@@ -62,6 +62,17 @@ function pageShellPlugin(): Plugin {
     configureServer(server) {
       server.middlewares.use(async (req, res, next) => {
         const url = new URL(req.url || "/", "http://localhost");
+        if (/^\/documents\/freshkom-(terms|privacy|complaints)-(sk|hu)\.docx$/.test(url.pathname)) {
+          const document = path.resolve(import.meta.dirname, "public", url.pathname.slice(1));
+          if (!fs.existsSync(document)) return next();
+          res.setHeader("Content-Type", "application/vnd.openxmlformats-officedocument.wordprocessingml.document");
+          res.setHeader("Content-Disposition", "attachment");
+          res.setHeader("Content-Length", fs.statSync(document).size);
+          res.setHeader("X-Content-Type-Options", "nosniff");
+          if (req.method === "HEAD") return res.end();
+          fs.createReadStream(document).on("error", next).pipe(res);
+          return;
+        }
         if (url.searchParams.get("lang") === "hu") {
           const oldPath = url.pathname === "/hu" ? "/" : url.pathname.replace(/^\/hu(?=\/)/, "");
           if (pagePaths.some(path => path === oldPath)) {
@@ -101,17 +112,16 @@ function pageShellPlugin(): Plugin {
 }
 
 function seoCanonicalPlugin(): Plugin {
-  const PLACEHOLDER_DOMAIN = "https://freshkom.sk";
   return {
     name: "seo-canonical-domain",
     closeBundle() {
       const base = siteUrl(process.env.VITE_APP_URL);
       const outDir = path.resolve(import.meta.dirname, "dist");
-      for (const file of ["sitemap.xml", "robots.txt"]) {
+      for (const file of ["sitemap.xml", "robots.txt", "llms.txt"]) {
         const filePath = path.join(outDir, file);
         if (fs.existsSync(filePath)) {
           const content = fs.readFileSync(filePath, "utf-8");
-          fs.writeFileSync(filePath, content.replaceAll(PLACEHOLDER_DOMAIN, base));
+          fs.writeFileSync(filePath, content.replace(/https:\/\/(?:www\.)?freshkom\.sk/g, () => base));
         }
       }
     },

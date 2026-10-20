@@ -1,0 +1,68 @@
+{
+  "terms": {
+    "sk": {
+      "title": "Obchodné podmienky",
+      "documentTitle": "Všeobecné obchodné podmienky Freshkom",
+      "path": "/vseobecne-obchodne-podmienky",
+      "description": "Všeobecné obchodné podmienky služieb Freshkom. Objednávky, ceny, platby, odstúpenie a práva zákazníkov spoločnosti Comorno s. r. o.",
+      "effectiveDate": "2026-10-06",
+      "downloadName": "Všeobecné_obchodné_podmienky.docx",
+      "downloadPath": "documents/freshkom-terms-sk.docx",
+      "fileSize": 26182
+    },
+    "hu": {
+      "title": "Általános szerződési feltételek",
+      "documentTitle": "A Freshkom Általános Szerződési Feltételei",
+      "path": "/vseobecne-obchodne-podmienky",
+      "description": "A Freshkom szolgáltatásainak általános szerződési feltételei: megrendelések, árak, fizetés és fogyasztói jogok. Szolgáltató: Comorno s. r. o.",
+      "effectiveDate": "2026-10-06",
+      "downloadName": "Általános_szerződési_feltételek.docx",
+      "downloadPath": "documents/freshkom-terms-hu.docx",
+      "fileSize": 29616
+    }
+  },
+  "privacy": {
+    "sk": {
+      "title": "Zásady ochrany osobných údajov",
+      "documentTitle": "Zásady ochrany osobných údajov",
+      "path": "/ochrana-osobnych-udajov",
+      "description": "Ako Freshkom a Comorno s. r. o. spracúvajú osobné údaje: účely, právne základy, uchovávanie údajov, cookies a vaše práva.",
+      "effectiveDate": "2026-10-06",
+      "downloadName": "Zásady_ochrany_osobných_údajov.docx",
+      "downloadPath": "documents/freshkom-privacy-sk.docx",
+      "fileSize": 25659
+    },
+    "hu": {
+      "title": "Adatvédelmi tájékoztató",
+      "documentTitle": "Adatvédelmi tájékoztató",
+      "path": "/ochrana-osobnych-udajov",
+      "description": "A Freshkom és a Comorno s. r. o. adatvédelmi tájékoztatója: az adatkezelés céljai, jogalapja, megőrzési idők, sütik és az Ön jogai.",
+      "effectiveDate": "2026-10-06",
+      "downloadName": "Adatvédelmi_tájékoztató.docx",
+      "downloadPath": "documents/freshkom-privacy-hu.docx",
+      "fileSize": 28659
+    }
+  },
+  "complaints": {
+    "sk": {
+      "title": "Reklamačný poriadok",
+      "documentTitle": "Reklamačný poriadok",
+      "path": "/reklamacny-poriadok",
+      "description": "Reklamačný poriadok služieb Freshkom: uplatnenie reklamácie, zodpovednosť za vady, postup vybavenia a vzorový reklamačný formulár.",
+      "effectiveDate": "2026-10-08",
+      "downloadName": "Reklamačný_poriadok.docx",
+      "downloadPath": "documents/freshkom-complaints-sk.docx",
+      "fileSize": 32136
+    },
+    "hu": {
+      "title": "Reklamációs szabályzat",
+      "documentTitle": "Reklamációs szabályzat Freshkom",
+      "path": "/reklamacny-poriadok",
+      "description": "A Freshkom reklamációs szabályzata: panaszbejelentés, hibákért való felelősség, ügyintézés és reklamációs űrlapminta.",
+      "effectiveDate": "2026-10-08",
+      "downloadName": "Reklamációs_szabályzat.docx",
+      "downloadPath": "documents/freshkom-complaints-hu.docx",
+      "fileSize": 35398
+    }
+  }
+}

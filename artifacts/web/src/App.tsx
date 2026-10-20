@@ -11,12 +11,14 @@ import Landing from "@/pages/Landing";
 const Cennik = lazy(() => import("@/pages/Cennik"));
 const Kontakt = lazy(() => import("@/pages/Kontakt"));
 const ServicePage = lazy(() => import("@/pages/ServicePage"));
+const LegalPage = lazy(() => import("@/pages/LegalPage"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 
 export type ServerPages = {
   Cennik: ComponentType;
   Kontakt: ComponentType;
   ServicePage: ComponentType<{ kind: "upholstery" | "windows" }>;
+  LegalPage: ComponentType<{ kind: import("@/content/legalDocuments").LegalKind }>;
   NotFound: ComponentType;
 };
 
@@ -41,6 +43,7 @@ function Router({ serverPages }: { serverPages?: ServerPages }) {
   const PricingPage = serverPages?.Cennik ?? Cennik;
   const ContactPage = serverPages?.Kontakt ?? Kontakt;
   const Service = serverPages?.ServicePage ?? ServicePage;
+  const Legal = serverPages?.LegalPage ?? LegalPage;
   const MissingPage = serverPages?.NotFound ?? NotFound;
   return (
     <Layout>
@@ -57,6 +60,12 @@ function Router({ serverPages }: { serverPages?: ServerPages }) {
           <Route path="/hu/tepovanie-komarno">{() => <Service kind="upholstery" />}</Route>
           <Route path="/cistenie-okien-komarno">{() => <Service kind="windows" />}</Route>
           <Route path="/hu/cistenie-okien-komarno">{() => <Service kind="windows" />}</Route>
+          <Route path="/vseobecne-obchodne-podmienky">{() => <Legal kind="terms" />}</Route>
+          <Route path="/hu/vseobecne-obchodne-podmienky">{() => <Legal kind="terms" />}</Route>
+          <Route path="/ochrana-osobnych-udajov">{() => <Legal kind="privacy" />}</Route>
+          <Route path="/hu/ochrana-osobnych-udajov">{() => <Legal kind="privacy" />}</Route>
+          <Route path="/reklamacny-poriadok">{() => <Legal kind="complaints" />}</Route>
+          <Route path="/hu/reklamacny-poriadok">{() => <Legal kind="complaints" />}</Route>
           <Route component={MissingPage} />
         </Switch>
       </Suspense>

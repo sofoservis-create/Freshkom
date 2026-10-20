@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://freshkom.sk/sitemap.xml
+Sitemap: https://www.freshkom.sk/sitemap.xml

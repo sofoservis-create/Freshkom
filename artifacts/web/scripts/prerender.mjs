@@ -7,7 +7,7 @@ const dist = path.join(artifactDir, "dist");
 const serverDir = path.join(dist, "server");
 const { renderPage } = await import(pathToFileURL(path.join(serverDir, "entry-server.js")).href);
 
-const paths = ["", "-cennik", "-kontakt", "-tepovanie-komarno", "-cistenie-okien-komarno"];
+const paths = ["", "-cennik", "-kontakt", "-tepovanie-komarno", "-cistenie-okien-komarno", "-vseobecne-obchodne-podmienky", "-ochrana-osobnych-udajov", "-reklamacny-poriadok"];
 for (const lang of ["sk", "hu"]) {
   for (const suffix of paths) {
     const file = path.join(dist, `${lang}${suffix}.html`);

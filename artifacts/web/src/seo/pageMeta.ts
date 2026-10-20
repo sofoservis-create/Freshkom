@@ -1,5 +1,6 @@
 import { serviceMeta, serviceSeo, type SeoLang, type ServicePageKey } from "./serviceMeta";
 import { localizePath, type PagePath } from "./routes";
+import { legalDocuments, type LegalKind } from "../content/legalDocuments";
 
 export const pageMeta = {
   "/": {
@@ -21,6 +22,48 @@ export function pageSeo(path: PagePath, lang: SeoLang, base: string) {
   const skUrl = `${base}${localizePath(path, "sk")}`;
   const huUrl = `${base}${localizePath(path, "hu")}`;
   const url = lang === "sk" ? skUrl : huUrl;
+  const legalKind = (Object.keys(legalDocuments) as LegalKind[]).find(key => legalDocuments[key].sk.path === path);
+  if (legalKind) {
+    const doc = legalDocuments[legalKind][lang];
+    return {
+      title: `${doc.title} | Freshkom`,
+      description: doc.description,
+      skUrl, huUrl, url,
+      schema: {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": `${url}#webpage`,
+            url,
+            name: doc.title,
+            description: doc.description,
+            inLanguage: lang,
+            publisher: { "@type": "Organization", name: "Comorno s. r. o.", alternateName: "Freshkom", url: base },
+            breadcrumb: { "@id": `${url}#breadcrumb` },
+            hasPart: {
+              "@type": "DigitalDocument",
+              name: doc.documentTitle,
+              inLanguage: lang,
+              encoding: {
+                "@type": "MediaObject",
+                contentUrl: `${base}/${doc.downloadPath}`,
+                encodingFormat: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+              },
+            },
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": `${url}#breadcrumb`,
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: lang === "sk" ? "Úvod" : "Kezdőlap", item: `${base}${lang === "hu" ? "/hu" : "/"}` },
+              { "@type": "ListItem", position: 2, name: doc.title, item: url },
+            ],
+          },
+        ],
+      },
+    };
+  }
   return serviceKey
     ? serviceSeo(serviceKey, lang, base)
     : { ...pageMeta[path as keyof typeof pageMeta][lang], skUrl, huUrl, url, schema: null };

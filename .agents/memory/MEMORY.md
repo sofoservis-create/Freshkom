@@ -5,3 +5,4 @@
 - [Headless browser checks](headless-browser-checks.md) — Chrome's debugging targets include extension pages; select the actual page and wait for hydrated state after reload.
 - [Prerendered Vite CSS](vite-prerender-css.md) — server HTML needs parser-discovered CSS in dev as well as production; verify first paint with JavaScript disabled.
 - [GitHub publishing checks](github-publishing.md) — cached remote refs are not proof of a live push; confirm authenticated live branches before fixing tracking.
+- [Legal document fidelity](legal-document-fidelity.md) — preserve supplied legal wording and original downloads; do not silently translate or amend legal clauses.

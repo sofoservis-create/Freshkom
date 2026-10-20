@@ -1,6 +1,6 @@
 import type { SeoLang } from "./serviceMeta";
 
-export const pagePaths = ["/", "/cennik", "/kontakt", "/tepovanie-komarno", "/cistenie-okien-komarno"] as const;
+export const pagePaths = ["/", "/cennik", "/kontakt", "/tepovanie-komarno", "/cistenie-okien-komarno", "/vseobecne-obchodne-podmienky", "/ochrana-osobnych-udajov", "/reklamacny-poriadok"] as const;
 export type PagePath = typeof pagePaths[number];
 
 export function localizePath(path: string, lang: SeoLang): string {

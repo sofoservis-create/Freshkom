@@ -7,6 +7,7 @@ import { pageSeo } from "@/seo/pageMeta";
 import { siteUrl } from "@/seo/siteUrl";
 import type { PagePath } from "@/seo/routes";
 import type { ServicePageKey } from "@/seo/serviceMeta";
+import { legalDocuments, type LegalKind } from "@/content/legalDocuments";
 
 const PHONE = "+421909159609";
 const EMAIL = "info@freshkom.sk";
@@ -14,7 +15,7 @@ const FACEBOOK = "https://www.facebook.com/profile.php?id=61585033404394";
 const INSTAGRAM = "https://www.instagram.com/freshkom.sk/";
 
 interface SeoHeadProps {
-  page: "landing" | "cennik" | "kontakt" | ServicePageKey;
+  page: "landing" | "cennik" | "kontakt" | ServicePageKey | LegalKind;
 }
 
 const paths: Record<SeoHeadProps["page"], PagePath> = {
@@ -23,6 +24,9 @@ const paths: Record<SeoHeadProps["page"], PagePath> = {
   kontakt: "/kontakt",
   tepovanie: "/tepovanie-komarno",
   okna: "/cistenie-okien-komarno",
+  terms: "/vseobecne-obchodne-podmienky",
+  privacy: "/ochrana-osobnych-udajov",
+  complaints: "/reklamacny-poriadok",
 };
 
 function getSiteUrl(): string {
@@ -176,14 +180,15 @@ export default function SeoHead({ page }: SeoHeadProps) {
   const { data: reviews } = useGoogleReviews();
   const base = getSiteUrl();
   const isService = page === "tepovanie" || page === "okna";
+  const isLegal = page === "terms" || page === "privacy" || page === "complaints";
   const path = paths[page];
   const data = pageSeo(path, lang, base);
-  const service = isService ? data : null;
+  const service = isService || isLegal ? data : null;
   const canonicalUrl = data.url;
   const skUrl = data.skUrl;
   const huUrl = data.huUrl;
   const ogImage = `${base}/opengraph.jpg`;
-  const localBusinessSchema = !isService ? buildLocalBusinessSchema(base, reviews) : null;
+  const localBusinessSchema = !isService && !isLegal ? buildLocalBusinessSchema(base, reviews) : null;
 
   // Static Vercel shells supply metadata before JS. Helmet takes over after hydration.
   useEffect(() => {
@@ -196,13 +201,13 @@ export default function SeoHead({ page }: SeoHeadProps) {
   };
 
   const breadcrumbSchema =
-    page !== "landing"
+    page !== "landing" && !isLegal
       ? {
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
              { "@type": "ListItem", position: 1, name: lang === "sk" ? "Úvod" : "Kezdőlap", item: lang === "sk" ? `${base}/` : `${base}/hu` },
-             { "@type": "ListItem", position: 2, name: breadcrumbNames[lang][page], item: canonicalUrl },
+             { "@type": "ListItem", position: 2, name: isLegal ? legalDocuments[page as LegalKind][lang].title : breadcrumbNames[lang][page], item: canonicalUrl },
           ],
         }
       : null;

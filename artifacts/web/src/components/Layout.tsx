@@ -4,6 +4,7 @@ import { Phone, Mail, Clock, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { localizePath } from "@/seo/routes";
+import { legalDocuments } from "@/content/legalDocuments";
 
 const PHONE_NUMBER = "+421 909 159 609";
 const EMAIL = "info@freshkom.sk";
@@ -232,6 +233,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   <Clock className="h-5 w-5 text-primary flex-shrink-0" />
                   <span>{t("topBar.hours")}</span>
                 </li>
+              </ul>
+              <ul className="mt-6 space-y-3 text-gray-400">
+                {(["terms", "privacy", "complaints"] as const).map(kind => (
+                  <li key={kind}><Link href={localized(legalDocuments[kind][lang].path)} className="hover:text-white transition-colors">{legalDocuments[kind][lang].title}</Link></li>
+                ))}
               </ul>
             </div>
           </div>

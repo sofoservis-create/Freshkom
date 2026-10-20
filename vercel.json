@@ -2,6 +2,16 @@
   "buildCommand": "pnpm exec tsc -p api/tsconfig.json --noEmit && pnpm --filter @workspace/web build",
   "outputDirectory": "artifacts/web/dist",
   "framework": "vite",
+  "headers": [
+    {
+      "source": "/documents/:file",
+      "headers": [
+        { "key": "Content-Type", "value": "application/vnd.openxmlformats-officedocument.wordprocessingml.document" },
+        { "key": "Content-Disposition", "value": "attachment" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" }
+      ]
+    }
+  ],
   "redirects": [
     { "source": "/", "has": [{ "type": "query", "key": "lang", "value": "hu" }], "destination": "/hu", "permanent": true },
     { "source": "/cennik", "has": [{ "type": "query", "key": "lang", "value": "hu" }], "destination": "/hu/cennik", "permanent": true },
@@ -10,6 +20,12 @@
     { "source": "/cistenie-okien-komarno", "has": [{ "type": "query", "key": "lang", "value": "hu" }], "destination": "/hu/cistenie-okien-komarno", "permanent": true }
   ],
   "rewrites": [
+    { "source": "/vseobecne-obchodne-podmienky", "destination": "/sk-vseobecne-obchodne-podmienky.html" },
+    { "source": "/hu/vseobecne-obchodne-podmienky", "destination": "/hu-vseobecne-obchodne-podmienky.html" },
+    { "source": "/ochrana-osobnych-udajov", "destination": "/sk-ochrana-osobnych-udajov.html" },
+    { "source": "/hu/ochrana-osobnych-udajov", "destination": "/hu-ochrana-osobnych-udajov.html" },
+    { "source": "/reklamacny-poriadok", "destination": "/sk-reklamacny-poriadok.html" },
+    { "source": "/hu/reklamacny-poriadok", "destination": "/hu-reklamacny-poriadok.html" },
     { "source": "/hu", "destination": "/hu.html" },
     { "source": "/hu/cennik", "destination": "/hu-cennik.html" },
     { "source": "/hu/kontakt", "destination": "/hu-kontakt.html" },
