@@ -63,6 +63,9 @@ export function getPricingSections(t: Translate): PricingSection[] {
         { name: t("pricing.window1"), price: "10 €", img: "item-okno-1.webp" },
         { name: t("pricing.windowBalcony"), price: "12 €", img: "item-okno-balkon.webp" },
         { name: t("pricing.shopWindow"), price: t("pricing.byAgreement"), img: "item-vyklad.webp" },
+        { name: t("pricing.blinds"), price: t("pricing.byAgreement"), img: "item-zaluzie.webp" },
+        { name: t("pricing.shutters"), price: t("pricing.byAgreement"), img: "item-rolety.webp" },
+        { name: t("pricing.insectScreen"), price: t("pricing.byAgreement"), img: "item-sietka.webp" },
       ],
     },
   ];
