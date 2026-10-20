@@ -84,6 +84,8 @@ def parse(source):
             value = text(element)
             if not value:
                 continue
+            if value.casefold() == "pre služby pod obchodnou značkou freshkom":
+                continue
             if document_title is None:
                 document_title = value
                 continue

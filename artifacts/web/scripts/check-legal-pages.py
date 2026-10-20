@@ -59,6 +59,8 @@ def check():
                 tree = ET.fromstring(archive.read("word/document.xml"))
                 for paragraph in tree.findall(".//w:body//w:p", importer.NS):
                     original = normalized(importer.text(paragraph))
+                    if original.casefold() == "pre služby pod obchodnou značkou freshkom":
+                        continue
                     assert not original or original in visible, f"Missing text in {route}: {original[:100]}"
             original_bytes = source.read_bytes()
             for folder in ("public", "dist"):
@@ -78,6 +80,8 @@ def check():
             assert any(r["source"] == route and r["destination"] == "/" + filename for r in rewrites)
             assert "https://www.freshkom.sk" + route in sitemap and "https://www.freshkom.sk" + route in llms
             assert 'data-prerendered="true"' in html
+            if route == "/reklamacny-poriadok":
+                assert "pre služby pod obchodnou značkou Freshkom" not in visible
             assert "DigitalDocument" in html and "BreadcrumbList" in html
             for other in documents.values():
                 href = ("/hu" if lang == "hu" else "") + other[lang]["path"]

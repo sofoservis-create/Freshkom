@@ -2291,14 +2291,10 @@
       "fileSize": 32136,
       "blocks": [
         {
-          "type": "paragraph",
-          "text": "pre služby pod obchodnou značkou Freshkom"
-        },
-        {
           "type": "heading",
           "text": "Identifikácia Poskytovateľa",
           "level": 3,
-          "id": "section-1-identifikacia-poskytovatela"
+          "id": "section-0-identifikacia-poskytovatela"
         },
         {
           "type": "paragraph",
@@ -2340,7 +2336,7 @@
           "type": "heading",
           "text": "Článok 1 – Rozsah platnosti",
           "level": 2,
-          "id": "section-11-clanok-1-rozsah-platnosti"
+          "id": "section-10-clanok-1-rozsah-platnosti"
         },
         {
           "type": "paragraph",
@@ -2366,7 +2362,7 @@
           "type": "heading",
           "text": "Článok 2 – Zodpovednosť za vady",
           "level": 2,
-          "id": "section-17-clanok-2-zodpovednost-za-vady"
+          "id": "section-16-clanok-2-zodpovednost-za-vady"
         },
         {
           "type": "paragraph",
@@ -2388,7 +2384,7 @@
           "type": "heading",
           "text": "Výsledok čistenia a obmedzenia",
           "level": 3,
-          "id": "section-22-vysledok-cistenia-a-obmedzenia"
+          "id": "section-21-vysledok-cistenia-a-obmedzenia"
         },
         {
           "type": "paragraph",
@@ -2416,7 +2412,7 @@
           "type": "heading",
           "text": "Článok 3 – Uplatnenie reklamácie",
           "level": 2,
-          "id": "section-26-clanok-3-uplatnenie-reklamacie"
+          "id": "section-25-clanok-3-uplatnenie-reklamacie"
         },
         {
           "type": "paragraph",
@@ -2463,7 +2459,7 @@
           "type": "heading",
           "text": "Článok 4 – Postup pri vybavení reklamácie",
           "level": 2,
-          "id": "section-34-clanok-4-postup-pri-vybaveni-reklamacie"
+          "id": "section-33-clanok-4-postup-pri-vybaveni-reklamacie"
         },
         {
           "type": "paragraph",
@@ -2489,7 +2485,7 @@
           "type": "heading",
           "text": "Článok 5 – Alternatívne riešenie sporov",
           "level": 2,
-          "id": "section-40-clanok-5-alternativne-riesenie-sporov"
+          "id": "section-39-clanok-5-alternativne-riesenie-sporov"
         },
         {
           "type": "paragraph",
@@ -2503,7 +2499,7 @@
           "type": "heading",
           "text": "Článok 6 – Záverečné ustanovenia",
           "level": 2,
-          "id": "section-43-clanok-6-zaverecne-ustanovenia"
+          "id": "section-42-clanok-6-zaverecne-ustanovenia"
         },
         {
           "type": "paragraph",
@@ -2529,7 +2525,7 @@
           "type": "heading",
           "text": "Príloha č. 1 – Vzorový reklamačný formulár Freshkom",
           "level": 2,
-          "id": "section-49-priloha-c-1-vzorovy-reklamacny-formular-freshkom"
+          "id": "section-48-priloha-c-1-vzorovy-reklamacny-formular-freshkom"
         },
         {
           "type": "paragraph",
