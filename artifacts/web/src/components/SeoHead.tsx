@@ -38,6 +38,7 @@ function buildLocalBusinessSchema(base: string, reviews?: GoogleReviewsResponse)
   "@context": "https://schema.org",
   "@type": ["LocalBusiness", "CleaningService"],
   name: "Freshkom",
+  legalName: "Comorno s. r. o.",
   url: base || undefined,
   description: "Tepovanie a čistenie okien v Komárne (SK), v okolí do 40 km a v Komárome (HU).",
   telephone: `+421909159609`,
@@ -46,10 +47,14 @@ function buildLocalBusinessSchema(base: string, reviews?: GoogleReviewsResponse)
   logo: `${base}/images/logo-mascot.webp`,
   address: {
     "@type": "PostalAddress",
+    streetAddress: "Lodná 2943/8",
+    postalCode: "945 01",
     addressLocality: "Komárno",
     addressRegion: "Nitriansky kraj",
     addressCountry: "SK",
   },
+  identifier: "56 183 291",
+  taxID: "2122226425",
   geo: {
     "@type": "GeoCoordinates",
     latitude: 47.7643,

@@ -25,7 +25,10 @@ export const hu: TranslationKeys = {
     serviceWindows: "Ablaktisztítás",
     serviceDeepCleaning: "Mélytisztítás",
     contactTitle: "Kapcsolat",
-    copyright: "Minden jog fenntartva. Komárom (HU) és Komárno (SK).",
+    operatorLabel: "Üzemeltető",
+    companyIdLabel: "Cégazonosító (IČO)",
+    taxIdLabel: "Adóazonosító (DIČ)",
+    copyright: "Minden jog fenntartva.",
   },
   hero: {
     badge: "Komárom (HU) és Komárno (SK)",

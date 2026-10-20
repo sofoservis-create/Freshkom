@@ -23,7 +23,10 @@ export const sk = {
     serviceWindows: "Umývanie okien",
     serviceDeepCleaning: "Hĺbkové čistenie",
     contactTitle: "Kontakt",
-    copyright: "Všetky práva vyhradené. Komárno (SK) a Komárom (HU).",
+    operatorLabel: "Prevádzkovateľ",
+    companyIdLabel: "IČO",
+    taxIdLabel: "DIČ",
+    copyright: "Všetky práva vyhradené.",
   },
   hero: {
     badge: "Komárno (SK) a Komárom (HU)",

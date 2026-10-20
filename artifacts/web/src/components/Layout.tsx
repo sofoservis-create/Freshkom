@@ -166,7 +166,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
       <footer className="bg-foreground text-white border-t border-white/10 pt-16 pb-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 mb-12">
             <div>
               <Link href={localized("/")} className="flex items-center gap-3 mb-6">
                 <img src={`${import.meta.env.BASE_URL}images/optimized/logo-mascot.webp`} alt="Freshkom" width={160} height={160} loading="lazy" className="h-12 w-12 object-contain" />
@@ -240,9 +240,28 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 ))}
               </ul>
             </div>
+            <section aria-labelledby="footer-company-heading">
+              <h4 id="footer-company-heading" className="font-bold text-lg mb-6">Freshkom</h4>
+              <div className="space-y-3 text-sm text-gray-400">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wide text-gray-300">{t("footer.operatorLabel")}</p>
+                  <p className="mt-1 text-white">Comorno s. r. o.</p>
+                </div>
+                <address className="not-italic leading-relaxed">
+                  Lodná 2943/8<br />
+                  945 01 Komárno{lang === "hu" ? ", Szlovákia" : ""}
+                </address>
+                <dl className="grid grid-cols-[max-content_minmax(0,1fr)] gap-x-2 gap-y-1">
+                  <dt>{t("footer.companyIdLabel")}:</dt>
+                  <dd>56 183 291</dd>
+                  <dt>{t("footer.taxIdLabel")}:</dt>
+                  <dd>2122226425</dd>
+                </dl>
+              </div>
+            </section>
           </div>
           <div className="border-t border-white/10 pt-8 text-center text-gray-500 text-sm">
-            © {new Date().getFullYear()} Freshkom. {t("footer.copyright")}
+            ©{new Date().getFullYear()} Freshkom. {t("footer.copyright")}
           </div>
         </div>
       </footer>
