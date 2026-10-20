@@ -8,8 +8,8 @@ export const pageMeta = {
     hu: { title: "Kárpittisztítás és ablaktisztítás Komárom és Komárno | Freshkom", description: "Kanapé-, szőnyeg- és ablaktisztítás Komáromban (HU) és Komárnóban (SK). Nézze meg árainkat, és hívja a Freshkomot: +421 909 159 609." },
   },
   "/cennik": {
-    sk: { title: "Cenník tepovania a čistenia | Freshkom", description: "Cenník tepovania a čistenia okien pre Komárno (SK) aj Komárom (HU). Sedačka od 30 €, koberec od 3 €/m². Dopravu si overte pri dopyte." },
-    hu: { title: "Kárpittisztítás és ablaktisztítás árlista | Freshkom", description: "Tisztítási árlista Komáromban (HU) és Komárnóban (SK). Kanapé 30 €-tól, szőnyeg 3 €/m²-től. A kiszállítás részleteiről érdeklődjön." },
+    sk: { title: "Cenník tepovania a čistenia | Freshkom", description: "Orientačný cenník tepovania a umývania okien v Komárne (SK) a Komárome (HU). Ceny sú bez DPH (23 %); dopravu si overte pri dopyte." },
+    hu: { title: "Kárpittisztítás és ablaktisztítás árlista | Freshkom", description: "Tájékoztató árlista Komáromban (HU) és Komárnóban (SK). Az árak 23% ÁFA nélkül értendők; a kiszállításról érdeklődjön." },
   },
   "/kontakt": {
     sk: { title: "Kontakt — tepovanie a čistenie | Freshkom", description: "Kontaktujte Freshkom pre tepovanie a čistenie v Komárne (SK) aj Komárome (HU). Telefón: +421 909 159 609, e-mail: info@freshkom.sk." },

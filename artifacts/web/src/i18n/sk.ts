@@ -94,7 +94,7 @@ export const sk = {
   },
   pricing: {
     pageTitle: "Cenník služieb",
-    pageSubtitle: "Pozrite si orientačné ceny služieb. Uvedené sadzby dopravy sa týkajú slovenskej strany; pre Komárom v Maďarsku si cenu overte pri dopyte.",
+    pageSubtitle: "Pozrite si orientačné ceny služieb bez DPH (23 %).",
     sectionCouches: "Sedačky a nábytok",
     sectionCarpets: "Koberce",
     sectionMattresses: "Matrace",

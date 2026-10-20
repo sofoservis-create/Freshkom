@@ -96,7 +96,7 @@ export const hu: TranslationKeys = {
   },
   pricing: {
     pageTitle: "Szolgáltatások árlistája",
-    pageSubtitle: "Tekintse meg szolgáltatásaink árait. A kiszállítás részleteiről érdeklődjön a helyszín megadásával.",
+    pageSubtitle: "Tekintse meg szolgáltatásaink tájékoztató árait 23% ÁFA nélkül.",
     sectionCouches: "Ülőgarnitúrák és bútorok",
     sectionCarpets: "Szőnyegek",
     sectionMattresses: "Matracok",
