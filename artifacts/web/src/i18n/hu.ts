@@ -135,7 +135,7 @@ export const hu: TranslationKeys = {
     transportKomarno: "Komárom (SK)",
     transportOutside: "Komáromon kívül Szlovákiában",
     info1: "A kiszállítás részleteit a helyszín alapján egyeztetjük.",
-    info2: "Extrém szennyeződés esetén az ár egyénileg módosulhat.",
+    info2: "Rendkívül szennyezett és bonyolult felületek esetén az ár egyedileg módosulhat.",
     info3: "Professzionális ökológiai tisztítószereket használunk.",
     info4: "Nagyobb mennyiség esetén kedvezmény lehetséges — kérdezzen bátran!",
     customersRate: "Ügyfeleink értékelése",

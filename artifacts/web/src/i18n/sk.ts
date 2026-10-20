@@ -133,7 +133,7 @@ export const sk = {
     transportKomarno: "Komárno",
     transportOutside: "Mimo Komárna na Slovensku",
     info1: "Doprava sa účtuje osobitne podľa miesta realizácie.",
-    info2: "Pri extrémne znečistených povrchoch môže byť cena upravená individuálne.",
+    info2: "Pri extrémne znečistených a komplikovaných povrchoch môže byť cena upravená individuálne.",
     info3: "Používame profesionálne ekologické čistiace prostriedky.",
     info4: "Pri väčšom objeme je možná zľava — neváhajte sa spýtať!",
     customersRate: "Zákazníci hodnotia",
