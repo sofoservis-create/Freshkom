@@ -5,6 +5,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import { CookieConsentProvider } from "@/contexts/CookieConsentContext";
 import Layout from "@/components/Layout";
 import Landing from "@/pages/Landing";
 
@@ -80,7 +81,9 @@ function App({ initialPath, serverPages }: { initialPath?: string; serverPages?:
         <TooltipProvider>
           <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")} ssrPath={initialPath}>
             <LanguageProvider>
-              <Router serverPages={serverPages} />
+              <CookieConsentProvider>
+                <Router serverPages={serverPages} />
+              </CookieConsentProvider>
             </LanguageProvider>
           </WouterRouter>
           <Toaster />

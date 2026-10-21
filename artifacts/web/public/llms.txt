@@ -74,3 +74,9 @@ Prevádzkovateľ služieb pod značkou Freshkom: Comorno s. r. o., Lodná 2943/8
 
 Maďarské právne dokumenty sú informatívne preklady. Pri rozdieloch, výkladových nejasnostiach alebo spore je rozhodujúce právne záväzné slovenské znenie.
 A magyar jogi dokumentumok tájékoztató jellegű fordítások; eltérés vagy jogvita esetén a szlovák változat az irányadó.
+
+## Nastavenia cookies / Sütibeállítások
+
+Web ponúka slovenskú aj maďarskú lištu a nastavenia cookies. Odkaz „Nastavenia cookies“ / „Sütibeállítások“ v päte každej stránky umožňuje voľbu kedykoľvek zmeniť. Nepovinné kategórie sú predvolene vypnuté; návštevník môže prijať všetky, odmietnuť nepovinné alebo uložiť vlastný výber.
+
+Aktuálne nie sú nasadené žiadne analytické ani marketingové nástroje Google alebo Meta. Ukladá sa iba nastavenie návštevníka lokálne v prehliadači na 180 dní, bez odosielania údajov o tejto voľbe na server. Pridanie nového nástroja alebo zmena účelu vyžaduje nové informovanie a nový súhlas. Nastavenia cookies sú nezávislé od potvrdenia ochrany osobných údajov a dobrovoľného marketingového súhlasu v kontaktnom formulári.

@@ -5,6 +5,9 @@ import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { localizePath } from "@/seo/routes";
 import { legalDocuments } from "@/content/legalDocuments";
+import CookieConsent from "@/components/CookieConsent";
+import { useCookieConsent } from "@/contexts/CookieConsentContext";
+import { cookieCopy } from "@/content/cookieCopy";
 
 const PHONE_NUMBER = "+421 909 159 609";
 const EMAIL = "info@freshkom.sk";
@@ -13,6 +16,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [location, setLocation] = useLocation();
   const { lang, setLang, t } = useLanguage();
+  const { bannerVisible, settingsOpen, openSettings } = useCookieConsent();
   const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -238,6 +242,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 {(["terms", "privacy", "complaints"] as const).map(kind => (
                   <li key={kind}><Link href={localized(legalDocuments[kind][lang].path)} className="hover:text-white transition-colors">{legalDocuments[kind][lang].title}</Link></li>
                 ))}
+                <li>
+                  <button id="cookie-footer-settings" type="button" onClick={openSettings} className="min-h-11 text-left hover:text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary">
+                    {cookieCopy[lang].dialogTitle}
+                  </button>
+                </li>
               </ul>
             </div>
             <section aria-labelledby="footer-company-heading">
@@ -266,7 +275,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </div>
       </footer>
 
-       {!["/tepovanie-komarno", "/cistenie-okien-komarno"].some(path => location === localized(path)) && <a
+       {!bannerVisible && !settingsOpen && !["/tepovanie-komarno", "/cistenie-okien-komarno"].some(path => location === localized(path)) && <a
         href="https://wa.me/421909159609"
         target="_blank"
         rel="noopener noreferrer"
@@ -278,6 +287,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </svg>
         <span className="hidden md:inline text-sm font-semibold">WhatsApp</span>
        </a>}
+       <CookieConsent />
     </div>
   );
 }

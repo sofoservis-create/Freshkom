@@ -8,3 +8,4 @@
 - [Legal document fidelity](legal-document-fidelity.md) — preserve supplied legal wording and original downloads; do not silently translate or amend legal clauses.
 - [Freshkom service area](freshkom-service-area.md) — keep the advertised 40 km operating radius around Komárno consistent across localized copy and geographic metadata.
 - [Contact consent policy](contact-consent-policy.md) — distinguish required privacy acknowledgement, optional marketing opt-in, and the separate one-year customer-offer notice.
+- [Cookie consent scope](cookie-consent-policy.md) — the user wants a banner before Google/Meta tracking is added; today's choices must not authorize undisclosed future tools.
