@@ -125,7 +125,7 @@
         <ul class="chips" aria-label="Prečo Elektrika Kubiš">
           <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg> Byty aj rodinné domy</li>
           <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg> Bratislava a okolie</li>
-          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg> Cena dohodnutá vopred</li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg> __CUSTOMERS__ zákazníkov od roku __SINCE__</li>
         </ul>
       </div>
       <figure class="hero__figure">
@@ -138,6 +138,15 @@
         <figcaption class="hero__tag"><strong>Dávid Kubiš</strong><span>elektrikár · Bratislava</span></figcaption>
       </figure>
     </div>
+  </section>
+
+  <!-- ČÍSLA -->
+  <section class="stats" aria-label="Elektrika Kubiš v číslach">
+    <ul class="wrap stats__grid">
+      <li class="reveal"><strong>od __SINCE__</strong><span>na trhu, vlastná živnosť</span></li>
+      <li class="reveal"><strong>__CUSTOMERS__</strong><span>zákazníkov v bytoch a domoch</span></li>
+      <li class="reveal"><strong>__CABLE__ m</strong><span>natiahnutých káblov</span></li>
+    </ul>
   </section>
 
   <!-- SLUŽBY -->
@@ -198,6 +207,7 @@
           <a class="card__link" href="#kontakt" data-service="Drobné práce">Mám záujem →</a>
         </li>
       </ul>
+      <p class="cta-row reveal">Nenašli ste svoju prácu v zozname? <a class="btn btn--yellow" href="#kontakt">Napíšte mi, čo potrebujete</a></p>
     </div>
   </section>
 
@@ -232,6 +242,7 @@
         <p class="kicker">O mne</p>
         <h2 id="omne-title">Dávid Kubiš, elektrikár v Bratislave</h2>
         <p>Volám sa Dávid a elektrina je moja každodenná práca. Pracujem sám, takže viete, s kým sa dohodnete a kto k vám príde. Žiadne call-centrum, žiadne odovzdávanie zákazky ďalej.</p>
+        <p>Živnosť mám od roku __SINCE__. Za ten čas som pre <strong>__CUSTOMERS__ zákazníkov</strong> namontoval a opravil elektriku a natiahol vyše <strong>__CABLE__ metrov káblov</strong>. Viem, čo sa v bytoch a domoch skrýva za stenou.</p>
         <p>Nechcem vám predávať zbytočnosti. Poviem vám, čo je problém, čo treba urobiť a koľko to bude stáť. Potom to urobím tak, aby to fungovalo bezpečne aj o roky.</p>
         <ul class="ticks">
           <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg> Vysvetlím po ľudsky, čo je potrebné a prečo</li>
@@ -288,6 +299,7 @@
       </header>
       <div class="faq reveal">
         <details><summary>Kde pôsobíte a chodíte aj mimo Bratislavy?</summary><p>Pracujem v Bratislave vo všetkých mestských častiach, napríklad v Petržalke, Ružinove, Novom Meste, Karlovej Vsi či Dúbravke, a v okolí, napríklad v Stupave, Pezinku alebo Senci. Stačí napísať, kde potrebujete elektrikára, a poviem vám, či je to možné.</p></details>
+        <details><summary>Ako dlho sa elektrikárstvu venujete?</summary><p>Živnosť mám od roku __SINCE__ a odvtedy som pracoval pre viac ako __CUSTOMERS__ zákazníkov v bytoch a rodinných domoch, od výmeny jednej zásuvky po kompletné rozvody.</p></details>
         <details><summary>Koľko stojí elektrikár?</summary><p>Cena závisí od rozsahu práce, množstva materiálu a prístupu k rozvodom. Pošlite popis alebo fotku cez formulár či WhatsApp a dostanete nezáväznú cenu ešte pred začiatkom práce.</p></details>
         <details><summary>Dá sa vymeniť stará istiaca skrinka alebo poistky?</summary><p>Áno. Staré poistky a rozvádzače vymieňam za moderné ističe a chrániče. Pri výmene treba vypnúť prívod elektriny, preto si termín vopred dohodneme tak, aby vás to čo najmenej obmedzilo.</p></details>
         <details><summary>Vypadáva mi istič. Viete pomôcť?</summary><p>Áno. Istič vypadáva z konkrétneho dôvodu, napríklad preťaženie okruhu, chybný spotrebič alebo poškodený rozvod. Nájdem príčinu a opravím ju, nielen istič znova zapnem.</p></details>
@@ -315,6 +327,7 @@
 
       <form class="form reveal" id="lead-form" action="/api/lead" method="post" novalidate>
         <h3 class="form__title">Nezáväzná ponuka</h3>
+        <p class="form__promise">Zaberie to minútu. Dopyt je nezáväzný a ozvem sa vám čo najskôr.</p>
         <div class="field">
           <label for="f-name">Meno a priezvisko</label>
           <input id="f-name" name="name" type="text" autocomplete="name" required minlength="2" maxlength="100">
@@ -386,6 +399,12 @@
     <button type="button" class="linklike" data-open-privacy>Ochrana osobných údajov</button>
   </div>
 </footer>
+
+<div class="mbar" role="group" aria-label="Rýchly kontakt">
+  <a class="mbar__call" href="tel:+421951357127"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg> Zavolať</a>
+  <a class="mbar__wa" href="https://wa.me/421951357127?text=Dobr%C3%BD%20de%C5%88%2C%20potrebujem%20elektrik%C3%A1ra%20(web%20Elektrika%20Kubi%C5%A1)." target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg> WhatsApp</a>
+  <a class="mbar__form" href="#kontakt">Ponuka</a>
+</div>
 
 <a class="wa-fab" href="https://wa.me/421951357127?text=Dobr%C3%BD%20de%C5%88%2C%20potrebujem%20elektrik%C3%A1ra%20(web%20Elektrika%20Kubi%C5%A1)." target="_blank" rel="noopener" aria-label="Napísať na WhatsApp">
   <svg aria-hidden="true"><use href="#i-wa"/></svg>
