@@ -263,11 +263,10 @@ ul,ol{margin:0;padding:0;list-style:none}
 /* Spodná lišta na mobile */
 .mbar{display:none}
 @media (max-width:639px){
-  .mbar{display:grid;grid-template-columns:1fr 1fr auto;gap:.5rem;position:fixed;left:0;right:0;bottom:0;z-index:60;padding:.6rem .7rem max(.6rem,env(safe-area-inset-bottom));background:rgb(13 20 36 / .96);border-top:2px solid var(--yellow)}
+  .mbar{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;position:fixed;left:0;right:0;bottom:0;z-index:60;padding:.6rem .7rem max(.6rem,env(safe-area-inset-bottom));background:rgb(13 20 36 / .96);border-top:2px solid var(--yellow)}
   .mbar a{display:flex;align-items:center;justify-content:center;gap:.4rem;font:800 .9rem var(--f-head);text-decoration:none;border-radius:999px;padding:.85rem .9rem}
   .mbar__call{background:var(--yellow);color:var(--navy)}
   .mbar__wa{background:var(--wa);color:#06331a}
-  .mbar__form{border:2px solid var(--yellow);color:#fff}
   .wa-fab{display:none}
   body{padding-bottom:4.6rem}
 }
