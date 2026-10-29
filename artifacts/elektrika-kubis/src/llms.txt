@@ -1,8 +1,8 @@
 # Elektrika Kubiš
 
-> Elektrikár Dávid Kubiš zo Zvolena. Elektroinštalácie a rozvody, istiace skrinky a rozvádzače, svietidlá, zásuvky a hľadanie porúch v bytoch a rodinných domoch vo Zvolene a okolí.
+> Elektrikár Dávid Kubiš v Bratislave. Elektroinštalácie a rozvody, istiace skrinky a rozvádzače, svietidlá, zásuvky a hľadanie porúch v bytoch a rodinných domoch v Bratislave a okolí.
 
-Elektrika Kubiš je živnostník (IČO 54649820) so sídlom na Prachatickej 2478/18, 960 01 Zvolen. Pracuje sám, cenu dohodne vopred a za prácu vystaví faktúru.
+Elektrika Kubiš je živnostník (IČO 54649820) so sídlom na Prachatickej 2478/18, 960 01 Zvolen. Služby poskytuje v Bratislave a okolí. Cenu dohodne vopred a za prácu vystaví faktúru.
 
 ## Služby
 
@@ -16,14 +16,14 @@ Elektrika Kubiš je živnostník (IČO 54649820) so sídlom na Prachatickej 2478
 
 ## Oblasť pôsobenia
 
-Zvolen a okolie, napríklad Sliač, Banská Bystrica, Detva, Krupina, Kremnica, Banská Štiavnica, Žiar nad Hronom, Hriňová a Podbrezová.
+Bratislava (Petržalka, Ružinov, Nové Mesto, Karlova Ves, Dúbravka, Rača, Devínska Nová Ves, Podunajské Biskupice) a okolie, napríklad Stupava, Pezinok a Senec.
 
 ## Kontakt
 
 - Telefón: +421 951 357 127
 - WhatsApp: https://wa.me/421951357127
 - E-mail: elektrikakubis@gmail.com
-- Adresa: Prachatická 2478/18, 960 01 Zvolen
+- Sídlo živnosti: Prachatická 2478/18, 960 01 Zvolen
 - Kontaktný formulár: __SITE_URL__/#kontakt
 
 ## Stránky

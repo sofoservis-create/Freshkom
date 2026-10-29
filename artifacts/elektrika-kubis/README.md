@@ -1,6 +1,6 @@
 # Elektrika Kubiš – landing page
 
-One-page web pre elektrikára Dávida Kubiša (Zvolen). Čisté HTML/CSS/JS bez frameworku, build len skopíruje
+One-page web pre elektrikára Dávida Kubiša (Bratislava, sídlo živnosti Zvolen). Čisté HTML/CSS/JS bez frameworku, build len skopíruje
 `src/` do `dist/` a doplní doménu + JSON-LD (`scripts/build.mjs`). Formulár posiela dopyty cez `api/lead.ts`
 (Vercel Function, rovnaký princíp ako v Freshkom).
 

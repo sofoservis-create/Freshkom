@@ -27,7 +27,7 @@ const services = [
   ["Elektro pri rekonštrukcii bytu", "Príprava elektriky pred omietkami a montážou kuchyne."],
   ["Drobné elektrikárske práce", "Zvončeky, domáce telefóny, vonkajšie osvetlenie a ďalšie drobné práce."],
 ];
-const towns = ["Zvolen", "Sliač", "Banská Bystrica", "Detva", "Krupina", "Kremnica", "Banská Štiavnica", "Žiar nad Hronom", "Hriňová", "Podbrezová"];
+const towns = ["Bratislava", "Petržalka", "Ružinov", "Nové Mesto", "Karlova Ves", "Dúbravka", "Rača", "Devínska Nová Ves", "Podunajské Biskupice", "Stupava", "Pezinok", "Senec"];
 
 // FAQ sa berie priamo z HTML, aby sa štruktúrované dáta nikdy nerozišli s viditeľným textom.
 function faqFromHtml(html) {
@@ -54,20 +54,14 @@ function jsonLd(html) {
         image: `${site}/og-image.jpg`,
         logo: `${site}/apple-touch-icon.png`,
         description:
-          "Elektrikár vo Zvolene a okolí: elektroinštalácie a rozvody, istiace skrinky a rozvádzače, svietidlá, zásuvky a hľadanie porúch v bytoch a domoch.",
+          "Elektrikár v Bratislave a okolí: elektroinštalácie a rozvody, istiace skrinky a rozvádzače, svietidlá, zásuvky a hľadanie porúch v bytoch a domoch.",
         telephone: business.phone,
         email: business.email,
         identifier: { "@type": "PropertyValue", name: "IČO", value: business.ico },
         founder: { "@id": `${site}/#david` },
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: "Prachatická 2478/18",
-          postalCode: "960 01",
-          addressLocality: "Zvolen",
-          addressRegion: "Banskobystrický kraj",
-          addressCountry: "SK",
-        },
-        geo: { "@type": "GeoCoordinates", latitude: 48.5747, longitude: 19.153 },
+        // Služby sa poskytujú v Bratislave (bez ulice, ide o službu u zákazníka). Sídlo živnosti (Zvolen) je len vo viditeľnom texte.
+        address: { "@type": "PostalAddress", addressLocality: "Bratislava", addressRegion: "Bratislavský kraj", addressCountry: "SK" },
+        geo: { "@type": "GeoCoordinates", latitude: 48.1486, longitude: 17.1077 },
         areaServed: towns.map((name) => ({ "@type": "City", name })),
         knowsLanguage: "sk",
         contactPoint: {
@@ -82,7 +76,7 @@ function jsonLd(html) {
           name: "Elektrikárske služby",
           itemListElement: services.map(([name, description]) => ({
             "@type": "Offer",
-            itemOffered: { "@type": "Service", name, description, areaServed: "Zvolen a okolie" },
+            itemOffered: { "@type": "Service", name, description, areaServed: "Bratislava a okolie" },
           })),
         },
       },
@@ -93,7 +87,7 @@ function jsonLd(html) {
         jobTitle: "Elektrikár",
         worksFor: { "@id": `${site}/#business` },
         image: `${site}/images/david-about-1000.webp`,
-        address: { "@type": "PostalAddress", addressLocality: "Zvolen", addressCountry: "SK" },
+        address: { "@type": "PostalAddress", addressLocality: "Bratislava", addressCountry: "SK" },
       },
       {
         "@type": "WebSite",
@@ -107,7 +101,7 @@ function jsonLd(html) {
         "@type": "WebPage",
         "@id": `${site}/#webpage`,
         url: `${site}/`,
-        name: "Elektrikár Zvolen | Elektrika Kubiš",
+        name: "Elektrikár Bratislava | Elektrika Kubiš",
         inLanguage: "sk-SK",
         isPartOf: { "@id": `${site}/#website` },
         about: { "@id": `${site}/#business` },
