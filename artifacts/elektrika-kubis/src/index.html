@@ -37,7 +37,7 @@
 
   <link rel="preload" href="/fonts/montserrat-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/mulish-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" as="image" href="/images/david-hero-720.webp" imagesrcset="/images/david-hero-720.webp 720w, /images/david-hero-1100.webp 1100w" imagesizes="(min-width: 900px) 540px, 80vw" fetchpriority="high">
+  <link rel="preload" as="image" type="image/avif" imagesrcset="/images/hero-960.avif 960w, /images/hero-1672.avif 1672w" imagesizes="100vw" fetchpriority="high">
   <link rel="stylesheet" href="/styles.css">
 
   <script type="application/ld+json">__JSONLD__</script>
@@ -45,13 +45,21 @@
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
-    <!-- Logo podľa vizitky: žlté E + tmavá „zástrčka" s názvom a káblom -->
-    <symbol id="logo" viewBox="0 0 470 150">
-      <path fill="#f8dc23" d="M0 0h104v31H34v21h70v24H34v21h70v22H0z"/>
-      <path fill="#3b3f4e" d="M104 0h236a75 75 0 0 1 0 150H104z"/>
-      <path fill="#3b3f4e" d="M414 72h56v6h-56z"/>
-      <text x="140" y="58" font-family="Montserrat, sans-serif" font-weight="500" font-size="29" letter-spacing="4.5" fill="#e9e8f0">ELEKTRIKA</text>
-      <text x="138" y="112" font-family="Montserrat, sans-serif" font-weight="800" font-size="56" letter-spacing="1" fill="#fff">KUBIŠ</text>
+    <!-- Logo Elektrika Kubiš (vektorová verzia dodaného loga) -->
+    <linearGradient id="lk-bg" x1="0" x2="1" y1="0" y2="0"><stop offset=".15" stop-color="#181c1f"/><stop offset=".95" stop-color="#015eda"/></linearGradient>
+      <linearGradient id="lk-bot" x1="0" x2="1" y1="0" y2="0"><stop offset=".09" stop-color="#028bf8"/><stop offset=".15" stop-color="#f8e004"/><stop offset=".85" stop-color="#f8e004"/><stop offset=".91" stop-color="#028bf8"/></linearGradient>
+    <symbol id="logo" viewBox="0 0 1354 557">
+      <rect width="1354" height="557" fill="#181c1f"/>
+      <rect x="25" y="23" width="1304" height="512" fill="#028bf8"/>
+      <rect x="25" y="23" width="1304" height="406" fill="#f8e004"/>
+      <rect x="25" y="516" width="1304" height="19" fill="url(#lk-bot)"/>
+      <rect x="44" y="42" width="1266" height="474" fill="url(#lk-bg)"/>
+      <path fill="#fde402" d="M127 89h552v385H127z"/>
+      <path fill="#181c1f" d="M237 177h260v60H237zM237 322h260v57H237z"/>
+      <path fill="#181c1f" d="M497 92h480a180 189.5 0 0 1 0 379H497z"/>
+      <rect x="1147" y="257" width="131" height="40" fill="#181c1f"/>
+      <text x="565" y="258" font-family="Montserrat, sans-serif" font-weight="500" font-size="62" letter-spacing="19" fill="#fafafa">ELEKTRIKA</text>
+      <text x="561" y="378" font-family="Montserrat, sans-serif" font-weight="800" font-size="124" letter-spacing="2" fill="#fafafa">KUBIŠ</text>
     </symbol>
     <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></symbol>
     <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.6a1 1 0 0 1-.25 1z"/></symbol>
@@ -75,7 +83,7 @@
 <header class="site-header" id="top">
   <div class="wrap header__inner">
     <a class="brand" href="#top" aria-label="Elektrika Kubiš – domov">
-      <svg class="brand__logo" width="188" height="60" role="img" aria-label="Elektrika Kubiš"><use href="#logo"/></svg>
+      <svg class="brand__logo" width="146" height="60" role="img" aria-label="Elektrika Kubiš"><use href="#logo"/></svg>
     </a>
     <nav class="nav" id="nav" aria-label="Hlavná navigácia">
       <a href="#sluzby">Služby</a>
@@ -99,18 +107,12 @@
 
   <!-- HERO -->
   <section class="hero" aria-labelledby="hero-title">
-    <div class="hero__bg" aria-hidden="true">
-      <svg class="hero__lines" viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice">
-        <g fill="none" stroke="#f8dc23" stroke-width="2" stroke-linecap="round" opacity=".16">
-          <path d="M-20 560h260l60-60h230l40 40h200"/>
-          <path d="M-20 610h200l50-50h120"/>
-          <path d="M1460 120h-200l-60 60h-160"/>
-          <path d="M1460 170h-120l-40 40"/>
-        </g>
-        <g fill="#f8dc23" opacity=".28"><circle cx="560" cy="540" r="5"/><circle cx="1000" cy="180" r="5"/><circle cx="300" cy="500" r="5"/></g>
-      </svg>
-      <span class="hero__swoosh"></span>
-    </div>
+    <picture class="hero__media">
+      <source type="image/avif" srcset="/images/hero-960.avif 960w, /images/hero-1672.avif 1672w" sizes="100vw">
+      <img src="/images/hero-1672.webp" srcset="/images/hero-960.webp 960w, /images/hero-1672.webp 1672w" sizes="100vw"
+           width="1672" height="941" fetchpriority="high"
+           alt="Elektrikár Elektrika Kubiš zapája ističe v rozvádzači na stavbe v Bratislave">
+    </picture>
     <div class="wrap hero__grid">
       <div class="hero__copy">
         <p class="eyebrow"><svg class="ico" aria-hidden="true"><use href="#i-bolt"/></svg> Elektrika Kubiš · Bratislava</p>
@@ -128,15 +130,6 @@
           <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg> __CUSTOMERS__ zákazníkov od roku __SINCE__</li>
         </ul>
       </div>
-      <figure class="hero__figure">
-        <span class="hero__frame" aria-hidden="true"></span>
-        <img class="hero__photo" src="/images/david-hero-720.webp"
-             srcset="/images/david-hero-720.webp 720w, /images/david-hero-1100.webp 1100w"
-             sizes="(min-width: 900px) 540px, 80vw"
-             width="1100" height="795"
-             alt="Dávid Kubiš, elektrikár v Bratislave, v pracovnej bunde" fetchpriority="high">
-        <figcaption class="hero__tag"><strong>Dávid Kubiš</strong><span>elektrikár · Bratislava</span></figcaption>
-      </figure>
     </div>
   </section>
 
@@ -214,16 +207,24 @@
   <!-- KEDY ZAVOLAŤ -->
   <section class="band" aria-labelledby="kedy-title">
     <div class="wrap band__grid">
-      <div class="reveal">
-        <p class="kicker kicker--light">Poznáte to?</p>
-        <h2 id="kedy-title">Kedy je správny čas zavolať elektrikára</h2>
-      </div>
+      <figure class="band__photo reveal">
+        <picture>
+          <source type="image/avif" srcset="/images/v-akcii-800.avif 800w, /images/v-akcii-1200.avif 1200w" sizes="(min-width: 900px) 540px, 92vw">
+          <img src="/images/v-akcii-800.webp" srcset="/images/v-akcii-800.webp 800w, /images/v-akcii-1200.webp 1200w" sizes="(min-width: 900px) 540px, 92vw"
+               width="1200" height="800" loading="lazy"
+               alt="Elektrikár Elektrika Kubiš pri novom rozvádzači s ističmi a chráničmi">
+        </picture>
+      </figure>
+      <div class="band__copy">
+        <p class="kicker kicker--light reveal">Poznáte to?</p>
+        <h2 id="kedy-title" class="reveal">Kedy je správny čas zavolať elektrikára</h2>
       <ul class="signs reveal">
         <li><strong>Vypadáva vám istič</strong> alebo sa po zapnutí spotrebiča vypne celý byt.</li>
         <li><strong>Zásuvka nefunguje,</strong> je teplá alebo sa pri nej ozýva praskanie.</li>
         <li><strong>Bývate so starými poistkami</strong> a rozvádzač už nestačí modernej domácnosti.</li>
         <li><strong>Menia sa spotrebiče či kuchyňa</strong> a elektrika na to nie je pripravená.</li>
       </ul>
+      </div>
     </div>
   </section>
 
@@ -232,11 +233,12 @@
     <div class="wrap about">
       <figure class="about__figure reveal">
         <span class="about__frame" aria-hidden="true"></span>
-        <img src="/images/david-about-640.webp"
-             srcset="/images/david-about-640.webp 640w, /images/david-about-1000.webp 1000w"
-             sizes="(min-width: 900px) 460px, 80vw"
-             width="1000" height="1218" loading="lazy"
-             alt="Dávid Kubiš, elektrikár z Elektriky Kubiš v Bratislave">
+        <picture>
+          <source type="image/avif" srcset="/images/portret-640.avif 640w, /images/portret-1024.avif 1024w" sizes="(min-width: 900px) 460px, 92vw">
+          <img src="/images/portret-640.webp" srcset="/images/portret-640.webp 640w, /images/portret-1024.webp 1024w" sizes="(min-width: 900px) 460px, 92vw"
+               width="1024" height="1536" loading="lazy"
+               alt="Dávid Kubiš, elektrikár Elektrika Kubiš, portrét">
+        </picture>
       </figure>
       <div class="about__copy reveal">
         <p class="kicker">O mne</p>
@@ -378,7 +380,7 @@
 <footer class="site-footer">
   <div class="wrap footer__grid">
     <div>
-      <svg class="brand__logo" width="188" height="60" role="img" aria-label="Elektrika Kubiš"><use href="#logo"/></svg>
+      <svg class="brand__logo" width="146" height="60" role="img" aria-label="Elektrika Kubiš"><use href="#logo"/></svg>
       <p class="footer__note">Elektrikár v Bratislave a okolí. Elektroinštalácie, rozvádzače, svietidlá a opravy v bytoch a domoch.</p>
     </div>
     <div>

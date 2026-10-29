@@ -54,7 +54,7 @@ function jsonLd(html) {
         name: business.name,
         url: `${site}/`,
         image: `${site}/og-image.jpg`,
-        logo: `${site}/apple-touch-icon.png`,
+        logo: `${site}/logo.png`,
         description:
           "Elektrikár v Bratislave a okolí: elektroinštalácie a rozvody, istiace skrinky a rozvádzače, svietidlá, zásuvky a hľadanie porúch v bytoch a domoch.",
         telephone: business.phone,
@@ -90,7 +90,7 @@ function jsonLd(html) {
         name: business.owner,
         jobTitle: "Elektrikár",
         worksFor: { "@id": `${site}/#business` },
-        image: `${site}/images/david-about-1000.webp`,
+        image: `${site}/images/portret-1024.webp`,
         address: { "@type": "PostalAddress", addressLocality: "Bratislava", addressCountry: "SK" },
       },
       {
